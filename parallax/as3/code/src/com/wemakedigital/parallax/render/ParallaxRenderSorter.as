@@ -1,0 +1,1 @@
+package com.wemakedigital.parallax.render {	public class ParallaxRenderSorter 	{		public function sort ( list : Array ) : void		{			list.sortOn( "depth" , Array.NUMERIC ) ;			list.reverse( ) ; 		}	}}
