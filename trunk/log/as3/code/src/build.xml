@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="Make Digital Logging Framework" default="Build All" basedir=".">
+<project name="Make Digital Logging Framework" default="all" basedir=".">
 
 	<property file="build.properties" />
 	
-	<target name="Build All" description="Build all files for the Make Digital Logging Framework">
-		<ant target="Build SWC"/>
-		<ant target="Build Documentation"/>
+	<target name="all" description="Build All">
+		<ant target="swc"/>
+		<ant target="docs"/>
 	</target>
 	
-	<target name="Build SWC" description="Build a SWC for the Make Digital Logging Framework">
+	<target name="swc" description="Build SWC">
 		<exec executable="${compc.exe}">
 			<arg value="-compute-digest=false"/>
 			<arg value="-source-path=."/>
@@ -20,11 +20,12 @@
 		</exec>
 	</target>
 	
-	<target name="Build Documentation" description="Create documentation for the Make Digital Logging Framework">
+	<target name="docs" description="Build Documentation">
 		<exec executable="${asdoc.exe}" failonerror="true">
 			<arg line="-doc-sources ${src.dir}" />
 			<arg line="-window-title '${asdoc.title}'" />
 			<arg line="-output ${asdoc.output}" />
 		</exec>
 	</target>
+	
 </project>
