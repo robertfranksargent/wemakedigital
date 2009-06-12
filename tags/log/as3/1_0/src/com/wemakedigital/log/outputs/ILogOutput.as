@@ -1,0 +1,1 @@
+package com.wemakedigital.log.outputs{	import com.wemakedigital.log.LogMessage;			public interface ILogOutput 	{		/**		 * Outputs a LogMessage.		 * 		 * @param logMessage	The log message passed by the Log class.		 */		function output ( logMessage : LogMessage ) : void ;	}}

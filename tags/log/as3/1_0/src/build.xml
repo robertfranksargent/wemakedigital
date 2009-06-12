@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Make Digital Logging Framework" default="Build All" basedir=".">
+
+	<property file="build.properties" />
+	
+	<target name="Build All" description="Build all files for the Make Digital Logging Framework">
+		<ant target="Build SWC"/>
+		<ant target="Build Documentation"/>
+	</target>
+	
+	<target name="Build SWC" description="Build a SWC for the Make Digital Logging Framework">
+		<exec executable="${compc.exe}">
+			<arg value="-compute-digest=false"/>
+			<arg value="-source-path=."/>
+			<arg value="-include-sources"/>
+			<arg value="${src.dir}"/>
+			<arg value="-include-libraries"/>
+			<arg value="-output"/>
+			<arg value="${lib.output}"/>
+		</exec>
+	</target>
+	
+	<target name="Build Documentation" description="Create documentation for the Make Digital Logging Framework">
+		<exec executable="${asdoc.exe}" failonerror="true">
+			<arg line="-doc-sources ${src.dir}" />
+			<arg line="-window-title '${asdoc.title}'" />
+			<arg line="-output ${asdoc.output}" />
+		</exec>
+	</target>
+</project>
