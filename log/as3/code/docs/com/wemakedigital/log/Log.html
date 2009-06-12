@@ -1,0 +1,705 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../../print.css" type="text/css" media="print">
+<meta content="Log,com.wemakedigital.log.Log,addLogFilter,addLogMessage,addLogOutput,debug,error,fatal,getLastLogMessage,getLevel,getLevelName,getLogLength,getLogMessageAt,info,levelEnabled,setLevel,setLogDelay,stackTrace,warning" name="keywords">
+<title>com.wemakedigital.log.Log</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'Log - Make Digital ActionScript 3.0 Language Reference';
+				var baseRef = '../../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">API Documentation</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../../all-classes.html')" href="../../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../all-classes.html')" href="../../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../index-list.html')" href="../../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../../index.html?com/wemakedigital/log/Log.html&amp;com/wemakedigital/log/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;Log</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#methodSummary">Methods</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class Log"); titleBar_setSubNav(false,false,false,false,false,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">com.wemakedigital.log</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class Log</td>
+</tr>
+</table>
+<p></p>
+<p></p>
+<br>
+<hr>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#addLogFilter()">addLogFilter</a>(logFilter:<a href="filters/ILogFilter.html">ILogFilter</a>):void</div>
+<div class="summaryTableDescription">[static]
+   Adds an ILogFiler to the log filter list.</div>
+</td><td class="summaryTableOwnerCol">Log</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#addLogMessage()">addLogMessage</a>(logMessage:<a href="LogMessage.html">LogMessage</a>):<a href="../log/LogMessage.html">LogMessage</a>
+</div>
+<div class="summaryTableDescription">[static]
+   Stores a logMessage and sends it to all added ILogOutputs
+   
+   </div>
+</td><td class="summaryTableOwnerCol">Log</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#addLogOutput()">addLogOutput</a>(logOutput:<a href="outputs/ILogOutput.html">ILogOutput</a>):void</div>
+<div class="summaryTableDescription">[static]
+   Adds an ILogOutput to the Log's output list so that it will receive log messages.</div>
+</td><td class="summaryTableOwnerCol">Log</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#debug()">debug</a>(instance:Object, methodName:String, ... messages):<a href="../log/LogMessage.html">LogMessage</a>
+</div>
+<div class="summaryTableDescription">[static]
+   Logs a debug message.</div>
+</td><td class="summaryTableOwnerCol">Log</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#error()">error</a>(instance:Object, methodName:String, ... messages):<a href="../log/LogMessage.html">LogMessage</a>
+</div>
+<div class="summaryTableDescription">[static]
+   Logs an error.</div>
+</td><td class="summaryTableOwnerCol">Log</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#fatal()">fatal</a>(instance:Object, methodName:String, ... messages):<a href="../log/LogMessage.html">LogMessage</a>
+</div>
+<div class="summaryTableDescription">[static]
+   Logs a fatal error.</div>
+</td><td class="summaryTableOwnerCol">Log</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getLastLogMessage()">getLastLogMessage</a>():<a href="../log/LogMessage.html">LogMessage</a>
+</div>
+<div class="summaryTableDescription">[static]
+   Gets the last log message recorded.</div>
+</td><td class="summaryTableOwnerCol">Log</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getLevel()">getLevel</a>():uint</div>
+<div class="summaryTableDescription">[static]
+   Gets the log level.</div>
+</td><td class="summaryTableOwnerCol">Log</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getLevelName()">getLevelName</a>(level:uint):String</div>
+<div class="summaryTableDescription">[static]
+   Gets the name of a level based on a log level number.</div>
+</td><td class="summaryTableOwnerCol">Log</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getLogLength()">getLogLength</a>():uint</div>
+<div class="summaryTableDescription">[static]
+   Gets the length of the log.</div>
+</td><td class="summaryTableOwnerCol">Log</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getLogMessageAt()">getLogMessageAt</a>(index:uint):<a href="../log/LogMessage.html">LogMessage</a>
+</div>
+<div class="summaryTableDescription">[static]
+   Gets the last log message recorded at a specific index in the array.</div>
+</td><td class="summaryTableOwnerCol">Log</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#info()">info</a>(instance:Object, methodName:String, ... messages):<a href="../log/LogMessage.html">LogMessage</a>
+</div>
+<div class="summaryTableDescription">[static]
+   Logs an info message.</div>
+</td><td class="summaryTableOwnerCol">Log</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#levelEnabled()">levelEnabled</a>(level:uint):Boolean</div>
+<div class="summaryTableDescription">[static]
+   Checks to see if a log level is enabled.</div>
+</td><td class="summaryTableOwnerCol">Log</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#setLevel()">setLevel</a>(level:uint):void</div>
+<div class="summaryTableDescription">[static]
+   Sets the log level.</div>
+</td><td class="summaryTableOwnerCol">Log</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#setLogDelay()">setLogDelay</a>(delay:int, instance:Object, methodName:String = null, level:int = -1):void</div>
+<div class="summaryTableDescription">[static]
+   TODO Documentation.</div>
+</td><td class="summaryTableOwnerCol">Log</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#stackTrace()">stackTrace</a>(instance:Object, methodName:String, ... messages):<a href="../log/LogMessage.html">LogMessage</a>
+</div>
+<div class="summaryTableDescription">[static]
+   Logs a trace message.</div>
+</td><td class="summaryTableOwnerCol">Log</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#warning()">warning</a>(instance:Object, methodName:String, ... messages):<a href="../log/LogMessage.html">LogMessage</a>
+</div>
+<div class="summaryTableDescription">[static]
+   Logs a warning.</div>
+</td><td class="summaryTableOwnerCol">Log</td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method detail</div>
+<a name="addLogFilter()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">addLogFilter</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function addLogFilter(logFilter:<a href="filters/ILogFilter.html">ILogFilter</a>):void</code><p>
+   Adds an ILogFiler to the log filter list.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">logFilter</span>:<a href="filters/ILogFilter.html">ILogFilter</a></code> &mdash; An instance implementing ILogFilter.
+   </td>
+</tr>
+</table>
+</div>
+<a name="addLogMessage()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">addLogMessage</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function addLogMessage(logMessage:<a href="LogMessage.html">LogMessage</a>):<a href="../log/LogMessage.html">LogMessage</a></code><p>
+   Stores a logMessage and sends it to all added ILogOutputs
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">logMessage</span>:<a href="LogMessage.html">LogMessage</a></code> &mdash; The logMessage.
+   </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../log/LogMessage.html">LogMessage</a></code></td>
+</tr>
+</table>
+</div>
+<a name="addLogOutput()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">addLogOutput</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function addLogOutput(logOutput:<a href="outputs/ILogOutput.html">ILogOutput</a>):void</code><p>
+   Adds an ILogOutput to the Log's output list so that it will receive log messages.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">logOutput</span>:<a href="outputs/ILogOutput.html">ILogOutput</a></code> &mdash; The ILogOutput.
+   </td>
+</tr>
+</table>
+</div>
+<a name="debug()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">debug</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function debug(instance:Object, methodName:String, ... messages):<a href="../log/LogMessage.html">LogMessage</a></code><p>
+   Logs a debug message.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">instance</span>:Object</code> &mdash; instance  The instance of the object that logged this error.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">methodName</span>:String</code> &mdash; methodName  The name of the method that logged this error.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code>... <span class="label">messages</span></code> &mdash; messages An Array of log messages.
+   </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../log/LogMessage.html">LogMessage</a></code></td>
+</tr>
+</table>
+</div>
+<a name="error()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">error</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function error(instance:Object, methodName:String, ... messages):<a href="../log/LogMessage.html">LogMessage</a></code><p>
+   Logs an error.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">instance</span>:Object</code> &mdash; instance  The instance of the object that logged this error.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">methodName</span>:String</code> &mdash; methodName  The name of the method that logged this error.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code>... <span class="label">messages</span></code> &mdash; messages An Array of log messages.
+   </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../log/LogMessage.html">LogMessage</a></code></td>
+</tr>
+</table>
+</div>
+<a name="fatal()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">fatal</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function fatal(instance:Object, methodName:String, ... messages):<a href="../log/LogMessage.html">LogMessage</a></code><p>
+   Logs a fatal error.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">instance</span>:Object</code> &mdash; instance  The instance of the object that logged this error.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">methodName</span>:String</code> &mdash; methodName  The name of the method that logged this error.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code>... <span class="label">messages</span></code> &mdash; messages An Array of log messages.
+   </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../log/LogMessage.html">LogMessage</a></code></td>
+</tr>
+</table>
+</div>
+<a name="getLastLogMessage()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getLastLogMessage</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function getLastLogMessage():<a href="../log/LogMessage.html">LogMessage</a></code><p>
+   Gets the last log message recorded.
+   
+   </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../log/LogMessage.html">LogMessage</a></code> &mdash; 
+                        LogMessage collection.
+   
+                        
+                     </td>
+</tr>
+</table>
+</div>
+<a name="getLevel()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getLevel</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function getLevel():uint</code><p>
+   Gets the log level.
+   
+   </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>uint</code> &mdash; Number of the log level.
+   </td>
+</tr>
+</table>
+</div>
+<a name="getLevelName()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getLevelName</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function getLevelName(level:uint):String</code><p>
+   Gets the name of a level based on a log level number.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">level</span>:uint</code> &mdash; uint of the log level.
+   </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code> &mdash; String name of the log level.
+   </td>
+</tr>
+</table>
+</div>
+<a name="getLogLength()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getLogLength</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function getLogLength():uint</code><p>
+   Gets the length of the log.
+   
+   </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>uint</code> &mdash; The number of items in the log messages array.
+   </td>
+</tr>
+</table>
+</div>
+<a name="getLogMessageAt()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getLogMessageAt</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function getLogMessageAt(index:uint):<a href="../log/LogMessage.html">LogMessage</a></code><p>
+   Gets the last log message recorded at a specific index in the array.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">index</span>:uint</code> &mdash; The array index number.
+   </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../log/LogMessage.html">LogMessage</a></code> &mdash; 
+                        LogMessage.
+   
+                        
+                     </td>
+</tr>
+</table>
+</div>
+<a name="info()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">info</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function info(instance:Object, methodName:String, ... messages):<a href="../log/LogMessage.html">LogMessage</a></code><p>
+   Logs an info message.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">instance</span>:Object</code> &mdash; instance  The instance of the object that logged this error.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">methodName</span>:String</code> &mdash; methodName  The name of the method that logged this error.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code>... <span class="label">messages</span></code> &mdash; messages An Array of log messages.
+   </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../log/LogMessage.html">LogMessage</a></code></td>
+</tr>
+</table>
+</div>
+<a name="levelEnabled()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">levelEnabled</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function levelEnabled(level:uint):Boolean</code><p>
+   Checks to see if a log level is enabled.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">level</span>:uint</code> &mdash; uint of the log level.
+   </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code> &mdash; Boolean; true if enabled, otherwise false.
+   </td>
+</tr>
+</table>
+</div>
+<a name="setLevel()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">setLevel</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function setLevel(level:uint):void</code><p>
+   Sets the log level.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">level</span>:uint</code> &mdash; Number of the log level.
+   </td>
+</tr>
+</table>
+</div>
+<a name="setLogDelay()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">setLogDelay</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function setLogDelay(delay:int, instance:Object, methodName:String = null, level:int = -1):void</code><p>
+   TODO Documentation.
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">delay</span>:int</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">instance</span>:Object</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">methodName</span>:String</code> (default = <code>null</code>)<code></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">level</span>:int</code> (default = <code>-1</code>)<code></code></td>
+</tr>
+</table>
+</div>
+<a name="stackTrace()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">stackTrace</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function stackTrace(instance:Object, methodName:String, ... messages):<a href="../log/LogMessage.html">LogMessage</a></code><p>
+   Logs a trace message.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">instance</span>:Object</code> &mdash; messages An Array of log messages.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">methodName</span>:String</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code>... <span class="label">messages</span></code></td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../log/LogMessage.html">LogMessage</a></code></td>
+</tr>
+</table>
+</div>
+<a name="warning()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">warning</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function warning(instance:Object, methodName:String, ... messages):<a href="../log/LogMessage.html">LogMessage</a></code><p>
+   Logs a warning.
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">instance</span>:Object</code> &mdash; instance  The instance of the object that logged this error.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">methodName</span>:String</code> &mdash; methodName  The name of the method that logged this error.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code>... <span class="label">messages</span></code> &mdash; messages An Array of log messages.
+   </td>
+</tr>
+</table>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code><a href="../log/LogMessage.html">LogMessage</a></code></td>
+</tr>
+</table>
+</div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright"> 
+</center>
+</div>
+</body>
+</html>
+<!-- -->
