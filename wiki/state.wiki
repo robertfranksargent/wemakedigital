@@ -1,0 +1,12 @@
+#summary An asynchronous state machine for PureMVC.
+
+= State Machine =
+
+== Overview ==
+
+... 
+
+
+== Features ==
+
+...
