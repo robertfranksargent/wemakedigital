@@ -1,0 +1,1 @@
+package com.wemakedigital.utils {	public class BooleanUtil 	{		public static function random ( chance : Number = .5 ) : Boolean		{			return Math.random( ) < chance ;		}	}}

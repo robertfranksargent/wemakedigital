@@ -1,0 +1,1 @@
+package com.wemakedigital.utils {	public class ObjectUtil 	{		public static function isObjectOfType ( object : * , types : Array ) : Boolean		{			for each ( var type : Class in types )			{				if ( object is type ) return true ;			}			return false ;		}	}}
