@@ -1,4 +1,4 @@
-#summary An asynchronous state machine for [http://www.puremvc.org PureMVC].
+#summary An asynchronous state machine for PureMVC.
 
 = State Machine =
 
