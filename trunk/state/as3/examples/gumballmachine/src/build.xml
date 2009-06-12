@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Make Digital Gumball Machine" default="swf">
+
+	<property file="build.properties" />
+	
+	<target name="swf" description="Build SWF">
+		<exec executable="${mxmlc.exe}" failonerror="true">
+			<arg line="-source-path ${src.dir}" />
+			<arg line="-library-path ${libs.dir}" />
+			<arg line="-output ${mxmlc.output}"/>
+			<arg line="-- ${src.dir}/com/wemakedigital/state/example/gumballmachine/GumballMachine.as"/>
+		</exec>
+	</target>
+	
+</project>

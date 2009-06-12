@@ -11,9 +11,9 @@
 	<target name="swc" description="Build SWC">
 		<exec executable="${compc.exe}">
 			<arg line="-source-path=${src.dir}"/>
-			<arg line="-external-library-path ${libs.dir}"/>
 			<arg line="-include-sources ${src.dir}/com/wemakedigital/state"/>
-			<arg line="-output ${output.dir}"/>
+			<arg line="-external-library-path+=${libs.dir}"/>
+			<arg line="-output ${compc.output}"/>
 		</exec>
 	</target>
 	
@@ -21,7 +21,7 @@
 		<exec executable="${asdoc.exe}" failonerror="true">
 			<arg line="-doc-sources ${src.dir}" />
 			<arg line="-window-title '${asdoc.title}'" />
-			<arg line="-external-library-path ${libs.dir}"/>
+			<arg line="-external-library-path+=${libs.dir}"/>
 			<arg line="-output ${asdoc.output}" />
 		</exec>
 	</target>
