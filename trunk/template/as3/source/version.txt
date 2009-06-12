@@ -4,13 +4,11 @@ Copyright (c) 2009 Make Digital Ltd. (http://www.wemakedigital.com)
 
 -----------------------------------------------------------------------------
 
-Licence:    The open source MIT License (see license.txt)
-
-Authors:    Tom Cole, Robert Sargent
-
-Platform:   ActionScript 3, Flash Player 9.0.0
-
-Version:    0.1
+Licence:       The open source MIT License (see license.txt)
+Platform:      ActionScript 3, Flash Player 9.0.0
+Dependencies:  None
+Authors:       Tom Cole, Robert Sargent
+Version:       0.1
 
 -----------------------------------------------------------------------------
 
