@@ -1,0 +1,2 @@
+package com.wemakedigital.utils {	import flash.net.URLVariables;	import flash.utils.getTimer;		
+	public class URLUtil 	{		public static function getUniqueRequestData ( ) : URLVariables		{			var vars : URLVariables = new URLVariables( ) ;			vars[ "id" ] = getTimer( ) * Math.random( ) ;			return vars ;		}	}}
