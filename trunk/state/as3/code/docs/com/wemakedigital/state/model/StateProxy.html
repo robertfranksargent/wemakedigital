@@ -4,7 +4,7 @@
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="../../../../style.css" type="text/css" media="screen">
 <link rel="stylesheet" href="../../../../print.css" type="text/css" media="print">
-<meta content="StateProxy,com.wemakedigital.state.model.StateProxy,ADD_RESPONDER,ENTER,ENTER_RESPONSE,EVENT_CALLED,EVENT_COMPLETE,EVENT_ERROR,EXIT,EXIT_RESPONSE,NAME,REMOVE_RESPONDER,actionResponse,callEvent,clearStates,conditionResponse,createState,enterResponse,exitResponse,getCurrentState,getInitialState,getState,removeState,setInitialState" name="keywords">
+<meta content="StateProxy,com.wemakedigital.state.model.StateProxy,ADD_RESPONDER,ENTER,ENTER_RESPONSE,EVENT_CALLED,EVENT_COMPLETE,EVENT_ERROR,EXIT,EXIT_RESPONSE,NAME,REMOVE_RESPONDER,actionResponse,callEvent,clearStates,conditionResponse,createState,enterResponse,exitResponse,getCurrentState,getInitialState,getState,registerEvent,removeState,setInitialState" name="keywords">
 <title>com.wemakedigital.state.model.StateProxy</title>
 </head>
 <body>
@@ -148,6 +148,16 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </div>
 <div class="summaryTableDescription">
    Gets a registered state object by id.</div>
+</td><td class="summaryTableOwnerCol">StateProxy</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#registerEvent()">registerEvent</a>(event:String):void</div>
+<div class="summaryTableDescription">
+   Registers an event with the StateEventCommand
+   
+   </div>
 </td><td class="summaryTableOwnerCol">StateProxy</td>
 </tr>
 <tr class="">
@@ -471,6 +481,24 @@ showHideInherited();
    
                         
                      </td>
+</tr>
+</table>
+</div>
+<a name="registerEvent()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">registerEvent</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function registerEvent(event:String):void</code><p>
+   Registers an event with the StateEventCommand
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">event</span>:String</code> &mdash; The event notification name. 
+   </td>
 </tr>
 </table>
 </div>
