@@ -1,4 +1,4 @@
-Project
+RSL
 
 Copyright (c) 2009 Make Digital Ltd. (http://www.wemakedigital.com)
 
