@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>gumballmachine</name>
+	<name>code.state.gumballmachine</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -19,6 +19,11 @@
 			<name>playerglobal.swc</name>
 			<type>1</type>
 			<location>/Applications/FDT3/plugins/com.powerflasher.fdt.shippedflex_3.2.0.3958_0001/flex/frameworks/libs/player/9/playerglobal.swc</location>
+		</link>
+		<link>
+			<name>State_0_1.swc</name>
+			<type>1</type>
+			<locationURI>State_0_1</locationURI>
 		</link>
 		<link>
 			<name>rpc.swc</name>
