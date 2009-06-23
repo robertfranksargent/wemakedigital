@@ -4,7 +4,7 @@
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="../../../../style.css" type="text/css" media="screen">
 <link rel="stylesheet" href="../../../../print.css" type="text/css" media="print">
-<meta content="StateProxy,com.wemakedigital.state.model.StateProxy,ADD_RESPONDER,CALL,CALLED,CALL_CONFIRM,COMPLETE,CONFIRM,CONFIRM_RESPONSE,ENTER,ENTER_RESPONSE,ERROR,EVENT,EXIT,EXIT_RESPONSE,NAME,REMOVE_RESPONDER,STATE,actionResponse,callEvent,callStateChange,clearStates,conditionResponse,confirmResponse,createState,enterResponse,exitResponse,getCurrentState,getInitialState,getState,registerEvent,removeState,setInitialState" name="keywords">
+<meta content="StateProxy,com.wemakedigital.state.model.StateProxy,ADD_RESPONDER,CALL,CALLED,CALL_CONFIRM,COMPLETE,CONFIRM,CONFIRM_RESPONSE,ENTER,ENTER_RESPONSE,ERROR,EVENT,EXIT,EXIT_RESPONSE,NAME,REMOVE_RESPONDER,STATE,actionResponse,callEvent,callStateChange,clearStates,conditionResponse,confirmResponse,createState,enterResponse,exitResponse,getCurrentState,getInitialState,getLastState,getState,getStateHistory,registerEvent,removeState,setInitialState" name="keywords">
 <title>com.wemakedigital.state.model.StateProxy</title>
 </head>
 <body>
@@ -160,10 +160,26 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
+<a class="signatureLink" href="#getLastState()">getLastState</a>():String</div>
+<div class="summaryTableDescription">
+   Get the previous state.</div>
+</td><td class="summaryTableOwnerCol">StateProxy</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
 <a class="signatureLink" href="#getState()">getState</a>(id:String):<a href="../model/State.html">State</a>
 </div>
 <div class="summaryTableDescription">
    Gets a registered state object by id.</div>
+</td><td class="summaryTableOwnerCol">StateProxy</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getStateHistory()">getStateHistory</a>():Array</div>
+<div class="summaryTableDescription">
+   Get the previous states IDs.</div>
 </td><td class="summaryTableOwnerCol">StateProxy</td>
 </tr>
 <tr class="">
@@ -559,6 +575,25 @@ showHideInherited();
 </tr>
 </table>
 </div>
+<a name="getLastState()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getLastState</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getLastState():String</code><p>
+   Get the previous state.
+   
+   </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>String</code> &mdash; A state ID.
+   </td>
+</tr>
+</table>
+</div>
 <a name="getState()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -585,6 +620,25 @@ showHideInherited();
    
                         
                      </td>
+</tr>
+</table>
+</div>
+<a name="getStateHistory()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getStateHistory</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getStateHistory():Array</code><p>
+   Get the previous states IDs.
+   
+   </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Array</code> &mdash; An Array of state IDs.
+   </td>
 </tr>
 </table>
 </div>
