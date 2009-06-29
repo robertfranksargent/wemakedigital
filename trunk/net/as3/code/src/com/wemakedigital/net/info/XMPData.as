@@ -1,0 +1,1 @@
+package com.wemakedigital.net.info {	public class XMPData 	{		public static const LIVE_XML : String = "liveXML" ;				public var liveXML : XML ;	}}

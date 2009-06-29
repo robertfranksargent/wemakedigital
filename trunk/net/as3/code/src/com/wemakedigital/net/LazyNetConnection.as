@@ -1,0 +1,1 @@
+package com.wemakedigital.net {	import com.wemakedigital.net.events.LazyNetConnectionEvent;		import flash.net.NetConnection;		public class LazyNetConnection extends NetConnection 	{		public function onBWDone ( ) : void		{			var e : LazyNetConnectionEvent = new LazyNetConnectionEvent( LazyNetConnectionEvent.BW_DONE ) ;			this.dispatchEvent( e ) ;		}	}}

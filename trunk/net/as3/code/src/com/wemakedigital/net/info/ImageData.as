@@ -1,0 +1,1 @@
+package com.wemakedigital.net.info {	import flash.utils.ByteArray;			public class ImageData 	{		public static const DATA : String = "data" ;				public var data : ByteArray ;	}}
