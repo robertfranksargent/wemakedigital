@@ -1,0 +1,1 @@
+package com.wemakedigital.net.info {	public class TextData 	{	}}
