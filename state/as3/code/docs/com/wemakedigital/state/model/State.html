@@ -4,7 +4,7 @@
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="../../../../style.css" type="text/css" media="screen">
 <link rel="stylesheet" href="../../../../print.css" type="text/css" media="print">
-<meta content="State,com.wemakedigital.state.model.State,id,addResponder,addTransition,compareResponders,getResponderAt,getResponderTotal,getTransitionAt,getTransitionTotal,getTransitionsByEvent,getTransitionsByState,removeResponder,removeTransition" name="keywords">
+<meta content="State,com.wemakedigital.state.model.State,TIMEOUT,id,responses,addResponder,addTransition,getAllResponded,getResponderAt,getResponderTotal,getTransitionAt,getTransitionTotal,getTransitionsByEvent,getTransitionsByState,removeResponder,removeTransition,startTimoutTimer,stopTimoutTimer" name="keywords">
 <title>com.wemakedigital.state.model.State</title>
 </head>
 <body>
@@ -19,7 +19,7 @@
 <td align="left" class="titleTableTitle">API Documentation</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../../../all-classes.html')" href="../../../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../all-classes.html')" href="../../../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../index-list.html')" href="../../../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../../../index.html?com/wemakedigital/state/model/State.html&amp;com/wemakedigital/state/model/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../../../images/logo.jpg"></td>
 </tr>
 <tr class="titleTableRow2">
-<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;State</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a></td>
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;State</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a>&nbsp;| <a href="#constantSummary">Constants</a></td>
 </tr>
 <tr class="titleTableRow3">
 <td colspan="2">&nbsp;</td>
@@ -27,7 +27,7 @@
 </table>
 <script type="text/javascript" language="javascript">
 <!--
-if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class State"); titleBar_setSubNav(false,true,false,false,false,false,true,false,false,false,false,false,false,false);}
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class State"); titleBar_setSubNav(true,true,false,false,false,false,true,false,false,false,false,false,false,false);}
 --></script>
 <div class="MainContent">
 <table cellspacing="0" cellpadding="0" class="classHeaderTable">
@@ -54,6 +54,11 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#id">id</a> : String<div class="summaryTableDescription">
    The state identifier and notification name.</div>
+</td><td class="summaryTableOwnerCol">State</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#responses">responses</a> : Array<div class="summaryTableDescription">
+   Array of IStateResponder instances that have responded to this state.</div>
 </td><td class="summaryTableOwnerCol">State</td>
 </tr>
 </table>
@@ -92,9 +97,9 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#compareResponders()">compareResponders</a>(responded:Array):Boolean</div>
+<a class="signatureLink" href="#getAllResponded()">getAllResponded</a>():Boolean</div>
 <div class="summaryTableDescription">
-   Compares an array of responders that have reponded to the array of 
+   Compares the array of responses that have reponded to the array of 
    responders associated with this state.</div>
 </td><td class="summaryTableOwnerCol">State</td>
 </tr>
@@ -164,6 +169,35 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
    Remove a previously added transition.</div>
 </td><td class="summaryTableOwnerCol">State</td>
 </tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#startTimoutTimer()">startTimoutTimer</a>():void</div>
+<div class="summaryTableDescription">
+   Starts the timeout timer.</div>
+</td><td class="summaryTableOwnerCol">State</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#stopTimoutTimer()">stopTimoutTimer</a>():void</div>
+<div class="summaryTableDescription">
+   Stops the timeout timer.</div>
+</td><td class="summaryTableOwnerCol">State</td>
+</tr>
+</table>
+</div>
+<a name="constantSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Constants</div>
+<table id="summaryTableConstant" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Constant</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#TIMEOUT">TIMEOUT</a> : uint = 10000<div class="summaryTableDescription">[static]</div>
+</td><td class="summaryTableOwnerCol">State</td>
+</tr>
 </table>
 </div>
 <script type="text/javascript" language="javascript">
@@ -182,6 +216,16 @@ showHideInherited();
 <div class="detailBody">
 <code>public var id:String</code><p>
    The state identifier and notification name.
+   </p></div>
+<a name="responses"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">responses</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var responses:Array</code><p>
+   Array of IStateResponder instances that have responded to this state.
    </p></div>
 <a name="constructorDetail"></a>
 <div class="detailSectionHeader">Constructor detail</div>
@@ -247,25 +291,18 @@ showHideInherited();
 </tr>
 </table>
 </div>
-<a name="compareResponders()"></a>
+<a name="getAllResponded()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">compareResponders</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+<td class="detailHeaderName">getAllResponded</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
 </tr>
 </table>
 <div class="detailBody">
-<code>public function compareResponders(responded:Array):Boolean</code><p>
-   Compares an array of responders that have reponded to the array of 
+<code>public function getAllResponded():Boolean</code><p>
+   Compares the array of responses that have reponded to the array of 
    responders associated with this state.
    
-   </p><span class="label">Parameters</span>
-<table border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td width="20px"></td><td><code><span class="label">responded</span>:Array</code> &mdash; The array of IStateResponder objects.
-   </td>
-</tr>
-</table>
-<p></p>
+   </p><p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
@@ -458,6 +495,37 @@ showHideInherited();
    </td>
 </tr>
 </table>
+</div>
+<a name="startTimoutTimer()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">startTimoutTimer</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function startTimoutTimer():void</code><p>
+   Starts the timeout timer.
+   </p></div>
+<a name="stopTimoutTimer()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">stopTimoutTimer</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function stopTimoutTimer():void</code><p>
+   Stops the timeout timer.
+   </p></div>
+<a name="constantDetail"></a>
+<div class="detailSectionHeader">Constant detail</div>
+<a name="TIMEOUT"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">TIMEOUT</td><td class="detailHeaderType">constant</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static const TIMEOUT:uint = 10000</code>
 </div>
 <br>
 <br>
