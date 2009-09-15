@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout:LayoutStage xmlns:mleft="http://www.adobe.com/2006/mxml" xmlns:layout="com.wemakedigital.layout.*">
+
+	<layout:content>
+		
+		<!--<layout:LayoutComponent fixedWidth="200" fixedHeight="200" horizontalCentre="0" verticalCentre="0" />-->
+		
+		<layout:LayoutHorizontal left="20" right="20" top="20" bottom="20">
+			<layout:LayoutComponent fixedWidth="30" fixedHeight="30"/>
+			<layout:LayoutComponent fixedWidth="30" fixedHeight="30"/>
+			<layout:LayoutComponent fixedWidth="30" fixedHeight="30"/>
+			<layout:LayoutComponent fixedWidth="30" fixedHeight="30"/>
+		</layout:LayoutHorizontal>
+		
+	</layout:content>
+	
+</layout:LayoutStage>
