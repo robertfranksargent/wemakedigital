@@ -12,6 +12,7 @@ package com.wemakedigital.layout
 		//
 		//----------------------------------------------------------------------
 		
+		private var _container : LayoutContainer ;
 		private var _created : Boolean = false ;
 		
 		//----------------------------------------------------------------------
@@ -54,11 +55,32 @@ package com.wemakedigital.layout
 		private var _relativeMaxHeight : Number = NaN ;
 		
 		//----------------------------------------------------------------------
+		
+		private var _colour : Number = NaN ;
+		private var _colourAlpha : Number = 1 ;
+		
+		//----------------------------------------------------------------------
 		//
 		//  Getters and Setters
 		//
 		//----------------------------------------------------------------------
 		
+		/**
+		 * The component's layout container.
+		 */
+		public function get container ( ) : LayoutContainer
+		{
+			return this._container ;
+		}
+
+		/**
+		 * @private
+		 */
+		public function set container ( value : LayoutContainer ) : void
+		{
+			if ( value is LayoutContainer ) this._container = value ;
+		}
+
 		/**
 		 * The created status of the component, true after createChildren is called after being added to the stage.
 		 */
@@ -80,7 +102,7 @@ package com.wemakedigital.layout
 		/**
 		 * The explicit width of the component.
 		 */
-		internal function get explicitWidth () : Number
+		public function get explicitWidth () : Number
 		{
 			return this._explicitWidth ;
 		}
@@ -88,7 +110,7 @@ package com.wemakedigital.layout
 		/**
 		 * @private
 		 */
-		internal function set explicitWidth (value : Number) : void
+		public function set explicitWidth (value : Number) : void
 		{
 			this._explicitWidth = Math.max ( this.explicitMinWidth, isNaN ( this.explicitMaxWidth ) ? value : Math.min ( this.explicitMaxWidth, value ) ) ;
 		}
@@ -96,7 +118,7 @@ package com.wemakedigital.layout
 		/**
 		 * The explicit height of the component.
 		 */
-		internal function get explicitHeight () : Number
+		public function get explicitHeight () : Number
 		{
 			return this._explicitHeight ;
 		}
@@ -104,7 +126,7 @@ package com.wemakedigital.layout
 		/**
 		 * @private
 		 */
-		internal function set explicitHeight (value : Number) : void
+		public function set explicitHeight (value : Number) : void
 		{
 			this._explicitHeight = Math.max ( this.explicitMinHeight, isNaN ( this.explicitMaxHeight ) ? value : Math.min ( this.explicitMaxHeight, value ) ) ;
 		}
@@ -112,7 +134,7 @@ package com.wemakedigital.layout
 		/**
 		 * The minumum explicit width of the component.
 		 */
-		internal function get explicitMinWidth () : Number
+		public function get explicitMinWidth () : Number
 		{
 			return this._explicitMinWidth ;
 		}
@@ -120,7 +142,7 @@ package com.wemakedigital.layout
 		/**
 		 * @private
 		 */
-		internal function set explicitMinWidth (value : Number) : void
+		public function set explicitMinWidth (value : Number) : void
 		{
 			this._explicitMinWidth = Math.max ( 0, value ) ;
 		}
@@ -128,7 +150,7 @@ package com.wemakedigital.layout
 		/**
 		 * The minumum explicit height of the component.
 		 */
-		internal function get explicitMinHeight () : Number
+		public function get explicitMinHeight () : Number
 		{
 			return this._explicitMinHeight ;
 		}
@@ -136,7 +158,7 @@ package com.wemakedigital.layout
 		/**
 		 * @private
 		 */
-		internal function set explicitMinHeight (value : Number) : void
+		public function set explicitMinHeight (value : Number) : void
 		{
 			this._explicitMinHeight = Math.max ( 0, value ) ;
 		}
@@ -144,7 +166,7 @@ package com.wemakedigital.layout
 		/**
 		 * The maximum explicit width of the component.
 		 */
-		internal function get explicitMaxWidth () : Number
+		public function get explicitMaxWidth () : Number
 		{
 			return this._explicitMaxWidth ;
 		}
@@ -152,7 +174,7 @@ package com.wemakedigital.layout
 		/**
 		 * @private
 		 */
-		internal function set explicitMaxWidth (value : Number) : void
+		public function set explicitMaxWidth (value : Number) : void
 		{
 			this._explicitMaxWidth = Math.max ( 0, value ) ;
 		}
@@ -160,7 +182,7 @@ package com.wemakedigital.layout
 		/**
 		 * The maximum explicit height of the component
 		 */
-		internal function get explicitMaxHeight () : Number
+		public function get explicitMaxHeight () : Number
 		{
 			return this._explicitMaxHeight ;
 		}
@@ -168,7 +190,7 @@ package com.wemakedigital.layout
 		/**
 		 * @private
 		 */
-		internal function set explicitMaxHeight (value : Number) : void
+		public function set explicitMaxHeight (value : Number) : void
 		{
 			this._explicitMaxHeight = Math.max ( 0, value ) ;
 		}
@@ -192,6 +214,8 @@ package com.wemakedigital.layout
 			
 			// If the component has a fixed width it can't have a relative width.
 			this._relativeWidth = NaN ;
+			
+			this.updateProperties() ;
 		}
 		
 		/**
@@ -211,6 +235,8 @@ package com.wemakedigital.layout
 			
 			// If the component has a fixed height it can't have a relative height.
 			this._relativeHeight = NaN ;
+			
+			this.updateProperties() ;
 		}
 		
 		/**
@@ -227,6 +253,8 @@ package com.wemakedigital.layout
 		public function set fixedMinWidth (value : Number) : void
 		{
 			this._fixedMinWidth = Math.max ( 0, value ) ;
+			
+			this.updateProperties() ;
 		}
 		
 		/**
@@ -243,6 +271,8 @@ package com.wemakedigital.layout
 		public function set fixedMinHeight (value : Number) : void
 		{
 			this._fixedMinHeight = Math.max ( 0, value ) ;
+			
+			this.updateProperties() ;
 		}
 		
 		/**
@@ -259,6 +289,8 @@ package com.wemakedigital.layout
 		public function set fixedMaxWidth (value : Number) : void
 		{
 			this._fixedMaxWidth = Math.max ( 0, value ) ;
+			
+			this.updateProperties() ;
 		}
 		
 		/**
@@ -275,6 +307,8 @@ package com.wemakedigital.layout
 		public function set fixedMaxHeight (value : Number) : void
 		{
 			this._fixedMaxHeight = Math.max ( 0, value ) ;
+			
+			this.updateProperties() ;
 		}
 		
 		//----------------------------------------------------------------------
@@ -300,6 +334,8 @@ package com.wemakedigital.layout
 				this._fixedWidth = NaN ;
 				this._relativeWidth = NaN ;
 			}
+			
+			this.updateProperties() ;
 		}
 		
 		/**
@@ -323,6 +359,8 @@ package com.wemakedigital.layout
 				this._fixedWidth = NaN ;
 				this._relativeWidth = NaN ;
 			}
+			
+			this.updateProperties() ;
 		}
 		
 		/**
@@ -346,6 +384,8 @@ package com.wemakedigital.layout
 				this._fixedHeight = NaN ;
 				this._relativeHeight = NaN ;
 			}
+			
+			this.updateProperties() ;
 		}
 		
 		/**
@@ -369,6 +409,8 @@ package com.wemakedigital.layout
 				this._fixedHeight = NaN ;
 				this._relativeHeight = NaN ;
 			}
+			
+			this.updateProperties() ;
 		}
 		
 		//----------------------------------------------------------------------
@@ -391,6 +433,8 @@ package com.wemakedigital.layout
 			// If the component has a horizontal centre anchor it can't have a left or right anchor.
 			this._left = NaN ;
 			this._right = NaN ;
+			
+			this.updateProperties() ;
 		}
 
 		/**
@@ -411,6 +455,8 @@ package com.wemakedigital.layout
 			// If the component has a vertical centre anchor it can't have a top or bottom anchor.
 			this._top = NaN ;
 			this._bottom = NaN ;
+			
+			this.updateProperties() ;
 		}
 		
 		//----------------------------------------------------------------------
@@ -432,6 +478,8 @@ package com.wemakedigital.layout
 			
 			// If the component has a relative width it can't have a fixed width.
 			this._fixedWidth = NaN ;
+			
+			this.updateProperties() ;
 		}
 		
 		/**
@@ -451,6 +499,8 @@ package com.wemakedigital.layout
 			
 			// If the component has a relative height it can't have a fixed height.
 			this._fixedHeight = NaN ;
+			
+			this.updateProperties() ;
 		}
 		
 		/**
@@ -467,6 +517,8 @@ package com.wemakedigital.layout
 		public function set relativeMinWidth (value : Number) : void
 		{
 			this._relativeMinWidth = Math.max ( 0, value ) ;
+			
+			this.updateProperties() ;
 		}
 		
 		/**
@@ -483,6 +535,8 @@ package com.wemakedigital.layout
 		public function set relativeMinHeight (value : Number) : void
 		{
 			this._relativeMinHeight = Math.max ( 0, value ) ;
+			
+			this.updateProperties() ;
 		}
 		
 		/**
@@ -499,6 +553,8 @@ package com.wemakedigital.layout
 		public function set relativeMaxWidth (value : Number) : void
 		{
 			this._relativeMaxWidth = Math.max ( 0, value ) ;
+			
+			this.updateProperties() ;
 		}
 		
 		/**
@@ -515,6 +571,46 @@ package com.wemakedigital.layout
 		public function set relativeMaxHeight (value : Number) : void
 		{
 			this._relativeMaxHeight = Math.max ( 0, value ) ;
+			
+			this.updateProperties() ;
+		}
+		
+		//----------------------------------------------------------------------
+		
+		/**
+		 * Optional background colour for component
+		 */
+		public function get colour () : Number
+		{
+			return this._colour ;
+		}
+		
+		/**
+		 * @private
+		 */
+		public function set colour (value : Number) : void
+		{
+			this._colour = value ;
+			
+			this.updateDisplayColour() ;
+		}
+		
+		/**
+		 * Background colour alpha for component
+		 */
+		public function get colourAlpha () : Number
+		{
+			return this._colourAlpha ;
+		}
+		
+		/**
+		 * @private
+		 */
+		public function set colourAlpha (value : Number) : void
+		{
+			this._colourAlpha = value ;
+			
+			this.updateDisplayColour() ;
 		}
 		
 		//----------------------------------------------------------------------
@@ -552,21 +648,19 @@ package com.wemakedigital.layout
 		{
 			return child && this.contains( child ) ? super.removeChild( child ) : child ;
 		}
-		
-		/**
-		 * Called when the component is added to the stage.
-		 */
-		protected function createChildren ( ) : void
-		{
-			this.created = true ; 
-		}
 
 		/**
 		 * Called when the component is removedfrom the stage.
 		 */
-		protected function removeChildren ( ) : void
+		public function removeChildren ( ) : void
 		{
 			this.created = false ;
+			for ( var i : uint = 0 , n : uint = this.numChildren ; i < n ; i++ )
+			{
+				var child : DisplayObject = this.getChildAt( i ) ;
+				if ( child is LayoutComponent ) ( child as LayoutComponent).removeChildren() ;
+				this.removeChild( child ) ;
+			}
 		}
 		
 		/**
@@ -574,6 +668,7 @@ package com.wemakedigital.layout
 		 */
 		public function updateProperties ( ) : void
 		{
+			if ( this.container ) this.container.updateDisplay() ;
 		}
 
 		/**
@@ -581,10 +676,26 @@ package com.wemakedigital.layout
 		 */
 		public function updateDisplay () : void
 		{
-			// TODO temp code
-			this.graphics.clear() ;
-			this.graphics.beginFill( 0x000000, 0.2 ) ;
-			this.graphics.drawRect( 0, 0, this.explicitWidth, this.explicitHeight ) ;
+			this.updateDisplayColour() ;
+		}
+		
+		/**
+		 * Called when the component is added to the stage.
+		 */
+		protected function createChildren ( ) : void
+		{
+			this.created = true ; 
+			this.updateProperties() ;
+		}
+		
+		private function updateDisplayColour () : void
+		{
+			if ( ! isNaN ( this.colour ) ) 
+			{
+				this.graphics.clear() ;
+				this.graphics.beginFill( this.colour, this.colourAlpha ) ;
+				this.graphics.drawRect( 0, 0, this.explicitWidth, this.explicitHeight ) ;
+			}
 		}
 		
 		//----------------------------------------------------------------------

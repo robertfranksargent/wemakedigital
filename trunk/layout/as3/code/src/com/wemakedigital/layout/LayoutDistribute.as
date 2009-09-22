@@ -65,6 +65,18 @@ package com.wemakedigital.layout
 		private var _spaceRelativeMax : Number = NaN ;
 
 		//----------------------------------------------------------------------
+		
+		/**
+		 * @private
+		 */
+		private var _separator : Class ;
+
+		/**
+		 * @private
+		 */
+		protected var separators : Array ;
+		
+		//----------------------------------------------------------------------
 		//
 		//  Getters and Setters
 		//
@@ -190,6 +202,24 @@ package com.wemakedigital.layout
 		public function set spaceRelativeMax ( value : Number ) : void
 		{
 			this._spaceRelativeMax = value ;
+		}
+
+		//----------------------------------------------------------------------
+		
+		/**
+		 * A separator class to be intantiated and positioned between each distributed child.
+		 */
+		public function get separator () : Class
+		{
+			return this._separator;
+		}
+
+		/**
+		 * @private
+		 */
+		public function set separator ( value : Class ) : void
+		{
+			this._separator = value ;
 		}
 
 		//----------------------------------------------------------------------
