@@ -20,13 +20,6 @@ package com.wemakedigital.layout
 		private var _content : Array ;
 
 		//----------------------------------------------------------------------
-		
-//		/**
-//		 * @private
-//		 */		
-//		private var _align : String ;
-
-		//----------------------------------------------------------------------
 		//
 		//  Getters and Setters
 		//
@@ -58,24 +51,6 @@ package com.wemakedigital.layout
 				this.updateDisplay( ) ;
 			}
 		}
-
-		//----------------------------------------------------------------------
-		
-//		/**
-//		 * The alignment of components within the container.
-//		 */
-//		public function get align () : String
-//		{
-//			return this._align ;
-//		}
-//		
-//		/**
-//		 * @private
-//		 */
-//		public function set align ( value : String ) : void
-//		{
-//			this._align = value ;
-//		}
 		
 		//----------------------------------------------------------------------
 		//
@@ -88,7 +63,6 @@ package com.wemakedigital.layout
 		 */
 		public function LayoutContainer ()
 		{
-//			this.align = LayoutAlign.NONE ;
 		}
 
 		//----------------------------------------------------------------------
