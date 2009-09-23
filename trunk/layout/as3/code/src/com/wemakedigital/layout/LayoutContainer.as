@@ -17,7 +17,7 @@ package com.wemakedigital.layout
 		/**
 		 * @private
 		 */
-		private var _content : Array ;
+		protected var _content : Array ;
 
 		//----------------------------------------------------------------------
 		//
@@ -42,7 +42,7 @@ package com.wemakedigital.layout
 			
 			for each ( var child : DisplayObject in this._content )
 			{
-				this.addChild( child ) ;
+				super.addChild( child ) ;
 			}
 			
 			if ( this.created ) 
@@ -70,7 +70,47 @@ package com.wemakedigital.layout
 		//  Methods
 		//
 		//----------------------------------------------------------------------
+		
+		/**
+		 * @inheritDoc
+		 */
+		override public function addChild ( child : DisplayObject ) : DisplayObject
+		{
+			if ( child && ! this.contains( child ) )
+			{
+				if ( this.content ) this._content.push( child ) ;
+				else this._content = [ child ] ;
+				super.addChild( child ) ;
+				if ( this.created ) 
+				{
+					this.updateProperties( ) ;
+					this.updateDisplay( ) ;
+				}
+			}
+			return child ;
+		}
 
+		/**
+		 * @inheritDoc
+		 */
+		override public function removeChild ( child : DisplayObject ) : DisplayObject
+		{
+			if ( child && this.contains( child ) )
+			{
+				super.removeChild( child ) ;
+				if ( this.content ) 
+				{
+					this._content = this._content.splice( this._content.indexOf( child ), 1 ) ;
+					if ( this.created ) 
+					{
+						this.updateProperties( ) ;
+						this.updateDisplay( ) ;
+					}
+				}
+			}
+			return child ;
+		}
+		
 		/**
 		 * @inheritDoc
 		 */

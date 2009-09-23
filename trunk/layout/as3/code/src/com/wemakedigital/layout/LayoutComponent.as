@@ -5,59 +5,59 @@ package com.wemakedigital.layout
 	import flash.events.Event;
 
 	public class LayoutComponent extends Sprite
-	{ 
+	{
 		//----------------------------------------------------------------------
 		//
 		//  Variables
 		//
 		//----------------------------------------------------------------------
 		
-		private var _container : LayoutContainer ;
-		private var _created : Boolean = false ;
+		protected var _container : LayoutContainer ;
+		protected var _created : Boolean = false ;
 		
 		//----------------------------------------------------------------------
 		
-		private var _explicitWidth : Number = 0 ;
-		private var _explicitHeight : Number = 0 ;
-		private var _explicitMinWidth : Number = 0 ;
-		private var _explicitMinHeight : Number = 0 ;
-		private var _explicitMaxWidth : Number = NaN ;
-		private var _explicitMaxHeight : Number = NaN ;
+		protected var _explicitWidth : Number = 0 ;
+		protected var _explicitHeight : Number = 0 ;
+		protected var _explicitMinWidth : Number = 0 ;
+		protected var _explicitMinHeight : Number = 0 ;
+		protected var _explicitMaxWidth : Number = NaN ;
+		protected var _explicitMaxHeight : Number = NaN ;
 
 		//----------------------------------------------------------------------
 		
-		private var _fixedWidth : Number = NaN ;
-		private var _fixedHeight : Number = NaN ;
-		private var _fixedMinWidth : Number = 0 ;
-		private var _fixedMinHeight : Number = 0 ;
-		private var _fixedMaxWidth : Number = NaN ;
-		private var _fixedMaxHeight : Number = NaN ;
+		protected var _fixedWidth : Number = NaN ;
+		protected var _fixedHeight : Number = NaN ;
+		protected var _fixedMinWidth : Number = 0 ;
+		protected var _fixedMinHeight : Number = 0 ;
+		protected var _fixedMaxWidth : Number = NaN ;
+		protected var _fixedMaxHeight : Number = NaN ;
 		
 		//----------------------------------------------------------------------
 		
-		private var _left : Number = NaN ;
-		private var _right : Number = NaN ;
-		private var _top : Number = NaN ;
-		private var _bottom : Number = NaN ;
+		protected var _left : Number = NaN ;
+		protected var _right : Number = NaN ;
+		protected var _top : Number = NaN ;
+		protected var _bottom : Number = NaN ;
 		
 		//----------------------------------------------------------------------
 		
-		private var _horizontalCentre : Number = NaN ;
-		private var _verticalCentre : Number = NaN ;
+		protected var _horizontalCentre : Number = NaN ;
+		protected var _verticalCentre : Number = NaN ;
 		
 		//----------------------------------------------------------------------
 		
-		private var _relativeWidth : Number = NaN ;
-		private var _relativeHeight : Number = NaN ;
-		private var _relativeMinWidth : Number = 0 ;
-		private var _relativeMinHeight : Number = 0 ;
-		private var _relativeMaxWidth : Number = NaN ;
-		private var _relativeMaxHeight : Number = NaN ;
+		protected var _relativeWidth : Number = NaN ;
+		protected var _relativeHeight : Number = NaN ;
+		protected var _relativeMinWidth : Number = 0 ;
+		protected var _relativeMinHeight : Number = 0 ;
+		protected var _relativeMaxWidth : Number = NaN ;
+		protected var _relativeMaxHeight : Number = NaN ;
 		
 		//----------------------------------------------------------------------
 		
-		private var _colour : Number = NaN ;
-		private var _colourAlpha : Number = 1 ;
+		protected var _colour : Number = NaN ;
+		protected var _colourAlpha : Number = 1 ;
 		
 		//----------------------------------------------------------------------
 		//

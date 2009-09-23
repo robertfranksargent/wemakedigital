@@ -4,7 +4,7 @@
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="../../../style.css" type="text/css" media="screen">
 <link rel="stylesheet" href="../../../print.css" type="text/css" media="print">
-<meta content="LayoutComponent,com.wemakedigital.layout.LayoutComponent,bottom,created,explicitHeight,explicitWidth,horizontalPositionMode,horizontalSizeMode,left,maxExplicitHeight,maxExplicitWidth,maxPercentHeight,maxPercentUnusedHeight,maxPercentUnusedWidth,maxPercentWidth,minExplicitHeight,minExplicitWidth,minPercentHeight,minPercentUnusedHeight,minPercentUnusedWidth,minPercentWidth,percentHeight,percentUnusedHeight,percentUnusedWidth,percentWidth,right,top,verticalPositionMode,verticalSizeMode,addChild,createChildren,removeChild,removeChildren,updateDisplay,updateProperties" name="keywords">
+<meta content="LayoutComponent,com.wemakedigital.layout.LayoutComponent,_bottom,_colour,_colourAlpha,_container,_created,_explicitHeight,_explicitMaxHeight,_explicitMaxWidth,_explicitMinHeight,_explicitMinWidth,_explicitWidth,_fixedHeight,_fixedMaxHeight,_fixedMaxWidth,_fixedMinHeight,_fixedMinWidth,_fixedWidth,_horizontalCentre,_left,_relativeHeight,_relativeMaxHeight,_relativeMaxWidth,_relativeMinHeight,_relativeMinWidth,_relativeWidth,_right,_top,_verticalCentre,bottom,colour,colourAlpha,container,created,explicitHeight,explicitMaxHeight,explicitMaxWidth,explicitMinHeight,explicitMinWidth,explicitWidth,fixedHeight,fixedMaxHeight,fixedMaxWidth,fixedMinHeight,fixedMinWidth,fixedWidth,horizontalCentre,left,relativeHeight,relativeMaxHeight,relativeMaxWidth,relativeMinHeight,relativeMinWidth,relativeWidth,right,top,verticalCentre,addChild,createChildren,removeChild,removeChildren,updateDisplay,updateProperties" name="keywords">
 <title>com.wemakedigital.layout.LayoutComponent</title>
 </head>
 <body>
@@ -41,9 +41,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">LayoutComponent <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../images/inherit-arrow.gif"> flash.display.Sprite</td>
 </tr>
 <tr>
-<td class="classHeaderTableLabel">Implements</td><td><a href="ILayoutComponent.html">ILayoutComponent</a></td>
-</tr>
-<tr>
 <td class="classHeaderTableLabel">Subclasses</td><td><a href="../layout/LayoutContainer.html">LayoutContainer</a></td>
 </tr>
 </table>
@@ -60,112 +57,271 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#bottom">bottom</a> : Number<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#bottom">bottom</a> : Number<div class="summaryTableDescription">
+   Anchor padding from the bottom of the container.</div>
+</td><td class="summaryTableOwnerCol">LayoutComponent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#colour">colour</a> : Number<div class="summaryTableDescription">
+   Optional background colour for component
+   </div>
+</td><td class="summaryTableOwnerCol">LayoutComponent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#colourAlpha">colourAlpha</a> : Number<div class="summaryTableDescription">
+   Background colour alpha for component
+   </div>
+</td><td class="summaryTableOwnerCol">LayoutComponent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#container">container</a> : <a href="../layout/LayoutContainer.html">LayoutContainer</a>
+<div class="summaryTableDescription">
+   The component's layout container.</div>
 </td><td class="summaryTableOwnerCol">LayoutComponent</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#created">created</a> : Boolean<div class="summaryTableDescription">
-   Gets the created status of the component.</div>
+   The created status of the component, true after createChildren is called after being added to the stage.</div>
 </td><td class="summaryTableOwnerCol">LayoutComponent</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#explicitHeight">explicitHeight</a> : Number<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#explicitHeight">explicitHeight</a> : Number<div class="summaryTableDescription">
+   The explicit height of the component.</div>
 </td><td class="summaryTableOwnerCol">LayoutComponent</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#explicitWidth">explicitWidth</a> : Number<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#explicitMaxHeight">explicitMaxHeight</a> : Number<div class="summaryTableDescription">
+   The maximum explicit height of the component
+   </div>
 </td><td class="summaryTableOwnerCol">LayoutComponent</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#horizontalPositionMode">horizontalPositionMode</a> : uint<div class="summaryTableDescription">[read-only]</div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#explicitMaxWidth">explicitMaxWidth</a> : Number<div class="summaryTableDescription">
+   The maximum explicit width of the component.</div>
 </td><td class="summaryTableOwnerCol">LayoutComponent</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#horizontalSizeMode">horizontalSizeMode</a> : uint<div class="summaryTableDescription">[read-only]</div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#explicitMinHeight">explicitMinHeight</a> : Number<div class="summaryTableDescription">
+   The minumum explicit height of the component.</div>
 </td><td class="summaryTableOwnerCol">LayoutComponent</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#left">left</a> : Number<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#explicitMinWidth">explicitMinWidth</a> : Number<div class="summaryTableDescription">
+   The minumum explicit width of the component.</div>
 </td><td class="summaryTableOwnerCol">LayoutComponent</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#maxExplicitHeight">maxExplicitHeight</a> : Number<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#explicitWidth">explicitWidth</a> : Number<div class="summaryTableDescription">
+   The explicit width of the component.</div>
 </td><td class="summaryTableOwnerCol">LayoutComponent</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#maxExplicitWidth">maxExplicitWidth</a> : Number<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#fixedHeight">fixedHeight</a> : Number<div class="summaryTableDescription">
+   The fixed height of the component.</div>
 </td><td class="summaryTableOwnerCol">LayoutComponent</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#maxPercentHeight">maxPercentHeight</a> : Number<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#fixedMaxHeight">fixedMaxHeight</a> : Number<div class="summaryTableDescription">
+   The maximum fixed height of the component
+   </div>
 </td><td class="summaryTableOwnerCol">LayoutComponent</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#maxPercentUnusedHeight">maxPercentUnusedHeight</a> : Number<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#fixedMaxWidth">fixedMaxWidth</a> : Number<div class="summaryTableDescription">
+   The maximum fixed width of the component.</div>
 </td><td class="summaryTableOwnerCol">LayoutComponent</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#maxPercentUnusedWidth">maxPercentUnusedWidth</a> : Number<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#fixedMinHeight">fixedMinHeight</a> : Number<div class="summaryTableDescription">
+   The minumum fixed height of the component.</div>
 </td><td class="summaryTableOwnerCol">LayoutComponent</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#maxPercentWidth">maxPercentWidth</a> : Number<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#fixedMinWidth">fixedMinWidth</a> : Number<div class="summaryTableDescription">
+   The minumum fixed width of the component.</div>
 </td><td class="summaryTableOwnerCol">LayoutComponent</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#minExplicitHeight">minExplicitHeight</a> : Number<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#fixedWidth">fixedWidth</a> : Number<div class="summaryTableDescription">
+   The fixed width of the component.</div>
 </td><td class="summaryTableOwnerCol">LayoutComponent</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#minExplicitWidth">minExplicitWidth</a> : Number<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#horizontalCentre">horizontalCentre</a> : Number<div class="summaryTableDescription">
+   Anchor padding from the horizontal centre of the container.</div>
 </td><td class="summaryTableOwnerCol">LayoutComponent</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#minPercentHeight">minPercentHeight</a> : Number<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#left">left</a> : Number<div class="summaryTableDescription">
+   Anchor padding from the left of the container.</div>
 </td><td class="summaryTableOwnerCol">LayoutComponent</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#minPercentUnusedHeight">minPercentUnusedHeight</a> : Number<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#relativeHeight">relativeHeight</a> : Number<div class="summaryTableDescription">
+   The relative height of the component.</div>
 </td><td class="summaryTableOwnerCol">LayoutComponent</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#minPercentUnusedWidth">minPercentUnusedWidth</a> : Number<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#relativeMaxHeight">relativeMaxHeight</a> : Number<div class="summaryTableDescription">
+   The maximum relative height of the component
+   </div>
 </td><td class="summaryTableOwnerCol">LayoutComponent</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#minPercentWidth">minPercentWidth</a> : Number<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#relativeMaxWidth">relativeMaxWidth</a> : Number<div class="summaryTableDescription">
+   The maximum relative width of the component.</div>
 </td><td class="summaryTableOwnerCol">LayoutComponent</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#percentHeight">percentHeight</a> : Number<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#relativeMinHeight">relativeMinHeight</a> : Number<div class="summaryTableDescription">
+   The minumum relative height of the component.</div>
 </td><td class="summaryTableOwnerCol">LayoutComponent</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#percentUnusedHeight">percentUnusedHeight</a> : Number<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#relativeMinWidth">relativeMinWidth</a> : Number<div class="summaryTableDescription">
+   The minumum relative width of the component.</div>
 </td><td class="summaryTableOwnerCol">LayoutComponent</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#percentUnusedWidth">percentUnusedWidth</a> : Number<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#relativeWidth">relativeWidth</a> : Number<div class="summaryTableDescription">
+   The relative width of the component.</div>
 </td><td class="summaryTableOwnerCol">LayoutComponent</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#percentWidth">percentWidth</a> : Number<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#right">right</a> : Number<div class="summaryTableDescription">
+   Anchor padding from the right of the container.</div>
 </td><td class="summaryTableOwnerCol">LayoutComponent</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#right">right</a> : Number<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#top">top</a> : Number<div class="summaryTableDescription">
+   Anchor padding from the top of the container.</div>
 </td><td class="summaryTableOwnerCol">LayoutComponent</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#top">top</a> : Number<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#verticalCentre">verticalCentre</a> : Number<div class="summaryTableDescription">
+   Anchor padding from the vertical centre of the container.</div>
+</td><td class="summaryTableOwnerCol">LayoutComponent</td>
+</tr>
+</table>
+</div>
+<a name="protectedPropertySummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Protected Properties</div>
+<table id="summaryTableProtectedProperty" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#_bottom">_bottom</a> : Number = NaN<div class="summaryTableDescription"></div>
 </td><td class="summaryTableOwnerCol">LayoutComponent</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#verticalPositionMode">verticalPositionMode</a> : uint<div class="summaryTableDescription">[read-only]</div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#_colour">_colour</a> : Number = NaN<div class="summaryTableDescription"></div>
 </td><td class="summaryTableOwnerCol">LayoutComponent</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#verticalSizeMode">verticalSizeMode</a> : uint<div class="summaryTableDescription">[read-only]</div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#_colourAlpha">_colourAlpha</a> : Number = 1<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">LayoutComponent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#_container">_container</a> : <a href="../layout/LayoutContainer.html">LayoutContainer</a>
+<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">LayoutComponent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#_created">_created</a> : Boolean = false<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">LayoutComponent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#_explicitHeight">_explicitHeight</a> : Number = 0<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">LayoutComponent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#_explicitMaxHeight">_explicitMaxHeight</a> : Number = NaN<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">LayoutComponent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#_explicitMaxWidth">_explicitMaxWidth</a> : Number = NaN<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">LayoutComponent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#_explicitMinHeight">_explicitMinHeight</a> : Number = 0<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">LayoutComponent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#_explicitMinWidth">_explicitMinWidth</a> : Number = 0<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">LayoutComponent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#_explicitWidth">_explicitWidth</a> : Number = 0<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">LayoutComponent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#_fixedHeight">_fixedHeight</a> : Number = NaN<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">LayoutComponent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#_fixedMaxHeight">_fixedMaxHeight</a> : Number = NaN<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">LayoutComponent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#_fixedMaxWidth">_fixedMaxWidth</a> : Number = NaN<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">LayoutComponent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#_fixedMinHeight">_fixedMinHeight</a> : Number = 0<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">LayoutComponent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#_fixedMinWidth">_fixedMinWidth</a> : Number = 0<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">LayoutComponent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#_fixedWidth">_fixedWidth</a> : Number = NaN<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">LayoutComponent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#_horizontalCentre">_horizontalCentre</a> : Number = NaN<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">LayoutComponent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#_left">_left</a> : Number = NaN<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">LayoutComponent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#_relativeHeight">_relativeHeight</a> : Number = NaN<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">LayoutComponent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#_relativeMaxHeight">_relativeMaxHeight</a> : Number = NaN<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">LayoutComponent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#_relativeMaxWidth">_relativeMaxWidth</a> : Number = NaN<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">LayoutComponent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#_relativeMinHeight">_relativeMinHeight</a> : Number = 0<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">LayoutComponent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#_relativeMinWidth">_relativeMinWidth</a> : Number = 0<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">LayoutComponent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#_relativeWidth">_relativeWidth</a> : Number = NaN<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">LayoutComponent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#_right">_right</a> : Number = NaN<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">LayoutComponent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#_top">_top</a> : Number = NaN<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">LayoutComponent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#_verticalCentre">_verticalCentre</a> : Number = NaN<div class="summaryTableDescription"></div>
 </td><td class="summaryTableOwnerCol">LayoutComponent</td>
 </tr>
 </table>
@@ -204,6 +360,14 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
+<a class="signatureLink" href="#removeChildren()">removeChildren</a>():void</div>
+<div class="summaryTableDescription">
+   Called when the component is removedfrom the stage.</div>
+</td><td class="summaryTableOwnerCol">LayoutComponent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
 <a class="signatureLink" href="#updateDisplay()">updateDisplay</a>():void</div>
 <div class="summaryTableDescription">
    Called when the component display changes.</div>
@@ -234,14 +398,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
    Called when the component is added to the stage.</div>
 </td><td class="summaryTableOwnerCol">LayoutComponent</td>
 </tr>
-<tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="#removeChildren()">removeChildren</a>():void</div>
-<div class="summaryTableDescription">
-   Called when the component is removedfrom the stage.</div>
-</td><td class="summaryTableOwnerCol">LayoutComponent</td>
-</tr>
 </table>
 </div>
 <script type="text/javascript" language="javascript">
@@ -251,19 +407,114 @@ showHideInherited();
 <div class="MainContent">
 <a name="propertyDetail"></a>
 <div class="detailSectionHeader">Property detail</div>
-<a name="bottom"></a>
+<a name="_bottom"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">bottom</td><td class="detailHeaderType">property</td>
+<td class="detailHeaderName">_bottom</td><td class="detailHeaderType">property</td>
 </tr>
 </table>
 <div class="detailBody">
-<code>bottom:Number</code>&nbsp;&nbsp;[read-write]<span class="label">Implementation</span>
+<code>protected var _bottom:Number = NaN</code>
+</div>
+<a name="bottom"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">bottom</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>bottom:Number</code>&nbsp;&nbsp;[read-write]<p>
+   Anchor padding from the bottom of the container.
+   </p><span class="label">Implementation</span>
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function get bottom():Number</code>
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function set bottom(value:Number):void</code>
 <br>
+</div>
+<a name="_colour"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">_colour</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected var _colour:Number = NaN</code>
+</div>
+<a name="colour"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">colour</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>colour:Number</code>&nbsp;&nbsp;[read-write]<p>
+   Optional background colour for component
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get colour():Number</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set colour(value:Number):void</code>
+<br>
+</div>
+<a name="_colourAlpha"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">_colourAlpha</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected var _colourAlpha:Number = 1</code>
+</div>
+<a name="colourAlpha"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">colourAlpha</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>colourAlpha:Number</code>&nbsp;&nbsp;[read-write]<p>
+   Background colour alpha for component
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get colourAlpha():Number</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set colourAlpha(value:Number):void</code>
+<br>
+</div>
+<a name="_container"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">_container</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected var _container:<a href="../layout/LayoutContainer.html">LayoutContainer</a></code>
+</div>
+<a name="container"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">container</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>container:<a href="../layout/LayoutContainer.html">LayoutContainer</a></code>&nbsp;&nbsp;[read-write]<p>
+   The component's layout container.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get container():<a href="../layout/LayoutContainer.html">LayoutContainer</a></code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set container(value:<a href="../layout/LayoutContainer.html">LayoutContainer</a>):void</code>
+<br>
+</div>
+<a name="_created"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">_created</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected var _created:Boolean = false</code>
 </div>
 <a name="created"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
@@ -273,13 +524,22 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>created:Boolean</code>&nbsp;&nbsp;[read-write]<p>
-   Gets the created status of the component.
+   The created status of the component, true after createChildren is called after being added to the stage.
    </p><span class="label">Implementation</span>
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function get created():Boolean</code>
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function set created(value:Boolean):void</code>
 <br>
+</div>
+<a name="_explicitHeight"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">_explicitHeight</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected var _explicitHeight:Number = 0</code>
 </div>
 <a name="explicitHeight"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
@@ -288,12 +548,123 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>explicitHeight:Number</code>&nbsp;&nbsp;[read-write]<span class="label">Implementation</span>
+<code>explicitHeight:Number</code>&nbsp;&nbsp;[read-write]<p>
+   The explicit height of the component.
+   </p><span class="label">Implementation</span>
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function get explicitHeight():Number</code>
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function set explicitHeight(value:Number):void</code>
 <br>
+</div>
+<a name="_explicitMaxHeight"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">_explicitMaxHeight</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected var _explicitMaxHeight:Number = NaN</code>
+</div>
+<a name="explicitMaxHeight"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">explicitMaxHeight</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>explicitMaxHeight:Number</code>&nbsp;&nbsp;[read-write]<p>
+   The maximum explicit height of the component
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get explicitMaxHeight():Number</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set explicitMaxHeight(value:Number):void</code>
+<br>
+</div>
+<a name="_explicitMaxWidth"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">_explicitMaxWidth</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected var _explicitMaxWidth:Number = NaN</code>
+</div>
+<a name="explicitMaxWidth"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">explicitMaxWidth</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>explicitMaxWidth:Number</code>&nbsp;&nbsp;[read-write]<p>
+   The maximum explicit width of the component.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get explicitMaxWidth():Number</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set explicitMaxWidth(value:Number):void</code>
+<br>
+</div>
+<a name="_explicitMinHeight"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">_explicitMinHeight</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected var _explicitMinHeight:Number = 0</code>
+</div>
+<a name="explicitMinHeight"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">explicitMinHeight</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>explicitMinHeight:Number</code>&nbsp;&nbsp;[read-write]<p>
+   The minumum explicit height of the component.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get explicitMinHeight():Number</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set explicitMinHeight(value:Number):void</code>
+<br>
+</div>
+<a name="_explicitMinWidth"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">_explicitMinWidth</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected var _explicitMinWidth:Number = 0</code>
+</div>
+<a name="explicitMinWidth"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">explicitMinWidth</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>explicitMinWidth:Number</code>&nbsp;&nbsp;[read-write]<p>
+   The minumum explicit width of the component.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get explicitMinWidth():Number</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set explicitMinWidth(value:Number):void</code>
+<br>
+</div>
+<a name="_explicitWidth"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">_explicitWidth</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected var _explicitWidth:Number = 0</code>
 </div>
 <a name="explicitWidth"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
@@ -302,36 +673,198 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>explicitWidth:Number</code>&nbsp;&nbsp;[read-write]<span class="label">Implementation</span>
+<code>explicitWidth:Number</code>&nbsp;&nbsp;[read-write]<p>
+   The explicit width of the component.
+   </p><span class="label">Implementation</span>
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function get explicitWidth():Number</code>
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function set explicitWidth(value:Number):void</code>
 <br>
 </div>
-<a name="horizontalPositionMode"></a>
+<a name="_fixedHeight"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">horizontalPositionMode</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+<td class="detailHeaderName">_fixedHeight</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
 </tr>
 </table>
 <div class="detailBody">
-<code>horizontalPositionMode:uint</code>&nbsp;&nbsp;[read-only]<span class="label">Implementation</span>
+<code>protected var _fixedHeight:Number = NaN</code>
+</div>
+<a name="fixedHeight"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">fixedHeight</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>fixedHeight:Number</code>&nbsp;&nbsp;[read-write]<p>
+   The fixed height of the component.
+   </p><span class="label">Implementation</span>
 <br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get horizontalPositionMode():uint</code>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get fixedHeight():Number</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set fixedHeight(value:Number):void</code>
 <br>
 </div>
-<a name="horizontalSizeMode"></a>
+<a name="_fixedMaxHeight"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">horizontalSizeMode</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+<td class="detailHeaderName">_fixedMaxHeight</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
 </tr>
 </table>
 <div class="detailBody">
-<code>horizontalSizeMode:uint</code>&nbsp;&nbsp;[read-only]<span class="label">Implementation</span>
+<code>protected var _fixedMaxHeight:Number = NaN</code>
+</div>
+<a name="fixedMaxHeight"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">fixedMaxHeight</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>fixedMaxHeight:Number</code>&nbsp;&nbsp;[read-write]<p>
+   The maximum fixed height of the component
+   </p><span class="label">Implementation</span>
 <br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get horizontalSizeMode():uint</code>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get fixedMaxHeight():Number</code>
 <br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set fixedMaxHeight(value:Number):void</code>
+<br>
+</div>
+<a name="_fixedMaxWidth"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">_fixedMaxWidth</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected var _fixedMaxWidth:Number = NaN</code>
+</div>
+<a name="fixedMaxWidth"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">fixedMaxWidth</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>fixedMaxWidth:Number</code>&nbsp;&nbsp;[read-write]<p>
+   The maximum fixed width of the component.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get fixedMaxWidth():Number</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set fixedMaxWidth(value:Number):void</code>
+<br>
+</div>
+<a name="_fixedMinHeight"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">_fixedMinHeight</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected var _fixedMinHeight:Number = 0</code>
+</div>
+<a name="fixedMinHeight"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">fixedMinHeight</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>fixedMinHeight:Number</code>&nbsp;&nbsp;[read-write]<p>
+   The minumum fixed height of the component.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get fixedMinHeight():Number</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set fixedMinHeight(value:Number):void</code>
+<br>
+</div>
+<a name="_fixedMinWidth"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">_fixedMinWidth</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected var _fixedMinWidth:Number = 0</code>
+</div>
+<a name="fixedMinWidth"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">fixedMinWidth</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>fixedMinWidth:Number</code>&nbsp;&nbsp;[read-write]<p>
+   The minumum fixed width of the component.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get fixedMinWidth():Number</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set fixedMinWidth(value:Number):void</code>
+<br>
+</div>
+<a name="_fixedWidth"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">_fixedWidth</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected var _fixedWidth:Number = NaN</code>
+</div>
+<a name="fixedWidth"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">fixedWidth</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>fixedWidth:Number</code>&nbsp;&nbsp;[read-write]<p>
+   The fixed width of the component.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get fixedWidth():Number</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set fixedWidth(value:Number):void</code>
+<br>
+</div>
+<a name="_horizontalCentre"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">_horizontalCentre</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected var _horizontalCentre:Number = NaN</code>
+</div>
+<a name="horizontalCentre"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">horizontalCentre</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>horizontalCentre:Number</code>&nbsp;&nbsp;[read-write]<p>
+   Anchor padding from the horizontal centre of the container.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get horizontalCentre():Number</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set horizontalCentre(value:Number):void</code>
+<br>
+</div>
+<a name="_left"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">_left</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected var _left:Number = NaN</code>
 </div>
 <a name="left"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
@@ -340,236 +873,173 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>left:Number</code>&nbsp;&nbsp;[read-write]<span class="label">Implementation</span>
+<code>left:Number</code>&nbsp;&nbsp;[read-write]<p>
+   Anchor padding from the left of the container.
+   </p><span class="label">Implementation</span>
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function get left():Number</code>
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function set left(value:Number):void</code>
 <br>
 </div>
-<a name="maxExplicitHeight"></a>
+<a name="_relativeHeight"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">maxExplicitHeight</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+<td class="detailHeaderName">_relativeHeight</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
 </tr>
 </table>
 <div class="detailBody">
-<code>maxExplicitHeight:Number</code>&nbsp;&nbsp;[read-write]<span class="label">Implementation</span>
+<code>protected var _relativeHeight:Number = NaN</code>
+</div>
+<a name="relativeHeight"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">relativeHeight</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>relativeHeight:Number</code>&nbsp;&nbsp;[read-write]<p>
+   The relative height of the component.
+   </p><span class="label">Implementation</span>
 <br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get maxExplicitHeight():Number</code>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get relativeHeight():Number</code>
 <br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set maxExplicitHeight(value:Number):void</code>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set relativeHeight(value:Number):void</code>
 <br>
 </div>
-<a name="maxExplicitWidth"></a>
+<a name="_relativeMaxHeight"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">maxExplicitWidth</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+<td class="detailHeaderName">_relativeMaxHeight</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
 </tr>
 </table>
 <div class="detailBody">
-<code>maxExplicitWidth:Number</code>&nbsp;&nbsp;[read-write]<span class="label">Implementation</span>
+<code>protected var _relativeMaxHeight:Number = NaN</code>
+</div>
+<a name="relativeMaxHeight"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">relativeMaxHeight</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>relativeMaxHeight:Number</code>&nbsp;&nbsp;[read-write]<p>
+   The maximum relative height of the component
+   </p><span class="label">Implementation</span>
 <br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get maxExplicitWidth():Number</code>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get relativeMaxHeight():Number</code>
 <br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set maxExplicitWidth(value:Number):void</code>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set relativeMaxHeight(value:Number):void</code>
 <br>
 </div>
-<a name="maxPercentHeight"></a>
+<a name="_relativeMaxWidth"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">maxPercentHeight</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+<td class="detailHeaderName">_relativeMaxWidth</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
 </tr>
 </table>
 <div class="detailBody">
-<code>maxPercentHeight:Number</code>&nbsp;&nbsp;[read-write]<span class="label">Implementation</span>
+<code>protected var _relativeMaxWidth:Number = NaN</code>
+</div>
+<a name="relativeMaxWidth"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">relativeMaxWidth</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>relativeMaxWidth:Number</code>&nbsp;&nbsp;[read-write]<p>
+   The maximum relative width of the component.
+   </p><span class="label">Implementation</span>
 <br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get maxPercentHeight():Number</code>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get relativeMaxWidth():Number</code>
 <br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set maxPercentHeight(value:Number):void</code>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set relativeMaxWidth(value:Number):void</code>
 <br>
 </div>
-<a name="maxPercentUnusedHeight"></a>
+<a name="_relativeMinHeight"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">maxPercentUnusedHeight</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+<td class="detailHeaderName">_relativeMinHeight</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
 </tr>
 </table>
 <div class="detailBody">
-<code>maxPercentUnusedHeight:Number</code>&nbsp;&nbsp;[read-write]<span class="label">Implementation</span>
+<code>protected var _relativeMinHeight:Number = 0</code>
+</div>
+<a name="relativeMinHeight"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">relativeMinHeight</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>relativeMinHeight:Number</code>&nbsp;&nbsp;[read-write]<p>
+   The minumum relative height of the component.
+   </p><span class="label">Implementation</span>
 <br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get maxPercentUnusedHeight():Number</code>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get relativeMinHeight():Number</code>
 <br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set maxPercentUnusedHeight(value:Number):void</code>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set relativeMinHeight(value:Number):void</code>
 <br>
 </div>
-<a name="maxPercentUnusedWidth"></a>
+<a name="_relativeMinWidth"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">maxPercentUnusedWidth</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+<td class="detailHeaderName">_relativeMinWidth</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
 </tr>
 </table>
 <div class="detailBody">
-<code>maxPercentUnusedWidth:Number</code>&nbsp;&nbsp;[read-write]<span class="label">Implementation</span>
+<code>protected var _relativeMinWidth:Number = 0</code>
+</div>
+<a name="relativeMinWidth"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">relativeMinWidth</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>relativeMinWidth:Number</code>&nbsp;&nbsp;[read-write]<p>
+   The minumum relative width of the component.
+   </p><span class="label">Implementation</span>
 <br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get maxPercentUnusedWidth():Number</code>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get relativeMinWidth():Number</code>
 <br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set maxPercentUnusedWidth(value:Number):void</code>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set relativeMinWidth(value:Number):void</code>
 <br>
 </div>
-<a name="maxPercentWidth"></a>
+<a name="_relativeWidth"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">maxPercentWidth</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+<td class="detailHeaderName">_relativeWidth</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
 </tr>
 </table>
 <div class="detailBody">
-<code>maxPercentWidth:Number</code>&nbsp;&nbsp;[read-write]<span class="label">Implementation</span>
+<code>protected var _relativeWidth:Number = NaN</code>
+</div>
+<a name="relativeWidth"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">relativeWidth</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>relativeWidth:Number</code>&nbsp;&nbsp;[read-write]<p>
+   The relative width of the component.
+   </p><span class="label">Implementation</span>
 <br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get maxPercentWidth():Number</code>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get relativeWidth():Number</code>
 <br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set maxPercentWidth(value:Number):void</code>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set relativeWidth(value:Number):void</code>
 <br>
 </div>
-<a name="minExplicitHeight"></a>
+<a name="_right"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">minExplicitHeight</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+<td class="detailHeaderName">_right</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
 </tr>
 </table>
 <div class="detailBody">
-<code>minExplicitHeight:Number</code>&nbsp;&nbsp;[read-write]<span class="label">Implementation</span>
-<br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get minExplicitHeight():Number</code>
-<br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set minExplicitHeight(value:Number):void</code>
-<br>
-</div>
-<a name="minExplicitWidth"></a>
-<table cellspacing="0" cellpadding="0" class="detailHeader">
-<tr>
-<td class="detailHeaderName">minExplicitWidth</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
-</tr>
-</table>
-<div class="detailBody">
-<code>minExplicitWidth:Number</code>&nbsp;&nbsp;[read-write]<span class="label">Implementation</span>
-<br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get minExplicitWidth():Number</code>
-<br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set minExplicitWidth(value:Number):void</code>
-<br>
-</div>
-<a name="minPercentHeight"></a>
-<table cellspacing="0" cellpadding="0" class="detailHeader">
-<tr>
-<td class="detailHeaderName">minPercentHeight</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
-</tr>
-</table>
-<div class="detailBody">
-<code>minPercentHeight:Number</code>&nbsp;&nbsp;[read-write]<span class="label">Implementation</span>
-<br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get minPercentHeight():Number</code>
-<br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set minPercentHeight(value:Number):void</code>
-<br>
-</div>
-<a name="minPercentUnusedHeight"></a>
-<table cellspacing="0" cellpadding="0" class="detailHeader">
-<tr>
-<td class="detailHeaderName">minPercentUnusedHeight</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
-</tr>
-</table>
-<div class="detailBody">
-<code>minPercentUnusedHeight:Number</code>&nbsp;&nbsp;[read-write]<span class="label">Implementation</span>
-<br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get minPercentUnusedHeight():Number</code>
-<br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set minPercentUnusedHeight(value:Number):void</code>
-<br>
-</div>
-<a name="minPercentUnusedWidth"></a>
-<table cellspacing="0" cellpadding="0" class="detailHeader">
-<tr>
-<td class="detailHeaderName">minPercentUnusedWidth</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
-</tr>
-</table>
-<div class="detailBody">
-<code>minPercentUnusedWidth:Number</code>&nbsp;&nbsp;[read-write]<span class="label">Implementation</span>
-<br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get minPercentUnusedWidth():Number</code>
-<br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set minPercentUnusedWidth(value:Number):void</code>
-<br>
-</div>
-<a name="minPercentWidth"></a>
-<table cellspacing="0" cellpadding="0" class="detailHeader">
-<tr>
-<td class="detailHeaderName">minPercentWidth</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
-</tr>
-</table>
-<div class="detailBody">
-<code>minPercentWidth:Number</code>&nbsp;&nbsp;[read-write]<span class="label">Implementation</span>
-<br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get minPercentWidth():Number</code>
-<br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set minPercentWidth(value:Number):void</code>
-<br>
-</div>
-<a name="percentHeight"></a>
-<table cellspacing="0" cellpadding="0" class="detailHeader">
-<tr>
-<td class="detailHeaderName">percentHeight</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
-</tr>
-</table>
-<div class="detailBody">
-<code>percentHeight:Number</code>&nbsp;&nbsp;[read-write]<span class="label">Implementation</span>
-<br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get percentHeight():Number</code>
-<br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set percentHeight(value:Number):void</code>
-<br>
-</div>
-<a name="percentUnusedHeight"></a>
-<table cellspacing="0" cellpadding="0" class="detailHeader">
-<tr>
-<td class="detailHeaderName">percentUnusedHeight</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
-</tr>
-</table>
-<div class="detailBody">
-<code>percentUnusedHeight:Number</code>&nbsp;&nbsp;[read-write]<span class="label">Implementation</span>
-<br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get percentUnusedHeight():Number</code>
-<br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set percentUnusedHeight(value:Number):void</code>
-<br>
-</div>
-<a name="percentUnusedWidth"></a>
-<table cellspacing="0" cellpadding="0" class="detailHeader">
-<tr>
-<td class="detailHeaderName">percentUnusedWidth</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
-</tr>
-</table>
-<div class="detailBody">
-<code>percentUnusedWidth:Number</code>&nbsp;&nbsp;[read-write]<span class="label">Implementation</span>
-<br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get percentUnusedWidth():Number</code>
-<br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set percentUnusedWidth(value:Number):void</code>
-<br>
-</div>
-<a name="percentWidth"></a>
-<table cellspacing="0" cellpadding="0" class="detailHeader">
-<tr>
-<td class="detailHeaderName">percentWidth</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
-</tr>
-</table>
-<div class="detailBody">
-<code>percentWidth:Number</code>&nbsp;&nbsp;[read-write]<span class="label">Implementation</span>
-<br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get percentWidth():Number</code>
-<br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set percentWidth(value:Number):void</code>
-<br>
+<code>protected var _right:Number = NaN</code>
 </div>
 <a name="right"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
@@ -578,12 +1048,23 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>right:Number</code>&nbsp;&nbsp;[read-write]<span class="label">Implementation</span>
+<code>right:Number</code>&nbsp;&nbsp;[read-write]<p>
+   Anchor padding from the right of the container.
+   </p><span class="label">Implementation</span>
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function get right():Number</code>
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function set right(value:Number):void</code>
 <br>
+</div>
+<a name="_top"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">_top</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected var _top:Number = NaN</code>
 </div>
 <a name="top"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
@@ -592,35 +1073,38 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>top:Number</code>&nbsp;&nbsp;[read-write]<span class="label">Implementation</span>
+<code>top:Number</code>&nbsp;&nbsp;[read-write]<p>
+   Anchor padding from the top of the container.
+   </p><span class="label">Implementation</span>
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function get top():Number</code>
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function set top(value:Number):void</code>
 <br>
 </div>
-<a name="verticalPositionMode"></a>
+<a name="_verticalCentre"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">verticalPositionMode</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+<td class="detailHeaderName">_verticalCentre</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
 </tr>
 </table>
 <div class="detailBody">
-<code>verticalPositionMode:uint</code>&nbsp;&nbsp;[read-only]<span class="label">Implementation</span>
-<br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get verticalPositionMode():uint</code>
-<br>
+<code>protected var _verticalCentre:Number = NaN</code>
 </div>
-<a name="verticalSizeMode"></a>
+<a name="verticalCentre"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">verticalSizeMode</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+<td class="detailHeaderName">verticalCentre</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
 </tr>
 </table>
 <div class="detailBody">
-<code>verticalSizeMode:uint</code>&nbsp;&nbsp;[read-only]<span class="label">Implementation</span>
+<code>verticalCentre:Number</code>&nbsp;&nbsp;[read-write]<p>
+   Anchor padding from the vertical centre of the container.
+   </p><span class="label">Implementation</span>
 <br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get verticalSizeMode():uint</code>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get verticalCentre():Number</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set verticalCentre(value:Number):void</code>
 <br>
 </div>
 <a name="constructorDetail"></a>
@@ -698,7 +1182,7 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>protected function removeChildren():void</code><p>
+<code>public function removeChildren():void</code><p>
    Called when the component is removedfrom the stage.
    </p></div>
 <a name="updateDisplay()"></a>
