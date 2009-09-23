@@ -4,7 +4,7 @@
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="../../../style.css" type="text/css" media="screen">
 <link rel="stylesheet" href="../../../print.css" type="text/css" media="print">
-<meta content="LayoutContainer,com.wemakedigital.layout.LayoutContainer,children,updateDisplay" name="keywords">
+<meta content="LayoutContainer,com.wemakedigital.layout.LayoutContainer,content,updateDisplay" name="keywords">
 <title>com.wemakedigital.layout.LayoutContainer</title>
 </head>
 <body>
@@ -41,13 +41,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">LayoutContainer <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../images/inherit-arrow.gif"> <a href="LayoutComponent.html">LayoutComponent</a> <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../images/inherit-arrow.gif"> flash.display.Sprite</td>
 </tr>
 <tr>
-<td class="classHeaderTableLabel">Subclasses</td><td><a href="../layout/LayoutStage.html">LayoutStage</a></td>
+<td class="classHeaderTableLabel">Subclasses</td><td><a href="../layout/LayoutDistribute.html">LayoutDistribute</a>, <a href="../layout/LayoutStage.html">LayoutStage</a></td>
 </tr>
 </table>
 <p></p>
 <p></p>
 <p>
-<span class="classHeaderTableLabel">Default MXML Property</span><code>children</code>
+<span class="classHeaderTableLabel">Default MXML Property</span><code>content</code>
 </p>
 <br>
 <hr>
@@ -68,116 +68,285 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
 </tr>
 <tr class="hideInheritedProperty">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#bottom">bottom</a> : Number<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#bottom">bottom</a> : Number<div class="summaryTableDescription">
+   Anchor padding from the bottom of the container.</div>
+</td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#colour">colour</a> : Number<div class="summaryTableDescription">
+   Optional background colour for component
+   </div>
+</td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#colourAlpha">colourAlpha</a> : Number<div class="summaryTableDescription">
+   Background colour alpha for component
+   </div>
+</td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#container">container</a> : <a href="../layout/LayoutContainer.html">LayoutContainer</a>
+<div class="summaryTableDescription">
+   The component's layout container.</div>
 </td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#children">children</a> : Array<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#content">content</a> : Array<div class="summaryTableDescription">
+   The content display objects held within
+   </div>
 </td><td class="summaryTableOwnerCol">LayoutContainer</td>
 </tr>
 <tr class="hideInheritedProperty">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#created">created</a> : Boolean<div class="summaryTableDescription">
-   Gets the created status of the component.</div>
+   The created status of the component, true after createChildren is called after being added to the stage.</div>
 </td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
 </tr>
 <tr class="hideInheritedProperty">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#explicitHeight">explicitHeight</a> : Number<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#explicitHeight">explicitHeight</a> : Number<div class="summaryTableDescription">
+   The explicit height of the component.</div>
 </td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
 </tr>
 <tr class="hideInheritedProperty">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#explicitWidth">explicitWidth</a> : Number<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#explicitMaxHeight">explicitMaxHeight</a> : Number<div class="summaryTableDescription">
+   The maximum explicit height of the component
+   </div>
 </td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
 </tr>
 <tr class="hideInheritedProperty">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#horizontalPositionMode">horizontalPositionMode</a> : uint<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#explicitMaxWidth">explicitMaxWidth</a> : Number<div class="summaryTableDescription">
+   The maximum explicit width of the component.</div>
 </td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
 </tr>
 <tr class="hideInheritedProperty">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#horizontalSizeMode">horizontalSizeMode</a> : uint<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#explicitMinHeight">explicitMinHeight</a> : Number<div class="summaryTableDescription">
+   The minumum explicit height of the component.</div>
 </td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
 </tr>
 <tr class="hideInheritedProperty">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#left">left</a> : Number<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#explicitMinWidth">explicitMinWidth</a> : Number<div class="summaryTableDescription">
+   The minumum explicit width of the component.</div>
 </td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
 </tr>
 <tr class="hideInheritedProperty">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#maxExplicitHeight">maxExplicitHeight</a> : Number<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#explicitWidth">explicitWidth</a> : Number<div class="summaryTableDescription">
+   The explicit width of the component.</div>
 </td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
 </tr>
 <tr class="hideInheritedProperty">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#maxExplicitWidth">maxExplicitWidth</a> : Number<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#fixedHeight">fixedHeight</a> : Number<div class="summaryTableDescription">
+   The fixed height of the component.</div>
 </td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
 </tr>
 <tr class="hideInheritedProperty">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#maxPercentHeight">maxPercentHeight</a> : Number<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#fixedMaxHeight">fixedMaxHeight</a> : Number<div class="summaryTableDescription">
+   The maximum fixed height of the component
+   </div>
 </td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
 </tr>
 <tr class="hideInheritedProperty">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#maxPercentUnusedHeight">maxPercentUnusedHeight</a> : Number<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#fixedMaxWidth">fixedMaxWidth</a> : Number<div class="summaryTableDescription">
+   The maximum fixed width of the component.</div>
 </td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
 </tr>
 <tr class="hideInheritedProperty">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#maxPercentUnusedWidth">maxPercentUnusedWidth</a> : Number<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#fixedMinHeight">fixedMinHeight</a> : Number<div class="summaryTableDescription">
+   The minumum fixed height of the component.</div>
 </td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
 </tr>
 <tr class="hideInheritedProperty">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#maxPercentWidth">maxPercentWidth</a> : Number<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#fixedMinWidth">fixedMinWidth</a> : Number<div class="summaryTableDescription">
+   The minumum fixed width of the component.</div>
 </td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
 </tr>
 <tr class="hideInheritedProperty">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#minExplicitHeight">minExplicitHeight</a> : Number<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#fixedWidth">fixedWidth</a> : Number<div class="summaryTableDescription">
+   The fixed width of the component.</div>
 </td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
 </tr>
 <tr class="hideInheritedProperty">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#minExplicitWidth">minExplicitWidth</a> : Number<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#horizontalCentre">horizontalCentre</a> : Number<div class="summaryTableDescription">
+   Anchor padding from the horizontal centre of the container.</div>
 </td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
 </tr>
 <tr class="hideInheritedProperty">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#minPercentHeight">minPercentHeight</a> : Number<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#left">left</a> : Number<div class="summaryTableDescription">
+   Anchor padding from the left of the container.</div>
 </td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
 </tr>
 <tr class="hideInheritedProperty">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#minPercentUnusedHeight">minPercentUnusedHeight</a> : Number<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#relativeHeight">relativeHeight</a> : Number<div class="summaryTableDescription">
+   The relative height of the component.</div>
 </td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
 </tr>
 <tr class="hideInheritedProperty">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#minPercentUnusedWidth">minPercentUnusedWidth</a> : Number<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#relativeMaxHeight">relativeMaxHeight</a> : Number<div class="summaryTableDescription">
+   The maximum relative height of the component
+   </div>
 </td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
 </tr>
 <tr class="hideInheritedProperty">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#minPercentWidth">minPercentWidth</a> : Number<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#relativeMaxWidth">relativeMaxWidth</a> : Number<div class="summaryTableDescription">
+   The maximum relative width of the component.</div>
 </td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
 </tr>
 <tr class="hideInheritedProperty">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#percentHeight">percentHeight</a> : Number<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#relativeMinHeight">relativeMinHeight</a> : Number<div class="summaryTableDescription">
+   The minumum relative height of the component.</div>
 </td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
 </tr>
 <tr class="hideInheritedProperty">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#percentUnusedHeight">percentUnusedHeight</a> : Number<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#relativeMinWidth">relativeMinWidth</a> : Number<div class="summaryTableDescription">
+   The minumum relative width of the component.</div>
 </td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
 </tr>
 <tr class="hideInheritedProperty">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#percentUnusedWidth">percentUnusedWidth</a> : Number<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#relativeWidth">relativeWidth</a> : Number<div class="summaryTableDescription">
+   The relative width of the component.</div>
 </td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
 </tr>
 <tr class="hideInheritedProperty">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#percentWidth">percentWidth</a> : Number<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#right">right</a> : Number<div class="summaryTableDescription">
+   Anchor padding from the right of the container.</div>
 </td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
 </tr>
 <tr class="hideInheritedProperty">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#right">right</a> : Number<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#top">top</a> : Number<div class="summaryTableDescription">
+   Anchor padding from the top of the container.</div>
 </td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
 </tr>
 <tr class="hideInheritedProperty">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#top">top</a> : Number<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#verticalCentre">verticalCentre</a> : Number<div class="summaryTableDescription">
+   Anchor padding from the vertical centre of the container.</div>
 </td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
 </tr>
-<tr class="hideInheritedProperty">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#verticalPositionMode">verticalPositionMode</a> : uint<div class="summaryTableDescription"></div>
+</table>
+</div>
+<a name="protectedPropertySummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Protected Properties</div>
+<div class="showHideLinks">
+<div class="hideInheritedProtectedProperty" id="hideInheritedProtectedProperty">
+<a onclick="javascript:setInheritedVisible(false,'ProtectedProperty');" href="#protectedPropertySummary" class="showHideLink"><img src="../../../images/expanded.gif" class="showHideLinkImage"> Hide Inherited Protected Properties</a>
+</div>
+<div class="showInheritedProtectedProperty" id="showInheritedProtectedProperty">
+<a onclick="javascript:setInheritedVisible(true,'ProtectedProperty');" href="#protectedPropertySummary" class="showHideLink"><img src="../../../images/collapsed.gif" class="showHideLinkImage"> Show Inherited Protected Properties</a>
+</div>
+</div>
+<table id="summaryTableProtectedProperty" class="summaryTable hideInheritedProtectedProperty" cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="hideInheritedProtectedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#_bottom">_bottom</a> : Number = NaN<div class="summaryTableDescription"></div>
 </td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
 </tr>
-<tr class="hideInheritedProperty">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#verticalSizeMode">verticalSizeMode</a> : uint<div class="summaryTableDescription"></div>
+<tr class="hideInheritedProtectedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#_colour">_colour</a> : Number = NaN<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
+</tr>
+<tr class="hideInheritedProtectedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#_colourAlpha">_colourAlpha</a> : Number = 1<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
+</tr>
+<tr class="hideInheritedProtectedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#_container">_container</a> : <a href="../layout/LayoutContainer.html">LayoutContainer</a>
+<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
+</tr>
+<tr class="hideInheritedProtectedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#_created">_created</a> : Boolean = false<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
+</tr>
+<tr class="hideInheritedProtectedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#_explicitHeight">_explicitHeight</a> : Number = 0<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
+</tr>
+<tr class="hideInheritedProtectedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#_explicitMaxHeight">_explicitMaxHeight</a> : Number = NaN<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
+</tr>
+<tr class="hideInheritedProtectedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#_explicitMaxWidth">_explicitMaxWidth</a> : Number = NaN<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
+</tr>
+<tr class="hideInheritedProtectedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#_explicitMinHeight">_explicitMinHeight</a> : Number = 0<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
+</tr>
+<tr class="hideInheritedProtectedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#_explicitMinWidth">_explicitMinWidth</a> : Number = 0<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
+</tr>
+<tr class="hideInheritedProtectedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#_explicitWidth">_explicitWidth</a> : Number = 0<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
+</tr>
+<tr class="hideInheritedProtectedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#_fixedHeight">_fixedHeight</a> : Number = NaN<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
+</tr>
+<tr class="hideInheritedProtectedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#_fixedMaxHeight">_fixedMaxHeight</a> : Number = NaN<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
+</tr>
+<tr class="hideInheritedProtectedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#_fixedMaxWidth">_fixedMaxWidth</a> : Number = NaN<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
+</tr>
+<tr class="hideInheritedProtectedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#_fixedMinHeight">_fixedMinHeight</a> : Number = 0<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
+</tr>
+<tr class="hideInheritedProtectedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#_fixedMinWidth">_fixedMinWidth</a> : Number = 0<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
+</tr>
+<tr class="hideInheritedProtectedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#_fixedWidth">_fixedWidth</a> : Number = NaN<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
+</tr>
+<tr class="hideInheritedProtectedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#_horizontalCentre">_horizontalCentre</a> : Number = NaN<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
+</tr>
+<tr class="hideInheritedProtectedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#_left">_left</a> : Number = NaN<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
+</tr>
+<tr class="hideInheritedProtectedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#_relativeHeight">_relativeHeight</a> : Number = NaN<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
+</tr>
+<tr class="hideInheritedProtectedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#_relativeMaxHeight">_relativeMaxHeight</a> : Number = NaN<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
+</tr>
+<tr class="hideInheritedProtectedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#_relativeMaxWidth">_relativeMaxWidth</a> : Number = NaN<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
+</tr>
+<tr class="hideInheritedProtectedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#_relativeMinHeight">_relativeMinHeight</a> : Number = 0<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
+</tr>
+<tr class="hideInheritedProtectedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#_relativeMinWidth">_relativeMinWidth</a> : Number = 0<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
+</tr>
+<tr class="hideInheritedProtectedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#_relativeWidth">_relativeWidth</a> : Number = NaN<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
+</tr>
+<tr class="hideInheritedProtectedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#_right">_right</a> : Number = NaN<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
+</tr>
+<tr class="hideInheritedProtectedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#_top">_top</a> : Number = NaN<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
+</tr>
+<tr class="hideInheritedProtectedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="LayoutComponent.html#_verticalCentre">_verticalCentre</a> : Number = NaN<div class="summaryTableDescription"></div>
 </td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
 </tr>
 </table>
@@ -201,7 +370,8 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
 <a class="signatureLink" href="#LayoutContainer()">LayoutContainer</a>()</div>
-<div class="summaryTableDescription"></div>
+<div class="summaryTableDescription">
+   Class contructor.</div>
 </td><td class="summaryTableOwnerCol">LayoutContainer</td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -220,11 +390,21 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
    </div>
 </td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
 </tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="LayoutComponent.html#removeChildren()">removeChildren</a>():void</div>
+<div class="summaryTableDescription">
+   Called when the component is removedfrom the stage.</div>
+</td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
+</tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
 <a class="signatureLink" href="#updateDisplay()">updateDisplay</a>():void</div>
-<div class="summaryTableDescription"></div>
+<div class="summaryTableDescription">
+   
+   Called when the component display changes.</div>
 </td><td class="summaryTableOwnerCol">LayoutContainer</td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -260,14 +440,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
    Called when the component is added to the stage.</div>
 </td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
 </tr>
-<tr class="hideInheritedProtectedMethod">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="LayoutComponent.html#removeChildren()">removeChildren</a>():void</div>
-<div class="summaryTableDescription">
-   Called when the component is removedfrom the stage.</div>
-</td><td class="summaryTableOwnerCol"><a href="LayoutComponent.html">LayoutComponent</a></td>
-</tr>
 </table>
 </div>
 <script type="text/javascript" language="javascript">
@@ -277,18 +449,20 @@ showHideInherited();
 <div class="MainContent">
 <a name="propertyDetail"></a>
 <div class="detailSectionHeader">Property detail</div>
-<a name="children"></a>
+<a name="content"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">children</td><td class="detailHeaderType">property</td>
+<td class="detailHeaderName">content</td><td class="detailHeaderType">property</td>
 </tr>
 </table>
 <div class="detailBody">
-<code>children:Array</code>&nbsp;&nbsp;[read-write]<span class="label">Implementation</span>
+<code>content:Array</code>&nbsp;&nbsp;[read-write]<p>
+   The content display objects held within
+   </p><span class="label">Implementation</span>
 <br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get children():Array</code>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get content():Array</code>
 <br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set children(value:Array):void</code>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set content(value:Array):void</code>
 <br>
 </div>
 <a name="constructorDetail"></a>
@@ -300,8 +474,9 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function LayoutContainer()</code>
-</div>
+<code>public function LayoutContainer()</code><p>
+   Class contructor.
+   </p></div>
 <a name="methodDetail"></a>
 <div class="detailSectionHeader">Method detail</div>
 <a name="updateDisplay()"></a>
@@ -311,8 +486,10 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public override function updateDisplay():void</code>
-</div>
+<code>public override function updateDisplay():void</code><p>
+   
+   Called when the component display changes.
+   </p></div>
 <br>
 <br>
 <hr>

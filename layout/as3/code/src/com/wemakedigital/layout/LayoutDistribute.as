@@ -28,48 +28,48 @@ package com.wemakedigital.layout
 		/**
 		 * @private
 		 */
-		private var _anchor : String ;
+		protected var _anchor : String ;
 
 		//----------------------------------------------------------------------
 		
 		/**
 		 * @private
 		 */
-		private var _spaceFixed : Number = NaN ;
+		protected var _spaceFixed : Number = NaN ;
 
 		/**
 		 * @private
 		 */
-		private var _spaceFixedMin : Number = 0 ;
+		protected var _spaceFixedMin : Number = 0 ;
 
 		/**
 		 * @private
 		 */
-		private var _spaceFixedMax : Number = NaN ;
-
-		//----------------------------------------------------------------------
-		
-		/**
-		 * @private
-		 */
-		private var _spaceRelative : Number = NaN ;
-
-		/**
-		 * @private
-		 */
-		private var _spaceRelativeMin : Number = 0 ;
-
-		/**
-		 * @private
-		 */
-		private var _spaceRelativeMax : Number = NaN ;
+		protected var _spaceFixedMax : Number = NaN ;
 
 		//----------------------------------------------------------------------
 		
 		/**
 		 * @private
 		 */
-		private var _separator : Class ;
+		protected var _spaceRelative : Number = NaN ;
+
+		/**
+		 * @private
+		 */
+		protected var _spaceRelativeMin : Number = 0 ;
+
+		/**
+		 * @private
+		 */
+		protected var _spaceRelativeMax : Number = NaN ;
+
+		//----------------------------------------------------------------------
+		
+		/**
+		 * @private
+		 */
+		protected var _separator : Class ;
 
 		/**
 		 * @private

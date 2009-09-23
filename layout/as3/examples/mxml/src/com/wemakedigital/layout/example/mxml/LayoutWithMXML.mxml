@@ -3,14 +3,15 @@
 
 	<layout:content>
 		
-		<!--<layout:LayoutComponent fixedWidth="200" fixedHeight="200" horizontalCentre="0" verticalCentre="0" />-->
+		<layout:LayoutContainer left="20" right="20" top="20" bottom="20" colour="0xEEEEEE" >
 		
-		<layout:LayoutHorizontal left="20" right="20" top="20" bottom="20">
-			<layout:LayoutComponent fixedWidth="30" fixedHeight="30"/>
-			<layout:LayoutComponent fixedWidth="30" fixedHeight="30"/>
-			<layout:LayoutComponent fixedWidth="30" fixedHeight="30"/>
-			<layout:LayoutComponent fixedWidth="30" fixedHeight="30"/>
-		</layout:LayoutHorizontal>
+			<layout:LayoutVertical left="20" right="20" top="20" bottom="20" spaceFixed="1">
+				<layout:LayoutComponent relativeWidth="1" fixedHeight="30" colour="0x999999"/>
+				<layout:LayoutComponent relativeWidth="1" fixedHeight="30" colour="0x999999"/>
+				<layout:LayoutComponent relativeWidth="1" fixedHeight="30" colour="0x999999"/>
+			</layout:LayoutVertical>
+		
+		</layout:LayoutContainer>
 		
 	</layout:content>
 	
