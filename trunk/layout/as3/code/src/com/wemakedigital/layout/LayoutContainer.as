@@ -3,8 +3,10 @@ package com.wemakedigital.layout
 	import com.wemakedigital.layout.LayoutComponent;
 
 	import flash.display.DisplayObject;
+	import flash.display.Shape;
+	import flash.display.Sprite;
 
-	[ DefaultProperty ( "content" ) ]
+	[ DefaultProperty ( "children" ) ]
 
 	public class LayoutContainer extends LayoutComponent 
 	{
@@ -17,8 +19,24 @@ package com.wemakedigital.layout
 		/**
 		 * @private
 		 */
-		protected var _content : Array ;
+		protected var content : Sprite ;
+		
+		/**
+		 * @private
+		 */
+		protected var contentMask : Shape ;
+		
+		/**
+		 * @private
+		 */
+		protected var _maskChildren : Boolean = true ;
 
+		/**
+		 * @private
+		 */
+		protected var _children : Array ;
+
+		
 		//----------------------------------------------------------------------
 		//
 		//  Getters and Setters
@@ -26,23 +44,43 @@ package com.wemakedigital.layout
 		//----------------------------------------------------------------------
 		
 		/**
-		 * The content display objects held within
+		 * Mask children to the container size (default is true).
 		 */
-		public function get content () : Array
+		public function get maskChildren () : Boolean
 		{
-			return this._content;
+			return this._maskChildren;
 		}
 		
 		/**
 		 * @private
 		 */
-		public function set content ( value : * ) : void
+		public function set maskChildren ( value : Boolean ) : void
 		{
-			this._content = value is Array ? value : [ value ] ;
-			
-			for each ( var child : DisplayObject in this._content )
+			if ( this._maskChildren != value ) 
 			{
-				super.addChild( child ) ;
+				this._maskChildren = value ;
+				this.updateProperties() ;
+			}
+		}
+
+		/**
+		 * The children display objects held within
+		 */
+		public function get children () : Array
+		{
+			return this._children;
+		}
+		
+		/**
+		 * @private
+		 */
+		public function set children ( value : * ) : void
+		{
+			this._children = value is Array ? value : [ value ] ;
+			
+			for each ( var child : DisplayObject in this._children )
+			{
+				this.content.addChild( child ) ;
 			}
 			
 			if ( this.created ) 
@@ -63,6 +101,10 @@ package com.wemakedigital.layout
 		 */
 		public function LayoutContainer ()
 		{
+			this.content = new Sprite() ;
+			this.contentMask = new Shape() ;
+			super.addChild( this.content ) ;
+			super.addChild( this.contentMask ) ;
 		}
 
 		//----------------------------------------------------------------------
@@ -78,9 +120,9 @@ package com.wemakedigital.layout
 		{
 			if ( child && ! this.contains( child ) )
 			{
-				if ( this.content ) this._content.push( child ) ;
-				else this._content = [ child ] ;
-				super.addChild( child ) ;
+				if ( this.children ) this._children.push( child ) ;
+				else this._children = [ child ] ;
+				this.content.addChild( child ) ;
 				if ( this.created ) 
 				{
 					this.updateProperties( ) ;
@@ -97,10 +139,10 @@ package com.wemakedigital.layout
 		{
 			if ( child && this.contains( child ) )
 			{
-				super.removeChild( child ) ;
-				if ( this.content ) 
+				this.content.removeChild( child ) ;
+				if ( this.children ) 
 				{
-					this._content = this._content.splice( this._content.indexOf( child ), 1 ) ;
+					this._children = this._children.splice( this._children.indexOf( child ), 1 ) ;
 					if ( this.created ) 
 					{
 						this.updateProperties( ) ;
@@ -114,8 +156,29 @@ package com.wemakedigital.layout
 		/**
 		 * @inheritDoc
 		 */
+		override public function updateProperties () : void
+		{
+			if ( this.created )
+			{
+				this.content.mask = this.maskChildren ? this.contentMask : null ; 
+			}
+			super.updateProperties() ;
+		}
+
+		/**
+		 * @inheritDoc
+		 */
 		override public function updateDisplay () : void
 		{
+			if ( this.created )
+			{
+				this.contentMask.graphics.clear() ;
+				if ( this.maskChildren )
+				{
+					this.contentMask.graphics.beginFill( 0x000000, 0 ) ;
+					this.contentMask.graphics.drawRect(0, 0, this.explicitWidth, this.explicitHeight ) ;
+				}
+			}
 			super.updateDisplay( ) ;
 			this.updateDisplayChildren() ;
 		}
@@ -125,7 +188,7 @@ package com.wemakedigital.layout
 		 */
 		protected function updateDisplayChildren () : void
 		{			
-			for each ( var child : LayoutComponent in this.content )
+			for each ( var child : LayoutComponent in this.children )
 			{
 				child.explicitMinWidth = this.getChildMinWidth ( child ) ;
 				child.explicitMinHeight = this.getChildMinHeight ( child ) ;
