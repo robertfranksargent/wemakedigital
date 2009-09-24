@@ -1,10 +1,9 @@
 package com.wemakedigital.layout 
 {
 	import flash.display.DisplayObject;
-	import flash.display.Sprite;
 	import flash.events.Event;
 
-	public class LayoutComponent extends Sprite
+	public class LayoutComponent extends LayoutSprite
 	{
 		//----------------------------------------------------------------------
 		//
