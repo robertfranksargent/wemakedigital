@@ -44,7 +44,7 @@ package com.wemakedigital.layout
 		override protected function updateDisplayChildren () : void
 		{
 			this.childrenSize = 0 ;
-			for each ( var child : LayoutComponent in this.content )
+			for each ( var child : LayoutComponent in this.children )
 			{
 				child.explicitMinWidth = this.getChildMinWidth ( child ) ;
 				child.explicitMinHeight = this.getChildMinHeight ( child ) ;
@@ -57,9 +57,9 @@ package com.wemakedigital.layout
 			
 			if ( ! isNaN ( this.spaceFixed ) ) this.spaceSize = this.spaceFixed ;
 			else if ( ! isNaN ( this.spaceRelative ) ) this.spaceSize = this.spaceRelative * this.explicitWidth ;
-			else this.spaceSize = ( this.explicitWidth - this.childrenSize ) / ( this.content.length - 1 ) ; 
+			else this.spaceSize = ( this.explicitWidth - this.childrenSize ) / ( this.children.length - 1 ) ; 
 			
-			var childrenWithSpacingSize : Number = this.childrenSize + ( this.spaceSize * ( this.content.length - 1 ) ) ;
+			var childrenWithSpacingSize : Number = this.childrenSize + ( this.spaceSize * ( this.children.length - 1 ) ) ;
 			switch ( this.anchor.toUpperCase() )
 			{
 				case LayoutHorizontal.CENTRE :
@@ -74,7 +74,7 @@ package com.wemakedigital.layout
 					break ;
 			}
 			
-			for each ( var childAgain : LayoutComponent in this.content )
+			for each ( var childAgain : LayoutComponent in this.children )
 			{
 				childAgain.x = this.getChildX ( childAgain ) ;
 				childAgain.y = this.getChildY ( childAgain ) ;

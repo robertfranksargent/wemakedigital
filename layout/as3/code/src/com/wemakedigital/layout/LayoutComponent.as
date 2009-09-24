@@ -64,7 +64,7 @@ package com.wemakedigital.layout
 		//  Getters and Setters
 		//
 		//----------------------------------------------------------------------
-		
+
 		/**
 		 * The component's layout container.
 		 */
