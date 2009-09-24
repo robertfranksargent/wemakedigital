@@ -96,6 +96,7 @@ package com.wemakedigital.layout
 		public function set anchor ( value : String ) : void
 		{
 			this._anchor = value ;
+			this.updateProperties() ;
 		}
 
 		//----------------------------------------------------------------------
@@ -117,6 +118,8 @@ package com.wemakedigital.layout
 			
 			// If space is fixed, it can't be relative.
 			if ( ! isNaN( this._spaceFixed ) ) this._spaceRelative = NaN ;
+			
+			this.updateProperties() ;
 		}
 
 		/**
@@ -170,6 +173,8 @@ package com.wemakedigital.layout
 			
 			// If the space is relative, it can't be fixed.
 			if ( ! isNaN( this._spaceRelative ) ) this._spaceFixed = NaN ;
+			
+			this.updateProperties() ;
 		}
 
 		/**
@@ -220,6 +225,8 @@ package com.wemakedigital.layout
 		public function set separator ( value : Class ) : void
 		{
 			this._separator = value ;
+			
+			this.updateProperties() ;
 		}
 
 		//----------------------------------------------------------------------
