@@ -29,6 +29,16 @@ package com.wemakedigital.layout
 		/**
 		 * @private
 		 */
+		protected var _scrollHorizontal : Number ;
+		
+		/**
+		 * @private
+		 */
+		protected var _scrollVertical : Number ;
+		
+		/**
+		 * @private
+		 */
 		protected var _maskChildren : Boolean = true ;
 
 		/**
@@ -42,6 +52,40 @@ package com.wemakedigital.layout
 		//  Getters and Setters
 		//
 		//----------------------------------------------------------------------
+		
+		/**
+		 * The horizontal scroll ratio between 0 (scrolled to left) and 1 (scrolled to right).
+		 */
+		public function get scrollHorizontal () : Number
+		{
+			return this._scrollHorizontal;
+		}
+		
+		/**
+		 * @private
+		 */
+		public function set scrollHorizontal ( value : Number ) : void
+		{
+			this._scrollHorizontal = Math.max ( 0 , Math.min ( 1, value ) ) ;
+			this.updateScrolling() ;
+		}
+		
+		/**
+		 * The vertical scroll ratio between 0 (scrolled to top) and 1 (scrolled to bottom).
+		 */
+		public function get scrollVertical () : Number
+		{
+			return this._scrollVertical;
+		}
+		
+		/**
+		 * @private
+		 */
+		public function set scrollVertical ( value : Number ) : void
+		{
+			this._scrollVertical = Math.max ( 0 , Math.min ( 1, value ) ) ;
+			this.updateScrolling() ;
+		}
 		
 		/**
 		 * Mask children to the container size (default is true).
@@ -80,6 +124,7 @@ package com.wemakedigital.layout
 			
 			for each ( var child : DisplayObject in this._children )
 			{
+				if ( child is LayoutComponent ) ( child as LayoutComponent ).container = this;
 				this.content.addChild( child ) ;
 			}
 			
@@ -88,6 +133,22 @@ package com.wemakedigital.layout
 				this.updateProperties( ) ;
 				this.updateDisplay( ) ;
 			}
+		}
+		
+		/**
+		 * The overall width of all the child content of this container.
+		 */
+		public function get contentWidth () : Number
+		{
+			return this.content.width;
+		}
+		
+		/**
+		 * The overall height of all the child content of this container.
+		 */
+		public function get contentHeight () : Number
+		{
+			return this.content.height;
 		}
 		
 		//----------------------------------------------------------------------
@@ -122,6 +183,7 @@ package com.wemakedigital.layout
 			{
 				if ( this.children ) this._children.push( child ) ;
 				else this._children = [ child ] ;
+				if ( child is LayoutComponent ) ( child as LayoutComponent ).container = this;
 				this.content.addChild( child ) ;
 				if ( this.created ) 
 				{
@@ -153,6 +215,33 @@ package com.wemakedigital.layout
 			return child ;
 		}
 		
+		public function getScrollHorizontalToChild ( child : DisplayObject ) : Number
+		{
+			if ( this.content.contains( child ) )
+			{
+				return child.x / Math.abs( this.explicitWidth - this.content.width ) ;
+			}
+			return 0 ;
+		}
+		
+		public function getScrollVerticalToChild ( child : DisplayObject ) : Number
+		{
+			if ( this.content.contains( child ) )
+			{
+				return child.y / Math.abs( this.explicitHeight - this.content.height ) ;
+			}
+			return 0 ;
+		}
+		
+		/**
+		 * @private
+		 */
+		protected function updateScrolling () : void
+		{
+			this.content.x = ( this.contentWidth <= this.explicitWidth ? 0 : this.scrollHorizontal ) * ( this.explicitWidth - this.contentWidth ) ;
+			this.content.y = ( this.contentHeight <= this.explicitHeight ? 0 : this.scrollVertical ) * ( this.explicitHeight - this.contentHeight ) ;
+		}
+		
 		/**
 		 * @inheritDoc
 		 */
@@ -181,6 +270,7 @@ package com.wemakedigital.layout
 			}
 			super.updateDisplay( ) ;
 			this.updateDisplayChildren() ;
+			this.updateScrolling() ;
 		}
 		
 		/**

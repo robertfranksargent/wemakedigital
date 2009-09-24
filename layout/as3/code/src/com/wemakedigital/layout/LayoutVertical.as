@@ -57,6 +57,7 @@ package com.wemakedigital.layout
 			
 			if ( ! isNaN ( this.spaceFixed ) ) this.spaceSize = this.spaceFixed ;
 			else if ( ! isNaN ( this.spaceRelative ) ) this.spaceSize = this.spaceRelative * this.explicitHeight ;
+			else if ( this.anchor.toUpperCase() == LayoutVertical.CENTRE || this.anchor.toUpperCase() == LayoutVertical.BOTTOM || this.anchor.toUpperCase() == LayoutVertical.TOP ) this.spaceSize = 0 ;
 			else this.spaceSize = ( this.explicitHeight - this.childrenSize ) / ( this.children.length - 1 ) ; 
 			
 			var childrenWithSpacingSize : Number = this.childrenSize + ( this.spaceSize * ( this.children.length - 1 ) ) ;
