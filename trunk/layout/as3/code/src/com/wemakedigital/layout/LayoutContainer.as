@@ -219,7 +219,7 @@ package com.wemakedigital.layout
 		{
 			if ( this.content.contains( child ) )
 			{
-				return child.x / Math.abs( this.explicitWidth - this.content.width ) ;
+				return child.x / Math.abs( this.explicitWidth - this.contentWidth ) ;
 			}
 			return 0 ;
 		}
@@ -228,7 +228,7 @@ package com.wemakedigital.layout
 		{
 			if ( this.content.contains( child ) )
 			{
-				return child.y / Math.abs( this.explicitHeight - this.content.height ) ;
+				return child.y / Math.abs( this.explicitHeight - this.contentHeight ) ;
 			}
 			return 0 ;
 		}
@@ -249,11 +249,27 @@ package com.wemakedigital.layout
 		{
 			if ( this.created )
 			{
-				this.content.mask = this.maskChildren ? this.contentMask : null ; 
+				this.content.mask = this.maskChildren ? this.contentMask : null ;
+				if ( this.autoWidth ) 
+				{
+					this._fixedWidth = Math.max ( this.fixedMinWidth, isNaN ( this.fixedMaxWidth ) ? this.contentWidth : Math.min ( this.fixedMaxWidth, this.contentWidth ) ) ;
+					this._relativeWidth = NaN ;
+				}
+				if ( this.autoHeight ) 
+				{
+					this._fixedHeight = Math.max ( this.fixedMinHeight, isNaN ( this.fixedMaxHeight ) ? this.contentHeight : Math.min ( this.fixedMaxHeight, this.contentHeight ) ) ;
+					this._relativeHeight = NaN ;
+				}
 			}
 			super.updateProperties() ;
 		}
-
+		
+		public function childUpdatedProperties() : void
+		{
+			if ( this.autoWidth || this.autoHeight ) this.updateProperties() ;
+			else this.updateDisplay() ;
+		}
+		
 		/**
 		 * @inheritDoc
 		 */
