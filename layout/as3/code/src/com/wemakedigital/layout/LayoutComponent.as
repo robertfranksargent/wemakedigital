@@ -25,6 +25,11 @@ package com.wemakedigital.layout
 
 		//----------------------------------------------------------------------
 		
+		protected var _autoWidth : Boolean = true ;
+		protected var _autoHeight : Boolean = true ;
+		
+		//----------------------------------------------------------------------
+		
 		protected var _fixedWidth : Number = NaN ;
 		protected var _fixedHeight : Number = NaN ;
 		protected var _fixedMinWidth : Number = 0 ;
@@ -94,6 +99,30 @@ package com.wemakedigital.layout
 		public function set created ( value : Boolean ) : void
 		{
 			if ( this.created != value ) this._created = value ;
+		}
+		
+		//----------------------------------------------------------------------
+		
+		public function get autoWidth ( ) : Boolean
+		{
+			return this._autoWidth ;
+		}
+		
+		public function set autoWidth ( value : Boolean ) : void
+		{
+			this._autoWidth = value ;
+			this.updateProperties() ;
+		}
+
+		public function get autoHeight ( ) : Boolean
+		{
+			return this._autoHeight ;
+		}
+		
+		public function set autoHeight ( value : Boolean ) : void
+		{
+			this._autoHeight = value ;
+			this.updateProperties() ;
 		}
 		
 		//----------------------------------------------------------------------
@@ -213,6 +242,7 @@ package com.wemakedigital.layout
 			
 			// If the component has a fixed width it can't have a relative width.
 			this._relativeWidth = NaN ;
+			this._autoWidth = false ;
 			
 			this.updateProperties() ;
 		}
@@ -234,6 +264,7 @@ package com.wemakedigital.layout
 			
 			// If the component has a fixed height it can't have a relative height.
 			this._relativeHeight = NaN ;
+			this._autoHeight = false ;
 			
 			this.updateProperties() ;
 		}
@@ -328,10 +359,11 @@ package com.wemakedigital.layout
 			this._left = Math.max ( 0, value ) ;
 			
 			// If the component has left and right anchors it can't have a fixed or relative width.
-			if ( ! isNaN ( this._top ) && ! isNaN ( this._bottom ) ) 
+			if ( ! isNaN ( this._left ) && ! isNaN ( this._right ) ) 
 			{
 				this._fixedWidth = NaN ;
 				this._relativeWidth = NaN ;
+				this._autoWidth = false ;
 			}
 			
 			this.updateProperties() ;
@@ -353,10 +385,11 @@ package com.wemakedigital.layout
 			this._right = Math.max ( 0, value ) ;
 			
 			// If the component has left and right anchors it can't have a fixed or relative width.
-			if ( ! isNaN ( this._top ) && ! isNaN ( this._bottom ) ) 
+			if ( ! isNaN ( this._left ) && ! isNaN ( this._right ) ) 
 			{
 				this._fixedWidth = NaN ;
 				this._relativeWidth = NaN ;
+				this._autoWidth = false ;
 			}
 			
 			this.updateProperties() ;
@@ -382,6 +415,7 @@ package com.wemakedigital.layout
 			{
 				this._fixedHeight = NaN ;
 				this._relativeHeight = NaN ;
+				this._autoHeight = false ;
 			}
 			
 			this.updateProperties() ;
@@ -407,6 +441,7 @@ package com.wemakedigital.layout
 			{
 				this._fixedHeight = NaN ;
 				this._relativeHeight = NaN ;
+				this._autoHeight = false ;
 			}
 			
 			this.updateProperties() ;
@@ -477,6 +512,7 @@ package com.wemakedigital.layout
 			
 			// If the component has a relative width it can't have a fixed width.
 			this._fixedWidth = NaN ;
+			this._autoWidth = false ;
 			
 			this.updateProperties() ;
 		}
@@ -498,6 +534,7 @@ package com.wemakedigital.layout
 			
 			// If the component has a relative height it can't have a fixed height.
 			this._fixedHeight = NaN ;
+			this._autoHeight = false ;
 			
 			this.updateProperties() ;
 		}
@@ -667,7 +704,7 @@ package com.wemakedigital.layout
 		 */
 		public function updateProperties ( ) : void
 		{
-			if ( this.container ) this.container.updateDisplay() ;
+			if ( this.container ) this.container.childUpdatedProperties() ;
 		}
 
 		/**
