@@ -11,6 +11,10 @@ package com.wemakedigital.layout
 		//
 		//----------------------------------------------------------------------
 		
+    	protected var _id : String;
+		
+		//----------------------------------------------------------------------
+		
 		protected var _container : LayoutContainer ;
 		protected var _created : Boolean = false ;
 		
@@ -68,6 +72,24 @@ package com.wemakedigital.layout
 		//  Getters and Setters
 		//
 		//----------------------------------------------------------------------
+
+	    /**
+	     * ID of the component.
+	     */
+	    public function get id () : String
+	    {
+	        return this._id ;
+	    }
+	
+	    /**
+	     * @private
+	     */
+	    public function set id ( value : String ) : void
+	    {
+	        this._id = value ;
+	    }
+	    
+	    //----------------------------------------------------------------------
 
 		/**
 		 * The component's layout container.
