@@ -179,7 +179,7 @@ package com.wemakedigital.layout
 		 */
 		override public function addChild ( child : DisplayObject ) : DisplayObject
 		{
-			if ( child && ! this.contains( child ) )
+			if ( child && ! this.content.contains( child ) )
 			{
 				if ( this.children ) this._children.push( child ) ;
 				else this._children = [ child ] ;
@@ -199,7 +199,7 @@ package com.wemakedigital.layout
 		 */
 		override public function removeChild ( child : DisplayObject ) : DisplayObject
 		{
-			if ( child && this.contains( child ) )
+			if ( child && this.content.contains( child ) )
 			{
 				this.content.removeChild( child ) ;
 				if ( this.children ) 
@@ -285,7 +285,7 @@ package com.wemakedigital.layout
 				}
 			}
 			super.updateDisplay( ) ;
-			this.updateDisplayChildren() ;
+			if ( this.children ) this.updateDisplayChildren() ;
 			this.updateScrolling() ;
 		}
 		
