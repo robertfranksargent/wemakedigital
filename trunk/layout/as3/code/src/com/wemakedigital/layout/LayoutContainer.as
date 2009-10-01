@@ -46,6 +46,25 @@ package com.wemakedigital.layout
 		 */
 		protected var _children : Array ;
 
+		/**
+		 * @private
+		 */
+		protected var definedWidthTotal : Number = 0 ;
+		
+		/**
+		 * @private
+		 */
+		protected var definedHeightTotal : Number = 0 ;
+
+		/**
+		 * @private
+		 */
+		protected var widthTotal : Number = 0 ;
+		
+		/**
+		 * @private
+		 */
+		protected var heightTotal : Number = 0 ;
 		
 		//----------------------------------------------------------------------
 		//
@@ -151,6 +170,22 @@ package com.wemakedigital.layout
 			return this.content.height;
 		}
 		
+		/**
+		 * The total remaining width for children with a remainingWidth property to fill.
+		 */
+		public function get remainingWidthTotal () : Number
+		{
+			return this.explicitWidth - this.definedWidthTotal ;
+		}
+		
+		/**
+		 * The total remaining height for children with a remainingHeight property to fill.
+		 */
+		public function get remainingHeightTotal () : Number
+		{
+			return this.explicitHeight - this.definedHeightTotal ;
+		}
+
 		//----------------------------------------------------------------------
 		//
 		//  Constructor
@@ -294,17 +329,61 @@ package com.wemakedigital.layout
 		 */
 		protected function updateDisplayChildren () : void
 		{			
+			this.updateDisplayChildrenDefinedSize() ;
+			this.updateDisplayChildrenRemainingSize() ;
+			this.updateDisplayChildrenPosition() ;
+			
+			for each ( var child : LayoutComponent in this.children )
+			{
+				child.updateDisplay( ) ;
+			}
+		}
+		
+		protected function updateDisplayChildrenDefinedSize () : void
+		{
+			this.definedWidthTotal = 0 ;
+			this.definedHeightTotal = 0 ;
+			
 			for each ( var child : LayoutComponent in this.children )
 			{
 				child.explicitMinWidth = this.getChildMinWidth ( child ) ;
 				child.explicitMinHeight = this.getChildMinHeight ( child ) ;
 				child.explicitMaxWidth = this.getChildMaxWidth ( child ) ;
 				child.explicitMaxHeight = this.getChildMaxHeight ( child ) ;
+				
 				child.explicitWidth = this.getChildWidth ( child ) ;
+				this.definedWidthTotal += child.explicitWidth ;
 				child.explicitHeight = this.getChildHeight ( child ) ;
+				this.definedHeightTotal += child.explicitHeight ;
+			}
+		}
+		
+		protected function updateDisplayChildrenRemainingSize () : void
+		{
+			this.widthTotal = this.definedWidthTotal ;
+			this.heightTotal = this.definedHeightTotal ;
+			
+			for each ( var child : LayoutComponent in this.children )
+			{
+				if ( ! isNaN ( child.remainingWidth ) ) 
+				{
+					child.explicitWidth = child.remainingWidth * this.remainingWidthTotal ;
+					this.widthTotal += child.explicitWidth ;
+				}
+				if ( ! isNaN ( child.remainingHeight ) ) 
+				{
+					child.explicitHeight = child.remainingHeight * this.remainingHeightTotal ;
+					this.heightTotal += child.explicitHeight ;
+				}
+			}
+		}
+		
+		protected function updateDisplayChildrenPosition () : void
+		{
+			for each ( var child : LayoutComponent in this.children )
+			{
 				child.x = this.getChildX ( child ) ;
 				child.y = this.getChildY ( child ) ;
-				child.updateDisplay( ) ;
 			}
 		}
 		
@@ -318,7 +397,7 @@ package com.wemakedigital.layout
 			else if ( ! isNaN ( child.relativeMinWidth ) ) return child.relativeMinWidth * this.explicitWidth ;
 			return NaN ;
 		}
-
+		
 		/**
 		 * @private
 		 */
@@ -360,6 +439,7 @@ package com.wemakedigital.layout
 			if ( ! isNaN ( child.fixedWidth ) ) return child.fixedWidth ;
 			else if ( ! isNaN ( child.left ) && ! isNaN ( child.right ) ) return this.explicitWidth - child.left - child.right ;
 			else if ( ! isNaN ( child.relativeWidth ) ) return child.relativeWidth * this.explicitWidth  ;
+			else if ( ! isNaN ( child.remainingWidth ) ) return 0 ;
 			return child.explicitWidth ;
 		}
 
@@ -371,6 +451,7 @@ package com.wemakedigital.layout
 			if ( ! isNaN ( child.fixedHeight ) ) return child.fixedHeight ;
 			else if ( ! isNaN ( child.top ) && ! isNaN ( child.bottom ) ) return this.explicitHeight - child.top - child.bottom ;
 			else if ( ! isNaN ( child.relativeHeight ) ) return child.relativeHeight * this.explicitHeight ;
+			else if ( ! isNaN ( child.remainingHeight ) ) return 0 ;
 			return child.explicitHeight ;
 		}
 		

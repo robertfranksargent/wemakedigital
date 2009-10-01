@@ -41,33 +41,29 @@ package com.wemakedigital.layout
 		/**
 		 * @inheritDoc
 		 */
-		override protected function updateDisplayChildren () : void
+		override protected function updateDisplayChildrenDefinedSize () : void
 		{
-			this.childrenSize = 0 ;
-			for each ( var child : LayoutComponent in this.children )
-			{
-				child.explicitMinWidth = this.getChildMinWidth ( child ) ;
-				child.explicitMinHeight = this.getChildMinHeight ( child ) ;
-				child.explicitMaxWidth = this.getChildMaxWidth ( child ) ;
-				child.explicitMaxHeight = this.getChildMaxHeight ( child ) ;
-				child.explicitWidth = this.getChildWidth ( child ) ;
-				child.explicitHeight = this.getChildHeight ( child ) ;
-				this.childrenSize += child.explicitHeight ;
-			}
+			super.updateDisplayChildrenDefinedSize() ;
 			
 			if ( ! isNaN ( this.spaceFixed ) ) this.spaceSize = this.spaceFixed ;
 			else if ( ! isNaN ( this.spaceRelative ) ) this.spaceSize = this.spaceRelative * this.explicitHeight ;
 			else if ( this.anchor.toUpperCase() == LayoutVertical.CENTRE || this.anchor.toUpperCase() == LayoutVertical.BOTTOM || this.anchor.toUpperCase() == LayoutVertical.TOP ) this.spaceSize = 0 ;
-			else this.spaceSize = ( this.explicitHeight - this.childrenSize ) / ( this.children.length - 1 ) ; 
-			
-			var childrenWithSpacingSize : Number = this.childrenSize + ( this.spaceSize * ( this.children.length - 1 ) ) ;
+			else this.spaceSize = ( this.explicitHeight - this.definedHeightTotal ) / ( this.children.length - 1 ) ; 
+			this.definedHeightTotal += ( this.spaceSize * ( this.children.length - 1 ) ) ;
+		}
+		
+		/**
+		 * @inheritDoc
+		 */
+		override protected function updateDisplayChildrenPosition () : void
+		{
 			switch ( this.anchor.toUpperCase() )
 			{
 				case LayoutVertical.CENTRE :
-					this.position = ( this.explicitHeight - childrenWithSpacingSize ) / 2 ;
+					this.position = ( this.explicitHeight - this.heightTotal ) / 2 ;
 					break ;
 				case LayoutVertical.BOTTOM :
-					this.position = this.explicitHeight - childrenWithSpacingSize ;
+					this.position = this.explicitHeight - this.heightTotal ;
 					break ;
 				case LayoutVertical.TOP :
 				default :
@@ -75,12 +71,7 @@ package com.wemakedigital.layout
 					break ;
 			}
 			
-			for each ( var childAgain : LayoutComponent in this.children )
-			{
-				childAgain.x = this.getChildX ( childAgain ) ;
-				childAgain.y = this.getChildY ( childAgain ) ;
-				childAgain.updateDisplay( ) ;
-			}
+			super.updateDisplayChildrenPosition() ;
 		}
 		
 		/**
@@ -90,6 +81,7 @@ package com.wemakedigital.layout
 		{
 			if ( ! isNaN ( child.fixedHeight ) ) return child.fixedHeight ;
 			else if ( ! isNaN ( child.relativeHeight ) ) return child.relativeHeight * this.explicitHeight ;
+			else if ( ! isNaN ( child.remainingHeight ) ) return 0 ;
 			return child.explicitHeight ;
 		}
 		
