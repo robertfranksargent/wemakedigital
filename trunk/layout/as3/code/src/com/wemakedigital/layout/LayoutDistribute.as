@@ -2,6 +2,8 @@ package com.wemakedigital.layout
 {
 	import com.wemakedigital.layout.LayoutContainer;
 
+	import flash.display.DisplayObject;
+
 	public class LayoutDistribute extends LayoutContainer 
 	{
 		//----------------------------------------------------------------------
@@ -61,16 +63,15 @@ package com.wemakedigital.layout
 
 		//----------------------------------------------------------------------
 		
-//		TODO
-//		/**
-//		 * @private
-//		 */
-//		protected var _separator : Class ;
-//
-//		/**
-//		 * @private
-//		 */
-//		protected var separators : Array ;
+		/**
+		 * @private
+		 */
+		protected var _separator : Class ;
+
+		/**
+		 * @private
+		 */
+		protected var separators : Array ;
 		
 		//----------------------------------------------------------------------
 		//
@@ -207,24 +208,28 @@ package com.wemakedigital.layout
 
 		//----------------------------------------------------------------------
 		
-//		TODO
-//		/**
-//		 * A separator class to be intantiated and positioned between each distributed child.
-//		 */
-//		public function get separator () : Class
-//		{
-//			return this._separator;
-//		}
-//
-//		/**
-//		 * @private
-//		 */
-//		public function set separator ( value : Class ) : void
-//		{
-//			this._separator = value ;
-//			
-//			this.updateProperties() ;
-//		}
+		/**
+		 * A separator class to be intantiated and positioned between each distributed child.
+		 */
+		public function get separator () : Class
+		{
+			return this._separator;
+		}
+
+		/**
+		 * @private
+		 */
+		public function set separator ( value : Class ) : void
+		{
+			if ( this._separator != value )
+			{ 
+				this.clearSeparators() ;
+				this._separator = value ;			
+				this.addSeparators() ;
+				this.updateProperties() ;
+				this.updateDisplay() ;
+			}
+		}
 
 		//----------------------------------------------------------------------
 		//
@@ -238,6 +243,121 @@ package com.wemakedigital.layout
 		public function LayoutDistribute ()
 		{
 			super( ) ;
+		}
+		
+		//----------------------------------------------------------------------
+		//
+		//  Methods
+		//
+		//----------------------------------------------------------------------
+		
+		/**
+		 * @inheritDoc
+		 */
+		override public function addChild ( child : DisplayObject ) : DisplayObject
+		{
+			if ( child && ! this.content.contains( child ) )
+			{
+				if ( this.children ) this._children.push( child ) ;
+				else this._children = [ child ] ;
+				if ( child is LayoutComponent ) ( child as LayoutComponent ).container = this;
+				this.content.addChild( child ) ;
+				if ( this.created ) 
+				{
+					this.clearSeparators() ;			
+					this.addSeparators() ;
+					this.updateProperties( ) ;
+					this.updateDisplay( ) ;
+				}
+			}
+			return child ;
+		}
+
+		/**
+		 * @inheritDoc
+		 */
+		override public function removeChild ( child : DisplayObject ) : DisplayObject
+		{
+			if ( child && this.content.contains( child ) )
+			{
+				this.content.removeChild( child ) ;
+				if ( this.children ) 
+				{
+					this._children = this._children.splice( this._children.indexOf( child ), 1 ) ;
+					if ( this.created ) 
+					{
+						this.clearSeparators() ;			
+						this.addSeparators() ;
+						this.updateProperties( ) ;
+						this.updateDisplay( ) ;
+					}
+				}
+			}
+			return child ;
+		}
+		
+		/**
+		 * @inheritDoc
+		 */
+		override protected function createChildren ( ) : void
+		{
+			this.clearSeparators() ;			
+			this.addSeparators() ;
+			super.createChildren() ;
+		}
+		
+		/**
+		 * @inheritDoc
+		 */
+		override public function removeChildren ( ) : void
+		{
+			this.clearSeparators() ;			
+			super.removeChildren() ;
+		}
+		
+		/**
+		 * @private
+		 */
+		protected function clearSeparators () : void
+		{
+			for each ( var child : LayoutComponent in this.separators )
+			{
+				if ( child is this.separator ) 
+				{
+					if ( this.content.contains( child ) ) this.content.removeChild( child ) ;
+					if ( this._children ) this._children = this._children.splice( this._children.indexOf( child ), 1 ) ;
+				}
+			}
+			this.separators = [] ;
+		}
+
+		/**
+		 * @private
+		 */
+		protected function addSeparators () : void
+		{
+			if ( this._children && this.separator ) 
+			{
+				var childrenSeparated : Array = [] ;
+				
+				for ( var i : uint = 0, n : uint = this._children.length; i < n; i++ )
+				{
+					if ( this._children[ i ] is LayoutComponent && ! ( this._children[ i ] is this.separator ) )
+					{
+						var child : LayoutComponent = this._children[ i ] as LayoutComponent ;
+						childrenSeparated.push ( child ) ;
+						if ( i < ( n -1 ) )
+						{
+							var SeparatorClass : Class = this.separator ;
+							var separatorInstance : LayoutComponent = new SeparatorClass() as LayoutComponent ;
+							separatorInstance.container = this ;
+							childrenSeparated.push ( separatorInstance ) ;
+							this.content.addChild( separatorInstance ) ;
+						}
+					}
+				}
+				this._children = childrenSeparated ;
+			}
 		}
 	}
 }
