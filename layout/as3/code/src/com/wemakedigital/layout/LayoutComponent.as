@@ -61,6 +61,11 @@ package com.wemakedigital.layout
 		protected var _relativeMinHeight : Number = 0 ;
 		protected var _relativeMaxWidth : Number = NaN ;
 		protected var _relativeMaxHeight : Number = NaN ;
+
+		//----------------------------------------------------------------------
+		
+		protected var _remainingWidth : Number = NaN ;
+		protected var _remainingHeight : Number = NaN ;
 		
 		//----------------------------------------------------------------------
 		
@@ -264,6 +269,7 @@ package com.wemakedigital.layout
 			
 			// If the component has a fixed width it can't have a relative width.
 			this._relativeWidth = NaN ;
+			this._remainingWidth = NaN ;
 			this._autoWidth = false ;
 			
 			this.updateProperties() ;
@@ -286,6 +292,7 @@ package com.wemakedigital.layout
 			
 			// If the component has a fixed height it can't have a relative height.
 			this._relativeHeight = NaN ;
+			this._remainingHeight = NaN ;
 			this._autoHeight = false ;
 			
 			this.updateProperties() ;
@@ -385,6 +392,7 @@ package com.wemakedigital.layout
 			{
 				this._fixedWidth = NaN ;
 				this._relativeWidth = NaN ;
+				this._remainingWidth = NaN ;
 				this._autoWidth = false ;
 			}
 			
@@ -410,6 +418,7 @@ package com.wemakedigital.layout
 			if ( ! isNaN ( this._left ) && ! isNaN ( this._right ) ) 
 			{
 				this._fixedWidth = NaN ;
+				this._relativeWidth = NaN ;
 				this._relativeWidth = NaN ;
 				this._autoWidth = false ;
 			}
@@ -437,6 +446,7 @@ package com.wemakedigital.layout
 			{
 				this._fixedHeight = NaN ;
 				this._relativeHeight = NaN ;
+				this._remainingHeight = NaN ;
 				this._autoHeight = false ;
 			}
 			
@@ -463,6 +473,7 @@ package com.wemakedigital.layout
 			{
 				this._fixedHeight = NaN ;
 				this._relativeHeight = NaN ;
+				this._remainingHeight = NaN ;
 				this._autoHeight = false ;
 			}
 			
@@ -534,6 +545,7 @@ package com.wemakedigital.layout
 			
 			// If the component has a relative width it can't have a fixed width.
 			this._fixedWidth = NaN ;
+			this._remainingWidth = NaN ;
 			this._autoWidth = false ;
 			
 			this.updateProperties() ;
@@ -556,6 +568,7 @@ package com.wemakedigital.layout
 			
 			// If the component has a relative height it can't have a fixed height.
 			this._fixedHeight = NaN ;
+			this._remainingHeight = NaN ;
 			this._autoHeight = false ;
 			
 			this.updateProperties() ;
@@ -629,6 +642,54 @@ package com.wemakedigital.layout
 		public function set relativeMaxHeight (value : Number) : void
 		{
 			this._relativeMaxHeight = Math.max ( 0, value ) ;
+			
+			this.updateProperties() ;
+		}
+
+		//----------------------------------------------------------------------
+		
+		/**
+		 * The remaining width of the component.
+		 */
+		public function get remainingWidth () : Number
+		{
+			return this._remainingWidth ;
+		}
+		
+		/**
+		 * @private
+		 */
+		public function set remainingWidth (value : Number) : void
+		{
+			this._remainingWidth = value ;
+			
+			// If the component has a remaining width it can't have a fixed width.
+			this._fixedWidth = NaN ;
+			this._relativeWidth = NaN ;
+			this._autoWidth = false ;
+			
+			this.updateProperties() ;
+		}
+		
+		/**
+		 * The remaining height of the component.
+		 */
+		public function get remainingHeight () : Number
+		{
+			return this._remainingHeight ;
+		}
+		
+		/**
+		 * @private
+		 */
+		public function set remainingHeight (value : Number) : void
+		{
+			this._remainingHeight = value ;
+			
+			// If the component has a remaining height it can't have a fixed height.
+			this._fixedHeight = NaN ;
+			this._relativeHeight = NaN ;
+			this._autoHeight = false ;
 			
 			this.updateProperties() ;
 		}

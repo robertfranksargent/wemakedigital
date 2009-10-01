@@ -9,11 +9,6 @@ package com.wemakedigital.layout
 		//  Variables
 		//
 		//----------------------------------------------------------------------
-		
-		/**
-		 * @private
-		 */
-		protected var childrenSize : Number ;
 
 		/**
 		 * @private
@@ -66,15 +61,16 @@ package com.wemakedigital.layout
 
 		//----------------------------------------------------------------------
 		
-		/**
-		 * @private
-		 */
-		protected var _separator : Class ;
-
-		/**
-		 * @private
-		 */
-		protected var separators : Array ;
+//		TODO
+//		/**
+//		 * @private
+//		 */
+//		protected var _separator : Class ;
+//
+//		/**
+//		 * @private
+//		 */
+//		protected var separators : Array ;
 		
 		//----------------------------------------------------------------------
 		//
@@ -211,23 +207,24 @@ package com.wemakedigital.layout
 
 		//----------------------------------------------------------------------
 		
-		/**
-		 * A separator class to be intantiated and positioned between each distributed child.
-		 */
-		public function get separator () : Class
-		{
-			return this._separator;
-		}
-
-		/**
-		 * @private
-		 */
-		public function set separator ( value : Class ) : void
-		{
-			this._separator = value ;
-			
-			this.updateProperties() ;
-		}
+//		TODO
+//		/**
+//		 * A separator class to be intantiated and positioned between each distributed child.
+//		 */
+//		public function get separator () : Class
+//		{
+//			return this._separator;
+//		}
+//
+//		/**
+//		 * @private
+//		 */
+//		public function set separator ( value : Class ) : void
+//		{
+//			this._separator = value ;
+//			
+//			this.updateProperties() ;
+//		}
 
 		//----------------------------------------------------------------------
 		//
