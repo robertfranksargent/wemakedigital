@@ -382,8 +382,8 @@ package com.wemakedigital.layout
 		{
 			for each ( var child : LayoutComponent in this.children )
 			{
-				child.x = this.getChildX ( child ) ;
-				child.y = this.getChildY ( child ) ;
+				child.x = this.getChildX ( child ) >> 0 ;
+				child.y = this.getChildY ( child ) >> 0 ;
 			}
 		}
 		
