@@ -244,6 +244,8 @@ package com.wemakedigital.layout
 			this.barButton.addEventListener( MouseEvent.MOUSE_DOWN , this.onBarButtonPress ) ;
 			
 			super.createChildren() ;
+			
+			this.fixedWidth = this.defaultWidth ;
 		}
 		
 		//----------------------------------------------------------------------
