@@ -787,6 +787,7 @@ package com.wemakedigital.layout
 		 */
 		public function updateProperties ( ) : void
 		{
+			if ( this.created ) this.dispatchEvent( new LayoutComponentEvent( LayoutComponentEvent.UPDATE_PROPERTIES ) ) ;
 			if ( this.container ) this.container.childUpdatedProperties() ;
 		}
 
@@ -796,6 +797,7 @@ package com.wemakedigital.layout
 		public function updateDisplay () : void
 		{
 			this.updateDisplayColour() ;
+			if ( this.created ) this.dispatchEvent( new LayoutComponentEvent( LayoutComponentEvent.UPDATE_DISPLAY ) ) ;
 		}
 		
 		/**
