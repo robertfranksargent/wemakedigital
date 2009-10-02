@@ -26,15 +26,7 @@ package com.wemakedigital.layout
 		 */
 		protected var contentMask : Shape ;
 		
-		/**
-		 * @private
-		 */
-		protected var _scrollHorizontal : Number ;
-		
-		/**
-		 * @private
-		 */
-		protected var _scrollVertical : Number ;
+		//----------------------------------------------------------------------
 		
 		/**
 		 * @private
@@ -45,7 +37,9 @@ package com.wemakedigital.layout
 		 * @private
 		 */
 		protected var _children : Array ;
-
+		
+		//----------------------------------------------------------------------
+		
 		/**
 		 * @private
 		 */
@@ -67,44 +61,26 @@ package com.wemakedigital.layout
 		protected var heightTotal : Number = 0 ;
 		
 		//----------------------------------------------------------------------
+		
+		/**
+		 * @private
+		 */
+		protected var _scrollHorizontal : Number = 0 ;
+		
+		/**
+		 * @private
+		 */
+		protected var _scrollVertical : Number = 0 ;
+
+		//----------------------------------------------------------------------
+		
+		protected var _snapToPixels : Boolean = true ;
+		
+		//----------------------------------------------------------------------
 		//
 		//  Getters and Setters
 		//
 		//----------------------------------------------------------------------
-		
-		/**
-		 * The horizontal scroll ratio between 0 (scrolled to left) and 1 (scrolled to right).
-		 */
-		public function get scrollHorizontal () : Number
-		{
-			return this._scrollHorizontal;
-		}
-		
-		/**
-		 * @private
-		 */
-		public function set scrollHorizontal ( value : Number ) : void
-		{
-			this._scrollHorizontal = Math.max ( 0 , Math.min ( 1, value ) ) ;
-			this.updateScrolling() ;
-		}
-		
-		/**
-		 * The vertical scroll ratio between 0 (scrolled to top) and 1 (scrolled to bottom).
-		 */
-		public function get scrollVertical () : Number
-		{
-			return this._scrollVertical;
-		}
-		
-		/**
-		 * @private
-		 */
-		public function set scrollVertical ( value : Number ) : void
-		{
-			this._scrollVertical = Math.max ( 0 , Math.min ( 1, value ) ) ;
-			this.updateScrolling() ;
-		}
 		
 		/**
 		 * Mask children to the container size (default is true).
@@ -154,26 +130,38 @@ package com.wemakedigital.layout
 			}
 		}
 		
+		//----------------------------------------------------------------------
+		
 		/**
 		 * The overall width of all the child content of this container.
 		 */
-		public function get contentWidth () : Number
+		public function get widthOfChildren () : Number
 		{
-			return this.content.width;
+			var max : Number = 0 ;
+			for each ( var child : LayoutComponent in this.children )
+			{
+				if ( ( child.x + child.explicitWidth ) > max ) max = ( child.x + child.explicitWidth ) ;  
+			}
+			return max ;
 		}
-		
+
 		/**
 		 * The overall height of all the child content of this container.
 		 */
-		public function get contentHeight () : Number
+		public function get heightOfChildren () : Number
 		{
-			return this.content.height;
+			var max : Number = 0 ;
+			for each ( var child : LayoutComponent in this.children )
+			{
+				if ( (child.y + child.explicitHeight ) > max ) max = (child.y + child.explicitHeight ) ;  
+			}
+			return max ;
 		}
 		
 		/**
 		 * The total remaining width for children with a remainingWidth property to fill.
 		 */
-		public function get remainingWidthTotal () : Number
+		protected function get remainingWidthTotal () : Number
 		{
 			return this.explicitWidth - this.definedWidthTotal ;
 		}
@@ -181,9 +169,64 @@ package com.wemakedigital.layout
 		/**
 		 * The total remaining height for children with a remainingHeight property to fill.
 		 */
-		public function get remainingHeightTotal () : Number
+		protected function get remainingHeightTotal () : Number
 		{
 			return this.explicitHeight - this.definedHeightTotal ;
+		}
+		
+		//----------------------------------------------------------------------
+		
+		/**
+		 * The horizontal scroll ratio between 0 (scrolled to left) and 1 (scrolled to right).
+		 */
+		public function get scrollHorizontal () : Number
+		{
+			return this._scrollHorizontal;
+		}
+		
+		/**
+		 * @private
+		 */
+		public function set scrollHorizontal ( value : Number ) : void
+		{
+			this._scrollHorizontal = Math.max ( 0 , Math.min ( 1, value ) ) ;
+			this.updateScrolling() ;
+		}
+		
+		/**
+		 * The vertical scroll ratio between 0 (scrolled to top) and 1 (scrolled to bottom).
+		 */
+		public function get scrollVertical () : Number
+		{
+			return this._scrollVertical;
+		}
+		
+		/**
+		 * @private
+		 */
+		public function set scrollVertical ( value : Number ) : void
+		{
+			this._scrollVertical = Math.max ( 0 , Math.min ( 1, value ) ) ;
+			this.updateScrolling() ;
+		}
+
+		//----------------------------------------------------------------------
+		
+		/**
+		 * Snap children to pixels.
+		 */
+		public function get snapToPixels () : Boolean
+		{
+			return this._snapToPixels;
+		}
+		
+		/**
+		 * @private
+		 */
+		public function set snapToPixels ( value : Boolean ) : void
+		{
+			this._snapToPixels = value ;
+			this.updateProperties() ;
 		}
 
 		//----------------------------------------------------------------------
@@ -254,7 +297,7 @@ package com.wemakedigital.layout
 		{
 			if ( this.content.contains( child ) )
 			{
-				return child.x / Math.abs( this.explicitWidth - this.contentWidth ) ;
+				return child.x / Math.abs( this.explicitWidth - this.widthTotal ) ;
 			}
 			return 0 ;
 		}
@@ -263,7 +306,7 @@ package com.wemakedigital.layout
 		{
 			if ( this.content.contains( child ) )
 			{
-				return child.y / Math.abs( this.explicitHeight - this.contentHeight ) ;
+				return child.y / Math.abs( this.explicitHeight - this.heightTotal ) ;
 			}
 			return 0 ;
 		}
@@ -273,8 +316,8 @@ package com.wemakedigital.layout
 		 */
 		protected function updateScrolling () : void
 		{
-			this.content.x = ( this.contentWidth <= this.explicitWidth ? 0 : this.scrollHorizontal ) * ( this.explicitWidth - this.contentWidth ) ;
-			this.content.y = ( this.contentHeight <= this.explicitHeight ? 0 : this.scrollVertical ) * ( this.explicitHeight - this.contentHeight ) ;
+			this.content.x = ( this.widthTotal <= this.explicitWidth ? 0 : this.scrollHorizontal ) * ( this.explicitWidth - this.widthTotal ) ;
+			this.content.y = ( this.heightTotal <= this.explicitHeight ? 0 : this.scrollVertical ) * ( this.explicitHeight - this.heightTotal ) ;
 		}
 		
 		/**
@@ -287,12 +330,12 @@ package com.wemakedigital.layout
 				this.content.mask = this.maskChildren ? this.contentMask : null ;
 				if ( this.autoWidth ) 
 				{
-					this._fixedWidth = Math.max ( this.fixedMinWidth, isNaN ( this.fixedMaxWidth ) ? this.contentWidth : Math.min ( this.fixedMaxWidth, this.contentWidth ) ) ;
+					this._fixedWidth = Math.max ( this.fixedMinWidth, isNaN ( this.fixedMaxWidth ) ? this.widthOfChildren : Math.min ( this.fixedMaxWidth, this.widthOfChildren ) ) ;
 					this._relativeWidth = NaN ;
 				}
 				if ( this.autoHeight ) 
 				{
-					this._fixedHeight = Math.max ( this.fixedMinHeight, isNaN ( this.fixedMaxHeight ) ? this.contentHeight : Math.min ( this.fixedMaxHeight, this.contentHeight ) ) ;
+					this._fixedHeight = Math.max ( this.fixedMinHeight, isNaN ( this.fixedMaxHeight ) ? this.heightOfChildren : Math.min ( this.fixedMaxHeight, this.heightOfChildren ) ) ;
 					this._relativeHeight = NaN ;
 				}
 			}
@@ -382,8 +425,10 @@ package com.wemakedigital.layout
 		{
 			for each ( var child : LayoutComponent in this.children )
 			{
-				child.x = this.getChildX ( child ) >> 0 ;
-				child.y = this.getChildY ( child ) >> 0 ;
+				var x : Number = this.getChildX ( child ) ;
+				var y : Number = this.getChildY ( child ) ;
+				child.x = this.snapToPixels ? ( x >> 0 ) : x ;
+				child.y = this.snapToPixels ? ( y >> 0 ) : y ;
 			}
 		}
 		
