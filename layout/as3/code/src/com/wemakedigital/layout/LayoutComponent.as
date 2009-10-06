@@ -774,12 +774,7 @@ package com.wemakedigital.layout
 		public function removeChildren ( ) : void
 		{
 			this.created = false ;
-			for ( var i : uint = 0 , n : uint = this.numChildren ; i < n ; i++ )
-			{
-				var child : DisplayObject = this.getChildAt( i ) ;
-				if ( child is LayoutComponent ) ( child as LayoutComponent).removeChildren() ;
-				this.removeChild( child ) ;
-			}
+			while( this.numChildren > 0 ) this.removeChildAt( this.numChildren - 1 ) ;
 		}
 		
 		/**
@@ -810,8 +805,8 @@ package com.wemakedigital.layout
 		}
 		
 		private function updateDisplayColour () : void
-		{
-			if ( ! isNaN ( this.colour ) ) 
+		{ 
+			if ( ! isNaN ( this.colour ) && ! isNaN ( this.colourAlpha ) && ! isNaN ( this.explicitWidth ) && ! isNaN ( this.explicitHeight ) ) 
 			{
 				this.graphics.clear() ;
 				this.graphics.beginFill( this.colour, this.colourAlpha ) ;
