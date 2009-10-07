@@ -77,6 +77,13 @@ package com.wemakedigital.layout
 		protected var _snapToPixels : Boolean = true ;
 		
 		//----------------------------------------------------------------------
+		
+		/**
+		 * @private
+		 */
+		protected var _allowChildrenToUpdate : Boolean = true ;
+		
+		//----------------------------------------------------------------------
 		//
 		//  Getters and Setters
 		//
@@ -225,6 +232,29 @@ package com.wemakedigital.layout
 		}
 
 		//----------------------------------------------------------------------
+		
+		/**
+		 * Set to false when you don't want to allow children to update this container.
+		 */
+		public function get allowChildrenToUpdate () : Boolean
+		{
+			return this._allowChildrenToUpdate ;
+		}
+		
+		/**
+		 * @private
+		 */
+		public function set allowChildrenToUpdate ( value : Boolean ) : void
+		{
+			this._allowChildrenToUpdate = value ;
+			if ( this.allowChildrenToUpdate ) 
+			{
+				this.updateDisplay() ;
+				this.updateProperties() ;
+			}
+		}
+		
+		//----------------------------------------------------------------------
 		//
 		//  Constructor
 		//
@@ -340,8 +370,11 @@ package com.wemakedigital.layout
 		{
 			if ( this.autoWidth || this.autoHeight ) 
 			{
-				this.updateDisplay() ;
-				this.updateProperties() ;
+				if ( this._allowChildrenToUpdate ) 
+				{
+					this.updateDisplay() ;
+					this.updateProperties() ;
+				}
 			}
 			else this.updateDisplay() ;
 		}
