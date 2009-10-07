@@ -260,7 +260,7 @@ package com.wemakedigital.layout
 				this.content.addChild( child ) ;
 				if ( this.created ) 
 				{
-					this.updateProperties( ) ;
+					// this.updateProperties( ) ;
 					// TODO don't think this is needed: this.updateDisplay( ) ;
 				}
 			}
@@ -280,7 +280,7 @@ package com.wemakedigital.layout
 					this._children.splice( this._children.indexOf( child ), 1 ) ;
 					if ( this.created ) 
 					{
-						this.updateProperties( ) ;
+						// this.updateProperties( ) ;
 						// TODO don't think this is needed: this.updateDisplay( ) ;
 					}
 				}
