@@ -260,7 +260,7 @@ package com.wemakedigital.layout
 				if ( this.children.length > 0 )
 				{
 					var instance : LayoutComponent = this.createSeparator() ;
-					if ( instance is this.separator ) this._children.push( instance ) ;
+					if ( instance ) this._children.push( instance ) ;
 				}
 			}
 			return super.addChild ( child ) ;
@@ -276,7 +276,7 @@ package com.wemakedigital.layout
 				if ( this._children.indexOf( child ) > 0 )
 				{
 					var instance : DisplayObject = this._children[ this._children.indexOf( child ) - 1 ] as DisplayObject ;
-					if( instance is this.separator ) this.removeSeparator( instance as LayoutComponent ) ;
+					if( this.separator ) if ( instance is this.separator ) this.removeSeparator( instance as LayoutComponent ) ;
 				}
 			}
 			return super.removeChild ( child ) ;
