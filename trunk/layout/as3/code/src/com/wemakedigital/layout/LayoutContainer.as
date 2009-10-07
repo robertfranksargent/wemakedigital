@@ -115,27 +115,20 @@ package com.wemakedigital.layout
 		 */
 		public function set children ( value : * ) : void
 		{
-			this._children = value is Array ? value : [ value ] ;
+			var valueArray : Array = value is Array ? value : [ value ] ;
 			
-			for each ( var child : DisplayObject in this._children )
+			for each ( var child : DisplayObject in valueArray )
 			{
-				if ( child is LayoutComponent ) ( child as LayoutComponent ).container = this;
-				this.content.addChild( child ) ;
-			}
-			
-			if ( this.created ) 
-			{
-				this.updateProperties( ) ;
-				this.updateDisplay( ) ;
+				this.addChild( child ) ;
 			}
 		}
 		
 		//----------------------------------------------------------------------
 		
 		/**
-		 * The overall width of all the child content of this container.
+		 * @inheritDoc
 		 */
-		public function get widthOfChildren () : Number
+		override public function get widthMeasured () : Number
 		{
 			var max : Number = 0 ;
 			for each ( var child : LayoutComponent in this.children )
@@ -146,9 +139,9 @@ package com.wemakedigital.layout
 		}
 
 		/**
-		 * The overall height of all the child content of this container.
+		 * @inheritDoc
 		 */
-		public function get heightOfChildren () : Number
+		override public function get heightMeasured () : Number
 		{
 			var max : Number = 0 ;
 			for each ( var child : LayoutComponent in this.children )
@@ -157,6 +150,8 @@ package com.wemakedigital.layout
 			}
 			return max ;
 		}
+		
+		//----------------------------------------------------------------------
 		
 		/**
 		 * The total remaining width for children with a remainingWidth property to fill.
@@ -266,7 +261,7 @@ package com.wemakedigital.layout
 				if ( this.created ) 
 				{
 					this.updateProperties( ) ;
-					this.updateDisplay( ) ;
+					// TODO don't think this is needed: this.updateDisplay( ) ;
 				}
 			}
 			return child ;
@@ -282,15 +277,24 @@ package com.wemakedigital.layout
 				this.content.removeChild( child ) ;
 				if ( this.children ) 
 				{
-					this._children = this._children.splice( this._children.indexOf( child ), 1 ) ;
+					this._children.splice( this._children.indexOf( child ), 1 ) ;
 					if ( this.created ) 
 					{
 						this.updateProperties( ) ;
-						this.updateDisplay( ) ;
+						// TODO don't think this is needed: this.updateDisplay( ) ;
 					}
 				}
 			}
 			return child ;
+		}
+		
+		/**
+		 * @inheritDoc
+		 */
+		override public function removeChildren ( ) : void
+		{
+			this.created = false ;
+			if( this._children ) while( this._children.length > 0 ) this.removeChild( this._children[ 0 ] as DisplayObject ) ;
 		}
 		
 		public function getScrollHorizontalToChild ( child : DisplayObject ) : Number
@@ -328,26 +332,16 @@ package com.wemakedigital.layout
 			if ( this.created )
 			{
 				this.content.mask = this.maskChildren ? this.contentMask : null ;
-				if ( this.autoWidth ) 
-				{
-					this._fixedWidth = Math.max ( this.fixedMinWidth, isNaN ( this.fixedMaxWidth ) ? this.widthOfChildren : Math.min ( this.fixedMaxWidth, this.widthOfChildren ) ) ;
-					this._relativeWidth = NaN ;
-				}
-				if ( this.autoHeight ) 
-				{
-					this._fixedHeight = Math.max ( this.fixedMinHeight, isNaN ( this.fixedMaxHeight ) ? this.heightOfChildren : Math.min ( this.fixedMaxHeight, this.heightOfChildren ) ) ;
-					this._relativeHeight = NaN ;
-				}
 			}
 			super.updateProperties() ;
 		}
 		
 		public function childUpdatedProperties() : void
 		{
-			if ( this.autoWidth || this.autoHeight )
+			if ( this.autoWidth || this.autoHeight ) 
 			{
-				this.updateDisplay() ; 
-				 this.updateProperties() ;
+				this.updateDisplay() ;
+				this.updateProperties() ;
 			}
 			else this.updateDisplay() ;
 		}
@@ -366,9 +360,9 @@ package com.wemakedigital.layout
 					this.contentMask.graphics.drawRect(0, 0, this.explicitWidth, this.explicitHeight ) ;
 				}
 			}
-			super.updateDisplay( ) ;
 			if ( this.children ) this.updateDisplayChildren() ;
 			this.updateScrolling() ;
+			super.updateDisplay( ) ;
 		}
 		
 		/**
@@ -485,7 +479,8 @@ package com.wemakedigital.layout
 		 */
 		protected function getChildWidth ( child : LayoutComponent ) : Number
 		{
-			if ( ! isNaN ( child.fixedWidth ) ) return child.fixedWidth ;
+			if ( child.autoWidth ) return child.widthMeasured ;
+			else if ( ! isNaN ( child.fixedWidth ) ) return child.fixedWidth ;
 			else if ( ! isNaN ( child.left ) && ! isNaN ( child.right ) ) return this.explicitWidth - child.left - child.right ;
 			else if ( ! isNaN ( child.relativeWidth ) ) return child.relativeWidth * this.explicitWidth  ;
 			else if ( ! isNaN ( child.remainingWidth ) ) return 0 ;
@@ -497,7 +492,8 @@ package com.wemakedigital.layout
 		 */
 		protected function getChildHeight ( child : LayoutComponent ) : Number
 		{
-			if ( ! isNaN ( child.fixedHeight ) ) return child.fixedHeight ;
+			if ( child.autoHeight ) return child.heightMeasured ;
+			else if ( ! isNaN ( child.fixedHeight ) ) return child.fixedHeight ;
 			else if ( ! isNaN ( child.top ) && ! isNaN ( child.bottom ) ) return this.explicitHeight - child.top - child.bottom ;
 			else if ( ! isNaN ( child.relativeHeight ) ) return child.relativeHeight * this.explicitHeight ;
 			else if ( ! isNaN ( child.remainingHeight ) ) return 0 ;

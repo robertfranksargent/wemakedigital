@@ -11,6 +11,9 @@ package com.wemakedigital.layout
 		//
 		//----------------------------------------------------------------------
 		
+		// TODO remove this test variable
+		public var log : Boolean = false ;
+    	
     	protected var _id : String;
 		
 		//----------------------------------------------------------------------
@@ -150,6 +153,22 @@ package com.wemakedigital.layout
 		{
 			this._autoHeight = value ;
 			this.updateProperties() ;
+		}
+		
+		/**
+		 * The overall width of all the child content of this component.
+		 */
+		public function get widthMeasured () : Number
+		{
+			return this.width ;
+		}
+
+		/**
+		 * The overall height of all the child content of this component.
+		 */
+		public function get heightMeasured () : Number
+		{
+			return this.height ;
 		}
 		
 		//----------------------------------------------------------------------
