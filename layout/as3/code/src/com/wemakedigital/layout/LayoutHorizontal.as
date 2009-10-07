@@ -25,7 +25,7 @@ package com.wemakedigital.layout
 		/**
 		 * @inheritDoc
 		 */
-		override public function get widthOfChildren () : Number
+		override public function get widthMeasured () : Number
 		{
 			return this.widthTotal ;
 		}
@@ -93,7 +93,8 @@ package com.wemakedigital.layout
 		 */
 		override protected function getChildWidth ( child : LayoutComponent ) : Number
 		{
-			if ( ! isNaN ( child.fixedWidth ) ) return child.fixedWidth ;
+			if ( child.autoWidth ) return child.widthMeasured ;
+			else if ( ! isNaN ( child.fixedWidth ) ) return child.fixedWidth ;
 			else if ( ! isNaN ( child.relativeWidth ) ) return child.relativeWidth * this.explicitWidth  ;
 			else if ( ! isNaN ( child.remainingWidth ) ) return 0 ;
 			return child.explicitWidth ;

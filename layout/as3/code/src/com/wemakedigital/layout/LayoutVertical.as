@@ -25,7 +25,7 @@ package com.wemakedigital.layout
 		/**
 		 * @inheritDoc
 		 */
-		override public function get heightOfChildren () : Number
+		override public function get heightMeasured () : Number
 		{
 			return this.heightTotal ;
 		}
@@ -93,7 +93,8 @@ package com.wemakedigital.layout
 		 */
 		override protected function getChildHeight ( child : LayoutComponent ) : Number
 		{
-			if ( ! isNaN ( child.fixedHeight ) ) return child.fixedHeight ;
+			if ( child.autoHeight ) return child.heightMeasured ;
+			else if ( ! isNaN ( child.fixedHeight ) ) return child.fixedHeight ;
 			else if ( ! isNaN ( child.relativeHeight ) ) return child.relativeHeight * this.explicitHeight ;
 			else if ( ! isNaN ( child.remainingHeight ) ) return 0 ;
 			return child.explicitHeight ;

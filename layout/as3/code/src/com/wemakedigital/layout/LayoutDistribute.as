@@ -71,7 +71,7 @@ package com.wemakedigital.layout
 		/**
 		 * @private
 		 */
-		protected var separators : Array ;
+		protected var separators : Array = [] ;
 		
 		//----------------------------------------------------------------------
 		//
@@ -222,12 +222,11 @@ package com.wemakedigital.layout
 		public function set separator ( value : Class ) : void
 		{
 			if ( this._separator != value )
-			{ 
-				this.clearSeparators() ;
-				this._separator = value ;			
-				this.addSeparators() ;
+			{
+				this.removeSeparators() ;			
+				this._separator = value ;
+				this.createSeparators() ;			
 				this.updateProperties() ;
-				this.updateDisplay() ;
 			}
 		}
 
@@ -256,21 +255,15 @@ package com.wemakedigital.layout
 		 */
 		override public function addChild ( child : DisplayObject ) : DisplayObject
 		{
-			if ( child && ! this.content.contains( child ) )
+			if ( child && ! this.content.contains( child ) && this.children && this.separator )
 			{
-				if ( this.children ) this._children.push( child ) ;
-				else this._children = [ child ] ;
-				if ( child is LayoutComponent ) ( child as LayoutComponent ).container = this;
-				this.content.addChild( child ) ;
-				if ( this.created ) 
+				if ( this.children.length > 0 )
 				{
-					this.clearSeparators() ;			
-					this.addSeparators() ;
-					this.updateProperties( ) ;
-					this.updateDisplay( ) ;
+					var instance : LayoutComponent = this.createSeparator() ;
+					if ( instance is this.separator ) this._children.push( instance ) ;
 				}
 			}
-			return child ;
+			return super.addChild ( child ) ;
 		}
 
 		/**
@@ -278,31 +271,23 @@ package com.wemakedigital.layout
 		 */
 		override public function removeChild ( child : DisplayObject ) : DisplayObject
 		{
-			if ( child && this.content.contains( child ) )
+			if ( child && this.content.contains( child ) && this.children )
 			{
-				this.content.removeChild( child ) ;
-				if ( this.children ) 
+				if ( this._children.indexOf( child ) > 0 )
 				{
-					this._children = this._children.splice( this._children.indexOf( child ), 1 ) ;
-					if ( this.created ) 
-					{
-						this.clearSeparators() ;			
-						this.addSeparators() ;
-						this.updateProperties( ) ;
-						this.updateDisplay( ) ;
-					}
+					var instance : DisplayObject = this._children[ this._children.indexOf( child ) - 1 ] as DisplayObject ;
+					if( instance is this.separator ) this.removeSeparator( instance as LayoutComponent ) ;
 				}
 			}
-			return child ;
+			return super.removeChild ( child ) ;
 		}
 		
 		/**
 		 * @inheritDoc
 		 */
 		override protected function createChildren ( ) : void
-		{
-			this.clearSeparators() ;			
-			this.addSeparators() ;
+		{			
+			this.createSeparators() ;
 			super.createChildren() ;
 		}
 		
@@ -311,52 +296,73 @@ package com.wemakedigital.layout
 		 */
 		override public function removeChildren ( ) : void
 		{
-			this.clearSeparators() ;			
+			this.removeSeparators() ;
 			super.removeChildren() ;
-		}
-		
-		/**
-		 * @private
-		 */
-		protected function clearSeparators () : void
-		{
-			for each ( var child : LayoutComponent in this.separators )
-			{
-				if ( child is this.separator ) 
-				{
-					if ( this.content.contains( child ) ) this.content.removeChild( child ) ;
-					if ( this._children ) this._children = this._children.splice( this._children.indexOf( child ), 1 ) ;
-				}
-			}
-			this.separators = [] ;
 		}
 
 		/**
 		 * @private
 		 */
-		protected function addSeparators () : void
+		protected function createSeparator () : LayoutComponent
+		{
+			if ( this.separator )
+			{
+				var SeparatorClass : Class = this.separator ;
+				var instance : LayoutComponent = new SeparatorClass() as LayoutComponent ;
+				instance.container = this ;
+				this.separators.push( instance ) ;
+				this.content.addChild( instance ) ;
+				return instance ; 
+			}
+			return null ;
+		}
+		
+		/**
+		 * @private
+		 */
+		protected function removeSeparator ( instance : LayoutComponent ) : void
+		{
+			if ( this._children.indexOf( instance ) > -1 ) 
+			{
+				this._children.splice( this._children.indexOf( instance ), 1 ) ;
+				if ( this.separators.indexOf( instance ) > -1 ) this.separators.splice( this.separators.indexOf( instance ), 1 ) ;
+				if ( this.content.contains( instance ) ) this.content.removeChild( instance ) ;
+			}
+		}
+		
+		/**
+		 * @private
+		 */
+		protected function createSeparators () : void
 		{
 			if ( this._children && this.separator ) 
 			{
-				var childrenSeparated : Array = [] ;
+				var separatedChildren : Array = [] ;
 				
 				for ( var i : uint = 0, n : uint = this._children.length; i < n; i++ )
 				{
 					if ( this._children[ i ] is LayoutComponent && ! ( this._children[ i ] is this.separator ) )
 					{
 						var child : LayoutComponent = this._children[ i ] as LayoutComponent ;
-						childrenSeparated.push ( child ) ;
+						separatedChildren.push ( child ) ;
 						if ( i < ( n -1 ) )
 						{
-							var SeparatorClass : Class = this.separator ;
-							var separatorInstance : LayoutComponent = new SeparatorClass() as LayoutComponent ;
-							separatorInstance.container = this ;
-							childrenSeparated.push ( separatorInstance ) ;
-							this.content.addChild( separatorInstance ) ;
+							separatedChildren.push ( this.createSeparator() ) ;
 						}
 					}
 				}
-				this._children = childrenSeparated ;
+				this._children = separatedChildren ;
+			}
+		}
+		
+		/**
+		 * @private
+		 */
+		protected function removeSeparators () : void
+		{
+			for each ( var child : LayoutComponent in this.separators )
+			{
+				this.removeSeparator( child ) ;
 			}
 		}
 	}

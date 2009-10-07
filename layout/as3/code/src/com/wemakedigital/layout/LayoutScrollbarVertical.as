@@ -78,11 +78,11 @@ package com.wemakedigital.layout
 		 */
 		public function set scrollTarget ( value : LayoutContainer ) : void
 		{
-			if ( this._scrollTarget is LayoutContainer ) this.removeEventListener( LayoutComponentEvent.UPDATE_PROPERTIES , this.onTargetUpdateProperties ) ;
+			if ( this._scrollTarget is LayoutContainer ) this.removeEventListener( LayoutComponentEvent.UPDATE_DISPLAY , this.onTargetUpdateDisplay ) ;
 			this._scrollTarget = value ;
 			if ( this._scrollTarget is LayoutContainer ) {
-				this.addEventListener( LayoutComponentEvent.UPDATE_PROPERTIES , this.onTargetUpdateProperties ) ;
-				this.onTargetUpdateProperties( null ) ;
+				this.addEventListener( LayoutComponentEvent.UPDATE_DISPLAY , this.onTargetUpdateDisplay ) ;
+				this.onTargetUpdateDisplay( null ) ;
 			}
 		}
 		
@@ -254,11 +254,11 @@ package com.wemakedigital.layout
 		//
 		//----------------------------------------------------------------------
 
-		protected function onTargetUpdateProperties ( e : LayoutComponentEvent ) : void
+		protected function onTargetUpdateDisplay ( e : LayoutComponentEvent ) : void
 		{
 			if ( this.created && this.scrollTarget )
 			{ 
-				this.barButton.relativeHeight = this.scrollTarget.explicitHeight / this.scrollTarget.heightOfChildren ;
+				this.barButton.relativeHeight = this.scrollTarget.explicitHeight / this.scrollTarget.heightMeasured ;
 				this.barButton.top = ( this.barContainer.explicitHeight - this.barButton.explicitHeight ) * this.scrollTarget.scrollVertical ;
 				this.visible = this.barButton.relativeHeight < 1 ;
 			}
