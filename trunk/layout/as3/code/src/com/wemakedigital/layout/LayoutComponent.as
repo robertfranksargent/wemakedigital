@@ -864,7 +864,7 @@ package com.wemakedigital.layout
 			this.removeEventListener( Event.REMOVED_FROM_STAGE , this.onRemovedFromStage ) ;		
 			this.addEventListener( Event.ADDED_TO_STAGE , this.onAddedToStage ) ;
 			
-			if ( this.created ) this.removeChildren( ) ;
+			// if ( this.created ) this.removeChildren( ) ;
 		}
 	}
 }

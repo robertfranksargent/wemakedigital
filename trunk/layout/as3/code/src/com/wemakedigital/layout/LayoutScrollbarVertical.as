@@ -330,10 +330,12 @@ package com.wemakedigital.layout
 		 */
 		protected function onEnterFrameDragBarButton ( e : Event ) : void
 		{
+//			Log.setLogDelay( 500, this, "onEnterFrameDragBarButton" ) ;
+//			Log.warning( this, "onEnterFrameDragBarButton", this.scrollTarget.scrollVertical ) ;
 			this.barButton.top = this.barButton.y ;
 			var scroll : Number = this.barButton.top / ( this.barContainer.explicitHeight - this.barButton.explicitHeight ) ;
-			this.scrollTarget.scrollVertical = scroll - ( scroll - this.scrollTarget.scrollVertical ) / 1.4 ;
-			if ( this.scrollTarget.scrollVertical == scroll && !dragging ) this.stage.removeEventListener( Event.ENTER_FRAME, this.onEnterFrameDragBarButton ) ;
+			this.scrollTarget.scrollVertical = ( ( ( scroll - ( scroll - this.scrollTarget.scrollVertical ) / 1.4 ) * 1000 ) >> 0 ) / 1000 ;
+			if ( this.scrollTarget.scrollVertical == ( ( scroll * 1000 ) >> 0 ) / 1000  && !dragging ) this.stage.removeEventListener( Event.ENTER_FRAME, this.onEnterFrameDragBarButton ) ;
 		}
 		
 		/**

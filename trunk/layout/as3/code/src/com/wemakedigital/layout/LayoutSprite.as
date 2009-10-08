@@ -1,14 +1,32 @@
 package com.wemakedigital.layout 
 {
+	import gs.TweenMax;
+
 	import flash.display.Sprite;
+	import flash.events.Event;
 
 	public class LayoutSprite extends Sprite 
-	{
+	{	
 		//----------------------------------------------------------------------
 		//
 		//  Variables
 		//
 		//----------------------------------------------------------------------
+		
+		/**
+		 * The length of the show tween in seconds.
+		 */
+		public var showTime : Number = 0.3 ;
+		
+		/**
+		 * The length of the hide tween in seconds.
+		 */
+		public var hideTime : Number = 0.3 ;
+		
+		/**
+		 * @private
+		 */
+		protected var showHideTween : TweenMax ;
 		
 		/**
 		 * @private
@@ -70,7 +88,22 @@ package com.wemakedigital.layout
 		 */
 		public function show ( animate : Boolean = true ) : void
 		{
-			this.onShowComplete() ;
+			if ( this.showHideTween ) this.showHideTween.pause() ;
+			
+			this.removeEventListener( Event.ENTER_FRAME , this.onEnterFrameShow ) ;
+			this.removeEventListener( Event.ENTER_FRAME , this.onEnterFrameHide ) ;
+			
+			this.visible = true ;
+			
+			if ( animate )
+			{
+				this.addEventListener( Event.ENTER_FRAME , this.onEnterFrameShow ) ;
+			}
+			else
+			{
+				this.alpha = 1 ;	
+				this.onShowComplete() ;
+			}
 		}
 		
 		/**
@@ -80,7 +113,20 @@ package com.wemakedigital.layout
 		 */
 		public function hide ( animate : Boolean = true ) : void
 		{
-			this.onHideComplete() ;
+			if ( this.showHideTween ) this.showHideTween.pause() ;
+			
+			this.removeEventListener( Event.ENTER_FRAME , this.onEnterFrameShow ) ;
+			this.removeEventListener( Event.ENTER_FRAME , this.onEnterFrameHide ) ;
+			
+			if ( animate )
+			{
+				this.addEventListener( Event.ENTER_FRAME , this.onEnterFrameHide ) ;
+			}
+			else
+			{
+				this.alpha = 0 ;	
+				this.onHideComplete() ;
+			}
 		}
 		
 		//----------------------------------------------------------------------
@@ -88,6 +134,24 @@ package com.wemakedigital.layout
 		//  Event Handlers
 		//
 		//----------------------------------------------------------------------
+		
+		/**
+		 * @private
+		 */
+		protected function onEnterFrameShow ( e : Event ) : void
+		{
+			this.removeEventListener( Event.ENTER_FRAME , this.onEnterFrameShow ) ;
+			this.showHideTween = TweenMax.to( this, this.showTime, { alpha : 1, onComplete : this.onShowComplete } ) ;
+		}
+		
+		/**
+		 * @private
+		 */
+		protected function onEnterFrameHide ( e : Event ) : void
+		{
+			this.removeEventListener( Event.ENTER_FRAME , this.onEnterFrameHide ) ;
+			this.showHideTween = TweenMax.to( this, this.hideTime, { alpha : 0, onComplete : this.onHideComplete } ) ;
+		}
 		
 		/**
 		 * @private
