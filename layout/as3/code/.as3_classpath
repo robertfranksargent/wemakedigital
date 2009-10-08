@@ -7,4 +7,5 @@
     <AS3Classpath generateProblems="false" type="lib" useAsSharedCode="false">utilities.swc</AS3Classpath>
     <AS3Classpath generateProblems="true" type="source" useAsSharedCode="false">src</AS3Classpath>
     <AS3Classpath generateProblems="false" type="lib" useAsSharedCode="false">libs/Log_1_0.swc</AS3Classpath>
+    <AS3Classpath generateProblems="false" type="lib" useAsSharedCode="false">libs/TweenMax_AS3_3_38.swc</AS3Classpath>
 </AS3Classpath>

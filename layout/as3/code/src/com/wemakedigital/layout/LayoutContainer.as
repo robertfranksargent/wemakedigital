@@ -368,15 +368,11 @@ package com.wemakedigital.layout
 		
 		public function childUpdatedProperties() : void
 		{
-			if ( this.autoWidth || this.autoHeight ) 
+			this.updateDisplay() ;
+			if ( ( this.autoWidth || this.autoHeight ) && this.allowChildrenToUpdate ) 
 			{
-				if ( this._allowChildrenToUpdate ) 
-				{
-					this.updateDisplay() ;
-					this.updateProperties() ;
-				}
+				this.updateProperties() ;
 			}
-			else this.updateDisplay() ;
 		}
 		
 		/**
