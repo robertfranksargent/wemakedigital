@@ -321,6 +321,17 @@ package com.wemakedigital.layout
 		/**
 		 * @inheritDoc
 		 */
+		override public function setChildIndex ( child : DisplayObject , index : int ) : void
+		{
+			if ( this.content.contains( child ) && this.content.getChildIndex( child ) != index )
+			{
+				this.content.setChildIndex( child , index ) ;
+			}
+		}
+		
+		/**
+		 * @inheritDoc
+		 */
 		override public function removeChildren ( ) : void
 		{
 			this.created = false ;
