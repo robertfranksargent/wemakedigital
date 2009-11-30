@@ -12,6 +12,7 @@
 		<exec executable="${compc.exe}">
 			<arg value="-compute-digest=false"/>
 			<arg value="-source-path=."/>
+			<arg line="-library-path ${libs.dir}" />
 			<arg value="-include-sources"/>
 			<arg value="${src.dir}"/>
 			<arg value="-include-libraries"/>
