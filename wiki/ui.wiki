@@ -15,8 +15,9 @@ TODO
 
 === Core Component ===
 
-  * TODO: Source
-  * TODO: API Documentation
+[http://code.google.com/p/wemakedigital/source/browse/trunk/ui/as3/code/src/com/wemakedigital/ui/core/CoreComponent.as Source]
+
+[http://wemakedigital.googlecode.com/svn/trunk/ui/as3/code/docs/com/wemakedigital/ui/core/CoreComponent.html API Documentation]
 
 The core component is the base component class for the ui framework. It is an abstract class that is extended by the rest of the framework, but can also be used alone as a super class for your own components. A full list of features can be found in the API Documentation, but here will just look at the main concepts.
 
