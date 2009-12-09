@@ -47,6 +47,7 @@ override public function render () : void
     this.graphics.clear() ;
     this.graphics.beginFill( 0x000000 ) ;
     this.graphics.drawEllipse( 0, 0, this.explicitWidth, this.explicitHeight ) ;
+    super.render() ;
 }
 }}}
 
