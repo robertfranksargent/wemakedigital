@@ -37,7 +37,7 @@ The core component uses the following cycle to update the display when a propert
 In a `DisplayObject`, the `width` and `height` properties immediately affect the scale when changed. In a component, we don't want to scale when the width or height changes, we want to re-render the component at the new size. The core component replaces the `width` and `height` properties inherited from `DisplayObject`, which become read only via `displayWidth` and `displayHeight` properties. 
 
 The `width` and `height` properties represent a fixed size in pixels just as they do in a 
-`DisplayObject`, in future subclasses there may be other properties that affect the size of the component. Therefore, the `update` method is used to interpret the final size and update the protected `explicitWidth` and `explicitHeight` properties. It is these size properties alone that should be used in the `render` method to re-render the component.
+`DisplayObject`, however in future subclasses there may be other properties that affect the size of the component. Therefore, the `update` method is used to interpret the final size and update the protected `explicitWidth` and `explicitHeight` properties. It is these size properties alone that should be used in the `render` method to re-render the component.
 
 == Source ==
 
