@@ -39,10 +39,11 @@ In a `DisplayObject`, the `width` and `height` properties immediately affect the
 The `width` and `height` properties represent a fixed size in pixels just as they do in a 
 `DisplayObject`, however in future subclasses there may be other properties that affect the size of the component. Therefore, the `update` method is used to interpret the final size and update the protected `explicitWidth` and `explicitHeight` properties. It is these size properties alone that should be used in the `render` method to re-render the component.
 
+The following example renders an ellipse at the explicit size of the component:
+
 {{{
 override public function render () : void
 {
-    // Draws an ellipse at the explicit size of the component.
     this.graphics.clear() ;
     this.graphics.beginFill( 0x000000 ) ;
     this.graphics.drawEllipse( 0, 0, this.explicitWidth, this.explicitHeight ) ;
