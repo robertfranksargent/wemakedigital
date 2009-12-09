@@ -32,6 +32,12 @@ The core component uses the following cycle to update the display when a propert
   # The purpose of the `invalidate` method is to flag that the component needs to be re-rendered after all property changes have been received. For example, if you changed the `width`, `height`, and `colour` of a component, `invalidate` would be called three times, but it would ensure that the `render` method is only called once and doesn't burden the Flash Player with unnecessary redraws.
   # The `render` method is used to redraw the component's display e.g. updating vector graphics, resizing and positioning child display objects.
 
+*Width and Height*
+
+In a `DisplayObject`, the `width` and `height` properties immediately affect the scale when changed. In a component, we don't want to scale when the width or height changes, we want to re-render the component at the new size. The core component replaces the `width` and `height` properties inherited from `DisplayObject`, which become read only via `displayWidth` and `displayHeight` properties. 
+
+The `width` and `height` properties represent a fixed size in pixels just as they do in a 
+`DisplayObject`, in future subclasses there may be other properties that affect the size of the component. Therefore, the `update` method is used to interpret the final size and update the protected `explicitWidth` and `explicitHeight` properties. It is these size properties alone that should be used in the `render` method to re-render the component.
 
 == Source ==
 
