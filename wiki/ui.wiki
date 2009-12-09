@@ -17,4 +17,4 @@ Add your content here.  Format your content with:
 
 == Source ==
 
-http://code.google.com/p/wemakedigital/source/browse/#svn/trunk/rsl/as3/code
+Coming soon...
