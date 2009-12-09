@@ -11,12 +11,12 @@ Add your content here.
 
 = Classes =
 
-=== CoreComponent ===
+=== Core Component ===
 
-[Source]
-[API-Documentation]
+  * Source
+  * API Documentation
 
-The CoreComponent is the base component class for the ui framework. It is an abstract class that is extended by the rest of the framework, but can also be used alone as a super class for your own components. A full list of features can be found in the API Documentation, but here will just look at the main concepts.
+The core component is the base component class for the ui framework. It is an abstract class that is extended by the rest of the framework, but can also be used alone as a super class for your own components. A full list of features can be found in the API Documentation, but here will just look at the main concepts.
 
 *Creation and Destruction*
 
@@ -26,11 +26,9 @@ The `create` method is called when the component is added to the display list an
 
 The core component uses the following cycle to update the display when a property changes e.g. width, colour etc.
 
-# The `update` method should be called by the setter method for any display property when it is changed. It can be overridden to update other properties as a result, but primarily it should determine whether the property change invalidates the display i.e. the display needs to be re-rendered as a result of the change. If so, the `update` method should call the `invalidate` method.
-
-# The purpose of the `invalidate` method is to flag that the component needs to be re-rendered after all property changes have been received. For example, if you changed the `width`, `height`, and `colour` of a component, `invalidate` would be called three times, but it would ensure that the `render` method is only called once and doesn't burden the Flash Player with unnecessary redraws.
-
-# The `render` method is used to redraw the component's display e.g. updating vector graphics or resizing and positioning child display objects.
+  # The `update` method should be called by the setter method for any display property when it is changed. It can be overridden to update other properties as a result, but primarily it should determine whether the property change invalidates the display i.e. the display needs to be re-rendered as a result of the change. If so, the `update` method should call the `invalidate` method.
+  # The purpose of the `invalidate` method is to flag that the component needs to be re-rendered after all property changes have been received. For example, if you changed the `width`, `height`, and `colour` of a component, `invalidate` would be called three times, but it would ensure that the `render` method is only called once and doesn't burden the Flash Player with unnecessary redraws.
+  # The `render` method is used to redraw the component's display e.g. updating vector graphics or resizing and positioning child display objects.
 
 
 == Source ==
