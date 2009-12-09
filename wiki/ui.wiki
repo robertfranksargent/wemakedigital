@@ -8,15 +8,15 @@
 
 == Overview ==
 
-Add your content here.
+TODO
 
 
 = Classes =
 
 === Core Component ===
 
-  * Source
-  * API Documentation
+  * TODO: Source
+  * TODO: API Documentation
 
 The core component is the base component class for the ui framework. It is an abstract class that is extended by the rest of the framework, but can also be used alone as a super class for your own components. A full list of features can be found in the API Documentation, but here will just look at the main concepts.
 
@@ -52,4 +52,4 @@ override public function render () : void
 
 == Source ==
 
-Coming soon...
+TODO
