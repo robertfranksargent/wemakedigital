@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="UI Framework" default="all" basedir=".">
+
+	<property file="build.properties" />
+	
+	<target name="all" description="Build All">
+		<ant target="swc"/>
+		<ant target="docs"/>
+	</target>
+	
+	<target name="swc" description="Build SWC">
+		<exec executable="${compc.exe}">
+			<arg value="-compute-digest=false"/>
+			<arg value="-source-path=."/>
+			<!--<arg value="-include-sources"/>
+			<arg value="${src.dir}"/>-->
+			<arg value="-include-classes"/>
+			<arg value="com.wemakedigital.ui.core.CoreComponent"/>
+			<arg value="-include-libraries"/>
+			<arg value="${libs.dir}"/>
+			<arg value="-output"/>
+			<arg value="${lib.output}"/>
+		</exec>
+	</target>
+	
+	<target name="docs" description="Build Documentation">
+		<exec executable="${asdoc.exe}" failonerror="true">
+			<!--<arg line="-doc-sources ${src.dir}" />-->
+			<arg value="-source-path=."/>
+			<arg line="-doc-classes com.wemakedigital.ui.core.CoreComponent" />
+			<arg line="-window-title '${asdoc.title}'" />
+			<arg value="-external-library-path"/>
+			<arg value="${libs.dir}"/>
+			<arg line="-output ${asdoc.output}" />
+		</exec>
+	</target>
+	
+</project>
