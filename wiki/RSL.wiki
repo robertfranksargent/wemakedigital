@@ -1,6 +1,6 @@
 #summary A runtime-shared libraries framework for AS3.
 
-= RSL =
+= rsl =
 
 == Overview ==
 
