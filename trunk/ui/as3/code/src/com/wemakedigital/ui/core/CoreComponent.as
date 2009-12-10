@@ -2,6 +2,7 @@ package com.wemakedigital.ui.core
 {
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
+	import flash.display.Stage;
 	import flash.events.Event;
 
 	/**
@@ -74,12 +75,12 @@ package com.wemakedigital.ui.core
 		/**
 		 * @private
 		 */
-		protected var explicitWidth : Number ;
+		protected var _explicitWidth : Number ;
 		
 		/**
 		 * @private
 		 */
-		protected var explicitHeight : Number ;
+		protected var _explicitHeight : Number ;
 		
 		//----------------------------------------------------------------------
 		
@@ -253,6 +254,40 @@ package com.wemakedigital.ui.core
 		}
 		
 		//----------------------------------------------------------------------
+
+		/**
+		 * The explicit width of the component, used by the render method.
+		 */
+		public function get explicitWidth () : Number
+		{
+			return this._explicitWidth ;
+		}
+		
+		/**
+		 * @private
+		 */
+		public function set explicitWidth (value : Number) : void
+		{
+			this._explicitWidth = value ;
+		}
+
+		/**
+		 * The explicit height of the component, used by the render method.
+		 */
+		public function get explicitHeight () : Number
+		{
+			return this._explicitHeight ;
+		}
+		
+		/**
+		 * @private
+		 */
+		public function set explicitHeight (value : Number) : void
+		{
+			this._explicitHeight = value ;
+		}
+
+		//----------------------------------------------------------------------
 		
 		/**
 		 * The created status of the component, default is <code>false</code>. 
@@ -391,7 +426,7 @@ package com.wemakedigital.ui.core
 		 */
 		public function invalidate () : void
 		{
-			if ( this.created && this.stage ) 
+			if ( this.created ) 
 			{
 				this.stage.addEventListener( Event.RENDER, this.onRender ) ;
 				this.stage.invalidate() ;				
@@ -434,10 +469,10 @@ package com.wemakedigital.ui.core
 		 */
 		protected function update () : void
 		{
-			if ( this.created && !isNaN( this.width ) && !isNaN( this.height ) && ( this.explicitWidth != this.width || this.explicitHeight != this.height ) )
+			if ( this.created )
 			{
-				this.explicitWidth = this.width ;
-				this.explicitHeight = this.height ;
+				if ( !isNaN( this.width ) && this.explicitWidth != this.width ) this.explicitWidth = this.width ;
+				if ( !isNaN( this.height ) && this.explicitHeight != this.height ) this.explicitHeight = this.height ;
 				this.invalidate() ;		
 			}
 		}
@@ -494,7 +529,7 @@ package com.wemakedigital.ui.core
 		 */
 		protected function onRender ( e : Event ) : void
 		{		
-			this.stage.removeEventListener( Event.RENDER, this.onRender ) ;
+			( e.target as Stage ).removeEventListener( Event.RENDER, this.onRender ) ;
 			if ( this.created ) this.render() ;
 		}
 	}

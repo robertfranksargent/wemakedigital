@@ -47,6 +47,18 @@ package com.wemakedigital.ui
 		/**
 		 * @private
 		 */
+		protected var _autoWidth : Boolean = false ;
+		
+		/**
+		 * @private
+		 */
+		protected var _autoHeight : Boolean = false ;
+
+		//----------------------------------------------------------------------
+		
+		/**
+		 * @private
+		 */
 		protected var _relativeWidth : Number = NaN ;
 		
 		/**
@@ -73,6 +85,45 @@ package com.wemakedigital.ui
 		 * @private
 		 */
 		protected var _maxRelativeHeight : Number = NaN ;
+		
+		//----------------------------------------------------------------------
+		
+		/**
+		 * @private
+		 */
+		protected var _spareWidth : Number = NaN ;
+		
+		/**
+		 * @private
+		 */
+		protected var _spareHeight : Number = NaN ;
+		
+		/**
+		 * @private
+		 */
+		protected var _minSpareWidth : Number = 0 ;
+		
+		/**
+		 * @private
+		 */
+		protected var _minSpareHeight : Number = 0 ;
+		
+		/**
+		 * @private
+		 */
+		protected var _maxSpareWidth : Number = NaN ;
+		
+		/**
+		 * @private
+		 */
+		protected var _maxSpareHeight : Number = NaN ;
+		
+		//----------------------------------------------------------------------
+
+		/**
+		 * @private
+		 */
+		protected var invalidated : Boolean = false ;
 		
 		//----------------------------------------------------------------------
 		//
@@ -124,7 +175,9 @@ package com.wemakedigital.ui
 			if ( value != this.width )
 			{
 				this._width = value ;
+				this._autoWidth = false ;
 				this._relativeWidth = NaN ;
+				this._spareWidth = NaN ;
 				this.update() ;
 			}
 		}
@@ -138,7 +191,57 @@ package com.wemakedigital.ui
 			if ( value != this.height )
 			{
 				this._height = value ;
+				this._autoHeight = false ;
 				this._relativeHeight = NaN ;
+				this._spareHeight = NaN ;
+				this.update() ;
+			}
+		}
+
+		//----------------------------------------------------------------------
+		
+		/**
+		 * The auto width mode of the component.
+		 */
+		public function get autoWidth () : Boolean
+		{
+			return this._autoWidth ;
+		}
+		
+		/**
+		 * @private
+		 */
+		public function set autoWidth (value : Boolean) : void
+		{
+			if ( value != this.autoWidth )
+			{
+				this._autoWidth = value ;
+				this._width = this.autoWidth ? NaN : 0 ;
+				this._relativeWidth = NaN ;
+				this._spareWidth = NaN ;
+				this.update() ;
+			}
+		}
+		
+		/**
+		 * The auto height mode of the component.
+		 */
+		public function get autoHeight () : Boolean
+		{
+			return this._autoHeight ;
+		}
+		
+		/**
+		 * @private
+		 */
+		public function set autoHeight (value : Boolean) : void
+		{
+			if ( value != this.autoHeight )
+			{
+				this._autoHeight = value ;
+				this._height = this.autoHeight ? NaN : 0 ;
+				this._relativeHeight = NaN ;
+				this._spareHeight = NaN ;
 				this.update() ;
 			}
 		}
@@ -163,6 +266,8 @@ package com.wemakedigital.ui
 			{
 				this._relativeWidth = value ;
 				this._width = NaN ;
+				this._autoWidth = false ;
+				this._spareWidth = NaN ;
 				this.update() ;
 			}
 		}
@@ -185,6 +290,8 @@ package com.wemakedigital.ui
 			{
 				this._relativeHeight = value ;
 				this._height = NaN ;
+				this._autoHeight = false ;
+				this._spareHeight = NaN ;
 				this.update() ;
 			}
 		}
@@ -274,6 +381,140 @@ package com.wemakedigital.ui
 		}
 		
 		//----------------------------------------------------------------------
+		
+		/**
+		 * The spare width of the component.
+		 */
+		public function get spareWidth () : Number
+		{
+			return this._spareWidth ;
+		}
+		
+		/**
+		 * @private
+		 */
+		public function set spareWidth (value : Number) : void
+		{
+			value = Math.max ( this.minSpareWidth, isNaN ( this.maxSpareWidth ) ? value : Math.min ( this.maxSpareWidth, value ) ) ;
+			if ( value != this.spareWidth )
+			{
+				this._spareWidth = value ;
+				this._width = NaN ;
+				this._autoWidth = false ;
+				this._relativeWidth = NaN ;
+				this.update() ;
+			}
+		}
+		
+		/**
+		 * The spare height of the component.
+		 */
+		public function get spareHeight () : Number
+		{
+			return this._spareHeight ;
+		}
+		
+		/**
+		 * @private
+		 */
+		public function set spareHeight (value : Number) : void
+		{
+			value = Math.max ( this.minSpareHeight, isNaN ( this.maxSpareHeight ) ? value : Math.min ( this.maxSpareHeight, value ) ) ;
+			if ( value != this.spareHeight )
+			{
+				this._spareHeight = value ;
+				this._height = NaN ;
+				this._autoHeight = false ;
+				this._relativeHeight = NaN ;
+				this.update() ;
+			}
+		}
+		
+		/**
+		 * The minumum spare width of the component.
+		 */
+		public function get minSpareWidth () : Number
+		{
+			return this._minSpareWidth ;
+		}
+		
+		/**
+		 * @private
+		 */
+		public function set minSpareWidth (value : Number) : void
+		{
+			value = Math.max ( 0, value ) ;
+			if ( value != this.minSpareWidth )
+			{
+				this._minSpareWidth = value ;
+				this.spareWidth = this.spareWidth ;
+			}
+		}
+		
+		/**
+		 * The minumum spare height of the component.
+		 */
+		public function get minSpareHeight () : Number
+		{
+			return this._minSpareHeight ;
+		}
+		
+		/**
+		 * @private
+		 */
+		public function set minSpareHeight (value : Number) : void
+		{
+			value = Math.max ( 0, value ) ;
+			if ( value != this.minSpareHeight )
+			{
+				this._minSpareHeight = value ;
+				this.spareHeight = this.spareHeight ;
+			}
+		}
+		
+		/**
+		 * The maximum spare width of the component.
+		 */
+		public function get maxSpareWidth () : Number
+		{
+			return this._maxSpareWidth ;
+		}
+		
+		/**
+		 * @private
+		 */
+		public function set maxSpareWidth (value : Number) : void
+		{
+			value = Math.max ( 0, value ) ;
+			if ( value != this.maxSpareWidth )
+			{
+				this._maxSpareWidth = value ;
+				this.spareWidth = this.spareWidth ;
+			}
+		}
+		
+		/**
+		 * The maximum spare height of the component
+		 */
+		public function get maxSpareHeight () : Number
+		{
+			return this._maxSpareHeight ;
+		}
+		
+		/**
+		 * @private
+		 */
+		public function set maxSpareHeight (value : Number) : void
+		{
+			value = Math.max ( 0, value ) ;
+			if ( value != this.maxSpareHeight )
+			{
+				this._maxSpareHeight = value ;
+				this.spareHeight = this.spareHeight ;
+			}
+		}
+
+		//----------------------------------------------------------------------
 		//
 		//  Constructor
 		//
@@ -298,41 +539,33 @@ package com.wemakedigital.ui
 		 */
 		override public function invalidate () : void
 		{
-			if ( this.created && this.stage ) 
+			if ( this.created ) 
 			{
-				if ( this.container ) 
+				this.invalidated = true ;
+				if ( this.container ) // TODO in future also consider if it is at all possible that the container or siblings will be affected.
 				{
-					this.removeRenderEventListeners() ;
+					this.stage.removeEventListener( Event.RENDER, this.onRender ) ;
 					this.container.invalidatedChild() ;
 				}
-				else
+				else 
 				{
 					this.stage.addEventListener( Event.RENDER, this.onRender ) ;
-					this.stage.invalidate() ;				
+					this.stage.invalidate() ;	
 				}
 			}
 		}
 		
-		//----------------------------------------------------------------------	
-		
 		/**
 		 * @inheritDoc
 		 */
-		override protected function update () : void
+		override public function render () : void
 		{
-			if ( this.container ) this.invalidate() ;
-			else super.update() ;
-		}
-		
-		//----------------------------------------------------------------------	
-		
-		/**
-		 * Removes any <code>flash.events.Event.RENDER</code> event listeners 
-		 * added due to invalidation. 
-		 */
-		internal function removeRenderEventListeners() : void
-		{
-			this.stage.removeEventListener( Event.RENDER, this.onRender ) ;
+			if ( this.created && this.invalidated )
+			{
+				super.render() ;
+				this.invalidated = false ;
+				trace ( "render", this.id ? this.id : "root", this.explicitWidth, this.explicitHeight ) ; // TODO remove this, it's just to check things aren't rendering more than once.
+			}
 		}
 	}
 }

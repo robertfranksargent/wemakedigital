@@ -4,6 +4,7 @@ package com.wemakedigital.ui
 
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
+	import flash.display.Stage;
 	import flash.events.Event;
 
 	[ DefaultProperty ( "children" ) ]
@@ -68,6 +69,45 @@ package com.wemakedigital.ui
 			return _components ;
 		}
 		
+		/**
+		 * The Container children of this container.
+		 */
+		public function get containers () : Array
+		{
+			var _containers : Array = [] ;
+			for each ( var child : DisplayObject in this.children )
+				if ( child is Container ) _containers.push( child ) ;
+			return _containers ;
+		}
+		
+		//----------------------------------------------------------------------
+
+		/**
+		 * The width of all the children of this component.
+		 */
+		internal function get measuredWidth () : Number
+		{
+			var max : Number = 0 ;
+			for each ( var child : Component in this.components )
+			{
+				if ( ( child.x + child.explicitWidth ) > max ) max = ( child.x + child.explicitWidth ) ;  
+			}
+			return max ;
+		}
+
+		/**
+		 * The overall height of all the children of this component.
+		 */
+		internal function get measuredHeight () : Number
+		{
+			var max : Number = 0 ;
+			for each ( var child : Component in this.components )
+			{
+				if ( ( child.y + child.explicitHeight ) > max ) max = (child.y + child.explicitWidth ) ;  
+			}
+			return max ;
+		}
+
 		//----------------------------------------------------------------------
 		//
 		//  Constructor
@@ -80,6 +120,12 @@ package com.wemakedigital.ui
 		public function Container ()
 		{
 			super() ;
+			
+			this._autoWidth = true ;
+			this._autoHeight = true ;
+			this._width = NaN ;
+			this._height = NaN ;
+			
 			this.content = new Sprite() ;
 			super.addChild( this.content ) ;
 		}
@@ -106,7 +152,7 @@ package com.wemakedigital.ui
 				if ( !this.children ) this._children = [] ;
 				this._children.push( child ) ;
 				this.content.addChild( child ) ;
-				// TODO invalidate?
+				this.update() ;
 			}
 			return child ;
 		}
@@ -171,7 +217,7 @@ package com.wemakedigital.ui
 				if ( child is Component ) ( child as Component ).container = null ;
 				this._children.splice( this.children.indexOf( child ), 1 ) ;
 				this.content.removeChild( child ) ;
-				// TODO invalidate?
+				this.update() ;
 			}
 			return child ;
 		}
@@ -210,7 +256,7 @@ package com.wemakedigital.ui
 					this.children[ index1 ] = child2 ;
 					this.children[ index2 ] = child1 ;
 					this.content.swapChildren ( child1, child2 ) ;
-					// TODO invalidate?
+					this.update() ;
 				}
 			}
 		}
@@ -227,7 +273,7 @@ package com.wemakedigital.ui
 				this.children[ index1 ] = child2 ;
 				this.children[ index2 ] = child1 ;
 				this.content.swapChildren ( child1, child2 ) ;
-				// TODO invalidate?
+				this.update() ;
 			}
 		}
 		
@@ -268,50 +314,113 @@ package com.wemakedigital.ui
 		//----------------------------------------------------------------------
 		
 		/**
+		 * Called by one of the container's child components, forcing it to 
+		 * render on the next <code>flash.events.Event.RENDER</code> event.
+		 */
+		internal function invalidatedChild () : void
+		{
+			if ( this.created ) 
+			{
+				if ( this.container ) this.container.invalidatedChild() ; // TODO in future also consider if it is at all possible that the container or siblings will be affected.
+				else 
+				{
+					this.stage.addEventListener( Event.RENDER, this.onRender ) ;
+					this.stage.invalidate() ;	
+				}
+			}
+		}
+		
+		/**
 		 * @inheritDoc
 		 */
 		override public function render () : void
 		{
-			if ( this.children )
-			{
-				
-			}
-			super.render() ; 
+			super.render() ;
+			for each ( var childComponent : Component in this.components )
+				childComponent.render() ;
 		}
 		
 		//----------------------------------------------------------------------
 		
 		/**
-		 * Container is Invalidated by one of its child components, forcing it 
-		 * to render on the next <code>flash.events.Event.RENDER</code> event.
+		 * @private
 		 */
-		internal function invalidatedChild () : void
+		protected function updateContainers () : void
 		{
-			if ( this.created && this.stage ) 
+			if ( this.created )
 			{
-				if ( this.container && ( isNaN( this.width ) || isNaN( this.height ) ) ) 
-				{
-					this.removeRenderEventListeners() ;
-					this.container.invalidatedChild() ;
-				}
-				else
-				{
-					this.stage.addEventListener( Event.RENDER, this.onRender ) ;
-					this.stage.invalidate() ;				
-				}
+				for each ( var childContainer : Container in this.containers )
+					childContainer.updateContainers() ;
+				
+				if ( this.autoWidth ) this.explicitWidth = this.measuredWidth ;
+				if ( this.autoHeight ) this.explicitHeight = this.measuredHeight ;
 			}
 		}
 		
+		/**
+		 * @private
+		 */
+		protected function updateChildren () : void
+		{
+			if ( this.created )
+			{
+				for each ( var childComponent : Component in this.components )
+				{
+					if ( !isNaN( childComponent.relativeWidth ) ) childComponent.explicitWidth = this.explicitWidth * childComponent.relativeWidth >> 0 ; 
+					if ( !isNaN( childComponent.relativeHeight ) ) childComponent.explicitHeight = this.explicitHeight * childComponent.relativeHeight >> 0 ; 
+				}
+				
+				for each ( var childContainer : Container in this.containers )
+					childContainer.updateChildren() ;			
+			}
+		}
+		
+		/**
+		 * @private
+		 */
+		protected function updateSiblings () : void
+		{
+			if ( this.created )
+			{
+				var totalWidth : Number = 0 ;
+				var totalHeight : Number = 0 ;
+				
+				for each ( var child : Component in this.components )
+				{
+					if ( isNaN( child.spareWidth ) ) totalWidth += child.explicitWidth ; 
+					if ( isNaN( child.spareHeight ) ) totalHeight += child.explicitHeight ; 
+				}
+
+				for each ( var childComponent : Component in this.components )
+				{
+					if ( !isNaN( childComponent.spareWidth ) ) childComponent.explicitWidth = Math.max ( ( this.explicitWidth - totalWidth ) * childComponent.spareWidth >> 0, 0 ) ; 
+					if ( !isNaN( childComponent.spareHeight ) ) childComponent.explicitHeight = Math.max ( ( this.explicitHeight - totalHeight ) * childComponent.spareHeight >> 0, 0 ) ; 
+				}
+				
+				for each ( var childContainer : Container in this.containers )
+					childContainer.updateSiblings() ;
+			}
+		}
+		
+		//----------------------------------------------------------------------
+		//
+		//  Event Handlers
+		//
 		//----------------------------------------------------------------------
 		
 		/**
 		 * @inheritDoc
 		 */
-		override internal function removeRenderEventListeners() : void
-		{
-			for each ( var component : Component in this.components )
-				component.removeRenderEventListeners() ;
-			super.removeRenderEventListeners() ;
+		override protected function onRender ( e : Event ) : void
+		{		
+			( e.target as Stage ).removeEventListener( Event.RENDER, this.onRender ) ;
+			if ( this.created ) 
+			{
+				this.updateContainers() ;
+				this.updateChildren() ;
+				this.updateSiblings() ;
+				this.render() ;
+			}
 		}
 	}
 }
