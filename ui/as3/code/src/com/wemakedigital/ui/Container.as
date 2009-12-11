@@ -345,12 +345,12 @@ package com.wemakedigital.ui
 		/**
 		 * @private
 		 */
-		protected function updateContainers () : void
+		protected function updateSizeOfContainers () : void
 		{
 			if ( this.created )
 			{
 				for each ( var childContainer : Container in this.containers )
-					childContainer.updateContainers() ;
+					childContainer.updateSizeOfContainers() ;
 				
 				if ( this.autoWidth ) this.explicitWidth = this.measuredWidth ;
 				if ( this.autoHeight ) this.explicitHeight = this.measuredHeight ;
@@ -360,7 +360,7 @@ package com.wemakedigital.ui
 		/**
 		 * @private
 		 */
-		protected function updateChildren () : void
+		protected function updateSizeOfChildren () : void
 		{
 			if ( this.created )
 			{
@@ -371,14 +371,14 @@ package com.wemakedigital.ui
 				}
 				
 				for each ( var childContainer : Container in this.containers )
-					childContainer.updateChildren() ;			
+					if ( childContainer.invalidated ) childContainer.updateSizeOfChildren() ;			
 			}
 		}
 		
 		/**
 		 * @private
 		 */
-		protected function updateSiblings () : void
+		protected function updateSizeOfSiblings () : void
 		{
 			if ( this.created )
 			{
@@ -398,8 +398,55 @@ package com.wemakedigital.ui
 				}
 				
 				for each ( var childContainer : Container in this.containers )
-					childContainer.updateSiblings() ;
+					if ( childContainer.invalidated ) childContainer.updateSizeOfSiblings() ;
 			}
+		}
+		
+		/**
+		 * @private
+		 */
+		protected function updatePositionOfChildren() : void
+		{
+			if ( this.created )
+			{
+				if ( this.invalidated ) 
+				{
+					for each ( var childComponent : Component in this.components )
+					{
+						 var x : int = this.getChildX( childComponent ) >> 0 ;
+						 var y : int = this.getChildY( childComponent ) >> 0 ;
+						 if ( childComponent.x != x ) childComponent.x = x ;
+						 if ( childComponent.y != y ) childComponent.y = y ;
+					}
+				}
+				
+				for each ( var childContainer : Container in this.containers )
+					childContainer.updatePositionOfChildren() ;
+			}
+		}
+		
+		//----------------------------------------------------------------------
+		
+		/**
+		 * @private
+		 */
+		protected function getChildX ( child : Component ) : Number
+		{
+			if ( ! isNaN ( child.left ) ) return child.left ;
+			else if ( ! isNaN ( child.right ) ) return this.explicitWidth - child.explicitWidth - child.right ;
+			else if ( ! isNaN ( child.horizontalCentre ) ) return ( ( this.explicitWidth - child.explicitWidth ) / 2 ) + child.horizontalCentre ;
+			return child.x ;
+		}
+		
+		/**
+		 * @private
+		 */
+		protected function getChildY ( child : Component ) : Number
+		{
+			if ( ! isNaN ( child.top ) ) return child.top ;
+			else if ( ! isNaN ( child.bottom ) ) return this.explicitHeight - child.explicitHeight - child.bottom ;
+			else if ( ! isNaN ( child.verticalCentre ) ) return ( ( this.explicitHeight - child.explicitHeight ) / 2 ) + child.verticalCentre ;
+			return child.y ;
 		}
 		
 		//----------------------------------------------------------------------
@@ -416,9 +463,10 @@ package com.wemakedigital.ui
 			( e.target as Stage ).removeEventListener( Event.RENDER, this.onRender ) ;
 			if ( this.created ) 
 			{
-				this.updateContainers() ;
-				this.updateChildren() ;
-				this.updateSiblings() ;
+				this.updateSizeOfContainers() ;
+				this.updateSizeOfChildren() ;
+				this.updateSizeOfSiblings() ;
+				this.updatePositionOfChildren() ;
 				this.render() ;
 			}
 		}

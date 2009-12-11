@@ -119,7 +119,41 @@ package com.wemakedigital.ui
 		protected var _maxSpareHeight : Number = NaN ;
 		
 		//----------------------------------------------------------------------
-
+		
+		/**
+		 * @private
+		 */
+		protected var _left : Number = NaN ;
+		
+		/**
+		 * @private
+		 */
+		protected var _right : Number = NaN ;
+		
+		/**
+		 * @private
+		 */
+		protected var _top : Number = NaN ;
+		
+		/**
+		 * @private
+		 */
+		protected var _bottom : Number = NaN ;
+		
+		//----------------------------------------------------------------------
+		
+		/**
+		 * @private
+		 */
+		protected var _horizontalCentre : Number = NaN ;
+		
+		/**
+		 * @private
+		 */
+		protected var _verticalCentre : Number = NaN ;
+		
+		//----------------------------------------------------------------------
+		
 		/**
 		 * @private
 		 */
@@ -195,6 +229,32 @@ package com.wemakedigital.ui
 				this._relativeHeight = NaN ;
 				this._spareHeight = NaN ;
 				this.update() ;
+			}
+		}
+
+		//----------------------------------------------------------------------
+
+		/**
+		 * @private
+		 */
+		override public function set explicitWidth (value : Number) : void
+		{
+			if ( this._explicitWidth != value ) 
+			{
+				this._explicitWidth = value ;
+				this.invalidated = true ;
+			}
+		}
+		
+		/**
+		 * @private
+		 */
+		override public function set explicitHeight (value : Number) : void
+		{
+			if ( this._explicitHeight != value ) 
+			{
+				this._explicitHeight = value ;
+				this.invalidated = true ;
 			}
 		}
 
@@ -513,7 +573,145 @@ package com.wemakedigital.ui
 				this.spareHeight = this.spareHeight ;
 			}
 		}
+		
+				//----------------------------------------------------------------------
+		
+		/**
+		 * Anchor padding from the left of the container.
+		 */
+		public function get left () : Number
+		{
+			return this._left ;
+		}
+		
+		/**
+		 * @private
+		 */
+		public function set left (value : Number) : void
+		{
+			this._left = Math.max ( 0, value ) ;
+			if ( ! isNaN ( this._left ) && ! isNaN ( this._right ) ) 
+			{
+				this._width = NaN ;
+				this._relativeWidth = NaN ;
+				this._spareWidth = NaN ;
+				this._autoWidth = false ;
+			}
+			this.update() ;
+		}
+		
+		/**
+		 * Anchor padding from the right of the container.
+		 */
+		public function get right () : Number
+		{
+			return this._right ;
+		}
+		
+		/**
+		 * @private
+		 */
+		public function set right (value : Number) : void
+		{
+			this._right = Math.max ( 0, value ) ;
+			if ( ! isNaN ( this._left ) && ! isNaN ( this._right ) ) 
+			{
+				this._width = NaN ;
+				this._relativeWidth = NaN ;
+				this._spareWidth = NaN ;
+				this._autoWidth = false ;
+			}
+			this.update() ;
+		}
+		
+		/**
+		 * Anchor padding from the top of the container.
+		 */
+		public function get top () : Number
+		{
+			return this._top ;
+		}
+		
+		/**
+		 * @private
+		 */
+		public function set top (value : Number) : void
+		{
+			this._top = Math.max ( 0, value ) ;
+			if ( ! isNaN ( this._top ) && ! isNaN ( this._bottom ) ) 
+			{
+				this._height = NaN ;
+				this._relativeHeight = NaN ;
+				this._spareHeight = NaN ;
+				this._autoHeight = false ;
+			}
+			this.update() ;
+		}
+		
+		/**
+		 * Anchor padding from the bottom of the container.
+		 */
+		public function get bottom () : Number
+		{
+			return this._bottom ;
+		}
+		
+		/**
+		 * @private
+		 */
+		public function set bottom (value : Number) : void
+		{
+			this._bottom = Math.max ( 0, value ) ;
+			if ( ! isNaN ( this._top ) && ! isNaN ( this._bottom ) ) 
+			{
+				this._height = NaN ;
+				this._relativeHeight = NaN ;
+				this._spareHeight = NaN ;
+				this._autoHeight = false ;
+			}
+			
+			this.update() ;
+		}
+		
+		//----------------------------------------------------------------------
 
+		/**
+		 * Anchor padding from the horizontal centre of the container.
+		 */
+		public function get horizontalCentre () : Number
+		{
+			return this._horizontalCentre ;
+		}
+		
+		/**
+		 * @private
+		 */
+		public function set horizontalCentre (value : Number) : void
+		{
+			this._horizontalCentre = value ;
+			this._left = NaN ;
+			this._right = NaN ;
+			this.update() ;
+		}
+
+		/**
+		 * Anchor padding from the vertical centre of the container.
+		 */
+		public function get verticalCentre () : Number
+		{
+			return this._verticalCentre ;
+		}
+		
+		/**
+		 * @private
+		 */
+		public function set verticalCentre (value : Number) : void
+		{
+			this._verticalCentre = value ;
+			this._top = NaN ;
+			this._bottom = NaN ;
+			this.update() ;
+		}
 		//----------------------------------------------------------------------
 		//
 		//  Constructor
@@ -564,7 +762,7 @@ package com.wemakedigital.ui
 			{
 				super.render() ;
 				this.invalidated = false ;
-				trace ( "render", this.id ? this.id : "root", this.explicitWidth, this.explicitHeight ) ; // TODO remove this, it's just to check things aren't rendering more than once.
+//				trace ( "render", this.id ? this.id : "root", this.x, this.y, this.explicitWidth, this.explicitHeight ) ; // TODO remove this, it's just to check things aren't rendering more than once.
 			}
 		}
 	}
