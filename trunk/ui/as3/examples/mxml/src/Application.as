@@ -1,15 +1,15 @@
 package  
 {
-	import net.hires.debug.Stats;
+	import com.wemakedigital.ui.VContainer;
+	import com.wemakedigital.ui.Component;
 
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
-	import flash.events.Event;
+	import flash.events.MouseEvent;
 
 	public class Application extends Sprite 
 	{
-		private var size : Number = 1 ;
 		private var view : ApplicationView ;
 		
 		public function Application ()
@@ -19,19 +19,27 @@ package
 			
 			this.view = new ApplicationView() ;
 			
-			this.addChild( view ) ;
+			this.view.addEventListener( MouseEvent.CLICK, this.onClick ) ;
 			
-			this.addEventListener( Event.ENTER_FRAME, this.onEnterFrame ) ;
-			
-			this.addChild( new Stats() );
+			this.addChild( this.view ) ;
 		}
 		
-		private function onEnterFrame( e : Event ) : void
+		private function onClick ( e : MouseEvent ) : void
 		{
-			this.view.width += this.size ;
-			this.view.height += this.size ;
-			if ( this.view.width > 300 ) this.size = -1 ;
-			else if ( this.view.width < 100 ) this.size = 1 ;
+			this.view.component3.visible ? this.view.component3.hide() : this.view.component3.show() ;
+			if ( e.target == this.view.component1 ) 
+			{
+				var component : Component = new Component() ;
+				component.width = 100 ;
+				component.height = 100 ;
+				component.colour = 0x999999 ;
+				this.view.container1.addChild( component ) ;
+			}
+			
+			else if ( e.target == this.view.component2 ) 
+			{
+				this.view.container1.removeChild( this.view.container1.getChildAt( this.view.container1.numChildren -1 ) ) ;
+			}
 		}
 	}
 }

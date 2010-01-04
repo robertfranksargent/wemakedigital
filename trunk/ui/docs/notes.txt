@@ -1,0 +1,110 @@
+UI FRAMEWORK
+
+Development notes.
+
+CLASSES
+
+com.wemakedigital.ui.Component					(sizing: fixed / relative / anchored / spare. bounds? padding?)
+com.wemakedigital.ui.Container					(simple container, masking, scrolling, depth management, bitmap)
+com.wemakedigital.ui.DistributeContainer		(internal base class for HContainer and VContainer)
+com.wemakedigital.ui.HContainer
+com.wemakedigital.ui.VContainer
+com.wemakedigital.ui.StageContainer				(fullscreen on right click, limited rectangle?)
+
+com.wemakedigital.ui.core.CoreComponent		(create, destroy, invalidate, update, render, explicit sizing, colour, locking?)
+com.wemakedigital.ui.core.ShowHideComponent		(show hide)
+com.wemakedigital.ui.core.ShowHideStyleManager	(singleton?)
+com.wemakedigital.ui.core.events.ShowHideEvent
+
+com.wemakedigital.ui.scroll.Scroll				(mouse wheel scrolling - javascript?)
+com.wemakedigital.ui.scroll.HScroll
+com.wemakedigital.ui.scroll.VScroll
+com.wemakedigital.ui.scroll.ScrollStyleManager	(singleton?)
+												(pan with mouse, hand cursor + space bar?)
+
+com.wemakedigital.ui.text.Text					(extends component and uses the low level Flash Text Engine)
+com.wemakedigital.ui.text.TextInput
+com.wemakedigital.ui.text.TextButton
+com.wemakedigital.ui.text.TextStyleManager		(singleton?)
+
+com.wemakedigital.ui.image.Image				(fill, fit, stretch, tile, align)
+
+MXML EXAMPLE
+
+<ui:Container xmlns:ui="com.wemakedigital.ui.*" width="100" height="100">
+	<ui:Container id="container" relativeWidth="1" >
+		<ui:Component id="component1" relativeWidth="1" />
+	</ui:Container>
+	<ui:Component id="component2" relativeWidth="1" spareHeight="1" />
+</ui:Container>
+
+
+SUMMARY
+
+id:			root
+x:			n/a
+y:			n/a
+width:		self determined
+height:		self determined
+
+id:			container
+x:			determined by parent (0)
+y:			determined by parent (0)
+width:		determined by parent
+height:		determined by children
+
+id:			component1
+x:			determined by parent (0)
+y:			determined by parent (0)
+width:		determined by parent
+height:		self determined
+
+id:			component2
+x:			determined by parent (0)
+y:			determined by parent (0)
+width:		determined by parent
+height:		determined by siblings via parent
+
+RENDERING
+
+1. Invalidation flags set by children and parents based on their relationship
+2. The highest invalidated container in the tree listens for the RENDER event.
+3. First pass, evaluates self determined values.
+4. Second pass evaluates child determined values.
+5. Third pass evaluates parent determined values.
+6. Fourth pass evaluates sibling determined values.
+7. The display is updated.
+
+------------------------------------------------------------------------------------
+
+REVISED RENDERING
+
+   Parent
+   |    |
+Child Sibling
+   |
+Grandchild
+
+1. Child:	Property changes.
+2. Child:	Update is called.
+3. Child:	If children, 
+4. Child:	If no container calls invalidate (with listener).
+			If container calls invalidate (no listener) and parent.update.
+5. Parent:	
+
+
+
+Property change:
+Component.update()				updates self determined properties
+
+Pre-Render:
+Component.updateContainers()	(recursive, children first) updates the container
+Container.updateChildren()		(recursive, parents first) updates children
+Container.updateSiblings()		(recursive, parents first) updates siblings
+
+
+
+
+
+
+

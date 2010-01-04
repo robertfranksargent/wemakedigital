@@ -33,6 +33,18 @@ package com.wemakedigital.ui
 		protected var _children : Array ;
 		
 		//----------------------------------------------------------------------
+		
+		/**
+		 * @private
+		 */
+		protected var _measuredWidth : Number ;
+
+		/**
+		 * @private
+		 */
+		protected var _measuredHeight : Number ;
+		
+		//----------------------------------------------------------------------
 		//
 		//  Properties
 		//
@@ -52,7 +64,13 @@ package com.wemakedigital.ui
 		public function set children ( value : * ) : void
 		{
 			for each ( var property : String in ObjectUtil.getClassInfo( this )["properties"] ) 
-				if ( this[ property ] is Component ) Component( this[ property ] ).id = property ;
+			{
+				if ( this[ property ] is Component ) 
+				{
+					if ( property != "container" ) Component( this[ property ] ).id = property ;
+					else throw new Error( "The component id 'container' cannot be used." ) ;
+				}
+			}
 			var displayObjects : Array = value is Array ? value : [ value ] ;
 			for each ( var child : DisplayObject in displayObjects )
 				this.addChild( child ) ;
@@ -87,12 +105,12 @@ package com.wemakedigital.ui
 		 */
 		internal function get measuredWidth () : Number
 		{
-			var max : Number = 0 ;
+			this._measuredWidth = 0 ;
 			for each ( var child : Component in this.components )
 			{
-				if ( ( child.x + child.explicitWidth ) > max ) max = ( child.x + child.explicitWidth ) ;  
+				if ( ( child.x + child.explicitWidth ) > this._measuredWidth ) this._measuredWidth = ( child.x + child.explicitWidth ) ;  
 			}
-			return max ;
+			return this._measuredWidth ;
 		}
 
 		/**
@@ -100,12 +118,12 @@ package com.wemakedigital.ui
 		 */
 		internal function get measuredHeight () : Number
 		{
-			var max : Number = 0 ;
+			this._measuredHeight = 0 ;
 			for each ( var child : Component in this.components )
 			{
-				if ( ( child.y + child.explicitHeight ) > max ) max = (child.y + child.explicitWidth ) ;  
+				if ( ( child.y + child.explicitHeight ) > this._measuredHeight ) this._measuredHeight = (child.y + child.explicitWidth ) ;  
 			}
-			return max ;
+			return this._measuredHeight ;
 		}
 
 		//----------------------------------------------------------------------
@@ -345,7 +363,7 @@ package com.wemakedigital.ui
 		/**
 		 * @private
 		 */
-		protected function updateSizeOfContainers () : void
+		internal function updateSizeOfContainers () : void
 		{
 			if ( this.created )
 			{
@@ -360,14 +378,16 @@ package com.wemakedigital.ui
 		/**
 		 * @private
 		 */
-		protected function updateSizeOfChildren () : void
+		internal function updateSizeOfChildren () : void
 		{
 			if ( this.created )
 			{
 				for each ( var childComponent : Component in this.components )
 				{
 					if ( !isNaN( childComponent.relativeWidth ) ) childComponent.explicitWidth = this.explicitWidth * childComponent.relativeWidth >> 0 ; 
-					if ( !isNaN( childComponent.relativeHeight ) ) childComponent.explicitHeight = this.explicitHeight * childComponent.relativeHeight >> 0 ; 
+					if ( !isNaN( childComponent.relativeHeight ) ) childComponent.explicitHeight = this.explicitHeight * childComponent.relativeHeight >> 0 ;
+					if ( !isNaN( childComponent.left ) && !isNaN( childComponent.right ) ) childComponent.explicitWidth = this.explicitWidth - childComponent.left - childComponent.right ;
+					if ( !isNaN( childComponent.top ) && !isNaN( childComponent.bottom ) ) childComponent.explicitHeight = this.explicitHeight - childComponent.top - childComponent.bottom ;
 				}
 				
 				for each ( var childContainer : Container in this.containers )
@@ -378,7 +398,7 @@ package com.wemakedigital.ui
 		/**
 		 * @private
 		 */
-		protected function updateSizeOfSiblings () : void
+		internal function updateSizeOfSiblings () : void
 		{
 			if ( this.created )
 			{
@@ -405,7 +425,7 @@ package com.wemakedigital.ui
 		/**
 		 * @private
 		 */
-		protected function updatePositionOfChildren() : void
+		internal function updatePositionOfChildren() : void
 		{
 			if ( this.created )
 			{
