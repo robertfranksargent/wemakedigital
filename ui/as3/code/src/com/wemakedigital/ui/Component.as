@@ -1,6 +1,6 @@
 package com.wemakedigital.ui 
 {
-	import com.wemakedigital.ui.core.CoreComponent;
+	import com.wemakedigital.ui.core.ShowHideComponent;
 
 	import flash.events.Event;
 
@@ -24,7 +24,7 @@ package com.wemakedigital.ui
 	 * <li>Easily enabling and disabling mouse and keyboard interactivity</li>
 	 * </ul>
 	 */
-	public class Component extends CoreComponent 
+	public class Component extends ShowHideComponent 
 	{	
 		//----------------------------------------------------------------------
 		//
@@ -157,7 +157,7 @@ package com.wemakedigital.ui
 		/**
 		 * @private
 		 */
-		protected var invalidated : Boolean = false ;
+		internal var invalidated : Boolean = false ;
 		
 		//----------------------------------------------------------------------
 		//
