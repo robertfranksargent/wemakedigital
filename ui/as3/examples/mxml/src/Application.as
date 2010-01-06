@@ -1,6 +1,5 @@
 package  
 {
-	import com.wemakedigital.ui.VContainer;
 	import com.wemakedigital.ui.Component;
 
 	import flash.display.Sprite;
