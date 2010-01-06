@@ -101,7 +101,7 @@ package com.wemakedigital.ui
 		//----------------------------------------------------------------------
 
 		/**
-		 * The width of all the children of this component.
+		 * The width of all the children in position of this component.
 		 */
 		internal function get measuredWidth () : Number
 		{
@@ -114,7 +114,7 @@ package com.wemakedigital.ui
 		}
 
 		/**
-		 * The overall height of all the children of this component.
+		 * The overall height of all the children in position of this component.
 		 */
 		internal function get measuredHeight () : Number
 		{
@@ -124,6 +124,28 @@ package com.wemakedigital.ui
 				if ( ( child.y + child.explicitHeight ) > this._measuredHeight ) this._measuredHeight = (child.y + child.explicitWidth ) ;  
 			}
 			return this._measuredHeight ;
+		}
+		
+		/**
+		 * The total width of all the children of this component regardless of their position, overlapping etc.
+		 */
+		internal function get totalWidth () : Number
+		{
+			var totalWidth : Number = 0 ;
+			for each ( var child : Component in this.components )
+				if ( isNaN( child.spareWidth ) ) totalWidth += child.explicitWidth ; 
+			return totalWidth ;
+		}
+
+		/**
+		 * The total height of all the children of this component regardless of their position, overlapping etc..
+		 */
+		internal function get totalHeight () : Number
+		{
+			var totalHeight : Number = 0 ; 
+			for each ( var child : Component in this.components )
+				if ( isNaN( child.spareHeight ) ) totalHeight += child.explicitHeight ; 
+			return totalHeight ;
 		}
 
 		//----------------------------------------------------------------------
@@ -339,7 +361,7 @@ package com.wemakedigital.ui
 		{
 			if ( this.created ) 
 			{
-				if ( this.container ) this.container.invalidatedChild() ; // TODO in future also consider if it is at all possible that the container or siblings will be affected.
+				if ( this.container ) this.container.invalidatedChild() ; 
 				else 
 				{
 					this.stage.addEventListener( Event.RENDER, this.onRender ) ;
@@ -391,7 +413,7 @@ package com.wemakedigital.ui
 				}
 				
 				for each ( var childContainer : Container in this.containers )
-					if ( childContainer.invalidated ) childContainer.updateSizeOfChildren() ;			
+					childContainer.updateSizeOfChildren() ;			
 			}
 		}
 		
@@ -402,23 +424,14 @@ package com.wemakedigital.ui
 		{
 			if ( this.created )
 			{
-				var totalWidth : Number = 0 ;
-				var totalHeight : Number = 0 ;
-				
-				for each ( var child : Component in this.components )
-				{
-					if ( isNaN( child.spareWidth ) ) totalWidth += child.explicitWidth ; 
-					if ( isNaN( child.spareHeight ) ) totalHeight += child.explicitHeight ; 
-				}
-
 				for each ( var childComponent : Component in this.components )
 				{
-					if ( !isNaN( childComponent.spareWidth ) ) childComponent.explicitWidth = Math.max ( ( this.explicitWidth - totalWidth ) * childComponent.spareWidth >> 0, 0 ) ; 
-					if ( !isNaN( childComponent.spareHeight ) ) childComponent.explicitHeight = Math.max ( ( this.explicitHeight - totalHeight ) * childComponent.spareHeight >> 0, 0 ) ; 
+					if ( !isNaN( childComponent.spareWidth ) ) childComponent.explicitWidth = Math.max ( ( this.explicitWidth - this.totalWidth ) * childComponent.spareWidth >> 0, 0 ) ; 
+					if ( !isNaN( childComponent.spareHeight ) ) childComponent.explicitHeight = Math.max ( ( this.explicitHeight - this.totalHeight ) * childComponent.spareHeight >> 0, 0 ) ; 
 				}
 				
 				for each ( var childContainer : Container in this.containers )
-					if ( childContainer.invalidated ) childContainer.updateSizeOfSiblings() ;
+					childContainer.updateSizeOfSiblings() ;
 			}
 		}
 		
@@ -429,15 +442,12 @@ package com.wemakedigital.ui
 		{
 			if ( this.created )
 			{
-				if ( this.invalidated ) 
+				for each ( var childComponent : Component in this.components )
 				{
-					for each ( var childComponent : Component in this.components )
-					{
-						 var x : int = this.getChildX( childComponent ) >> 0 ;
-						 var y : int = this.getChildY( childComponent ) >> 0 ;
-						 if ( childComponent.x != x ) childComponent.x = x ;
-						 if ( childComponent.y != y ) childComponent.y = y ;
-					}
+					 var x : int = this.getChildX( childComponent ) >> 0 ;
+					 var y : int = this.getChildY( childComponent ) >> 0 ;
+					 if ( childComponent.x != x ) childComponent.x = x ;
+					 if ( childComponent.y != y ) childComponent.y = y ;
 				}
 				
 				for each ( var childContainer : Container in this.containers )
@@ -486,6 +496,7 @@ package com.wemakedigital.ui
 				this.updateSizeOfContainers() ;
 				this.updateSizeOfChildren() ;
 				this.updateSizeOfSiblings() ;
+				this.updateSizeOfChildren() ;
 				this.updatePositionOfChildren() ;
 				this.render() ;
 			}

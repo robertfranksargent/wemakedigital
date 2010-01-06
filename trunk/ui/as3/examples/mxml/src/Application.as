@@ -30,8 +30,8 @@ package
 			if ( e.target == this.view.component1 ) 
 			{
 				var component : Component = new Component() ;
-				component.width = 100 ;
-				component.height = 100 ;
+				component.relativeWidth = Math.random() ;
+				component.height = 10 ;
 				component.colour = 0x999999 ;
 				this.view.container1.addChild( component ) ;
 			}
