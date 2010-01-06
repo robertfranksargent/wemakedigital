@@ -36,7 +36,7 @@ package com.wemakedigital.ui
 		/**
 		 * @inheritDoc
 		 */
-		override internal function get measuredHeight () : Number
+		override public function get measuredHeight () : Number
 		{
 			return this.totalHeight + this.totalSpace ;
 		}

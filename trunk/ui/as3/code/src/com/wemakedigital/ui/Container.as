@@ -103,7 +103,7 @@ package com.wemakedigital.ui
 		/**
 		 * The width of all the children in position of this component.
 		 */
-		internal function get measuredWidth () : Number
+		public function get measuredWidth () : Number
 		{
 			this._measuredWidth = 0 ;
 			for each ( var child : Component in this.components )
@@ -116,7 +116,7 @@ package com.wemakedigital.ui
 		/**
 		 * The overall height of all the children in position of this component.
 		 */
-		internal function get measuredHeight () : Number
+		public function get measuredHeight () : Number
 		{
 			this._measuredHeight = 0 ;
 			for each ( var child : Component in this.components )
@@ -129,7 +129,7 @@ package com.wemakedigital.ui
 		/**
 		 * The total width of all the children of this component regardless of their position, overlapping etc.
 		 */
-		internal function get totalWidth () : Number
+		public function get totalWidth () : Number
 		{
 			var totalWidth : Number = 0 ;
 			for each ( var child : Component in this.components )
@@ -140,7 +140,7 @@ package com.wemakedigital.ui
 		/**
 		 * The total height of all the children of this component regardless of their position, overlapping etc..
 		 */
-		internal function get totalHeight () : Number
+		public function get totalHeight () : Number
 		{
 			var totalHeight : Number = 0 ; 
 			for each ( var child : Component in this.components )

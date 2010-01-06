@@ -157,7 +157,7 @@ package com.wemakedigital.ui
 		/**
 		 * @private
 		 */
-		internal var invalidated : Boolean = false ;
+		protected var invalidated : Boolean = false ;
 		
 		//----------------------------------------------------------------------
 		//
