@@ -38,7 +38,7 @@ package com.wemakedigital.ui
 		 */
 		override internal function get measuredWidth () : Number
 		{
-			return this._measuredWidth || 0 ;
+			return this.totalWidth + this.totalSpace ;
 		}
 
 		//----------------------------------------------------------------------
@@ -70,25 +70,25 @@ package com.wemakedigital.ui
 		{
 			if ( this.created )
 			{
-				var totalWidth : Number = 0 ;
-				
 				for each ( var childComponent : Component in this.components )
 				{
 					if ( !isNaN( childComponent.relativeWidth ) ) childComponent.explicitWidth = this.explicitWidth * childComponent.relativeWidth >> 0 ; 
 					if ( !isNaN( childComponent.relativeHeight ) ) childComponent.explicitHeight = this.explicitHeight * childComponent.relativeHeight >> 0 ;
 					if ( !isNaN( childComponent.top ) && !isNaN( childComponent.bottom ) ) childComponent.explicitHeight = this.explicitHeight - childComponent.top - childComponent.bottom ;
-					totalWidth += childComponent.explicitWidth ;
 				}
 				
-				if ( ! isNaN ( this.spaceFixed ) ) this.spaceSize = this.spaceFixed ;
-				else if ( ! isNaN ( this.spaceRelative ) ) this.spaceSize = this.spaceRelative * this.explicitWidth ;
-				else if ( this.anchor.toUpperCase() == HContainer.CENTRE || this.anchor.toUpperCase() == HContainer.RIGHT || this.anchor.toUpperCase() == HContainer.LEFT ) this.spaceSize = 0 ;
-				else this.spaceSize = ( this.explicitWidth - totalWidth ) / ( this.children.length - 1 ) ;
-				totalWidth += ( this.spaceSize * ( this.children.length - 1 ) ) ;
-				this._measuredWidth = totalWidth ;
+				if ( this.children && this.children.length > 0 )
+				{
+					if ( ! isNaN ( this.space ) ) this.explicitSpace = this.space ;
+					else if ( ! isNaN ( this.relativeSpace ) ) this.explicitSpace = this.relativeSpace * this.explicitHeight ;
+					else if ( this.anchor.toUpperCase() == VContainer.TOP || this.anchor.toUpperCase() == VContainer.CENTRE || this.anchor.toUpperCase() == VContainer.BOTTOM ) this.explicitSpace = 0 ;
+					else this.explicitSpace = ( this.explicitHeight - totalHeight ) / ( this.children.length - 1 ) ;
+					this.totalSpace = this.explicitSpace * ( this.children.length - 1 ) ;
+				}
+				else this.totalSpace = 0 ;
 				
 				for each ( var childContainer : Container in this.containers )
-					if ( childContainer.invalidated ) childContainer.updateSizeOfChildren() ;			
+					childContainer.updateSizeOfChildren() ;			
 			}
 		}
 		
@@ -97,7 +97,7 @@ package com.wemakedigital.ui
 		 */
 		override internal function updatePositionOfChildren() : void
 		{
-			if ( this.created && this.invalidated )
+			if ( this.created )
 			{
 				switch ( this.anchor.toUpperCase() )
 				{
@@ -123,7 +123,7 @@ package com.wemakedigital.ui
 		override protected function getChildX ( child : Component ) : Number
 		{
 			var childX : Number = this.position ;
-			this.position += child.explicitWidth + this.spaceSize ;
+			this.position += child.explicitWidth + this.explicitSpace ;
 			return childX ;
 		}
 	}

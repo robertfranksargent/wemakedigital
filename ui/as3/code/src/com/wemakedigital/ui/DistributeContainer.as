@@ -15,11 +15,15 @@ package com.wemakedigital.ui
 		//
 		//----------------------------------------------------------------------
 		
-		// TODO rename to explicitSpace
 		/**
 		 * @private
 		 */
-		protected var spaceSize : Number ;
+		protected var explicitSpace : Number ;
+
+		/**
+		 * @private
+		 */
+		protected var totalSpace : Number ;
 		
 		/**
 		 * @private
@@ -37,35 +41,35 @@ package com.wemakedigital.ui
 		/**
 		 * @private
 		 */
-		protected var _spaceFixed : Number = NaN ;
+		protected var _space : Number = NaN ;
 
 		/**
 		 * @private
 		 */
-		protected var _spaceFixedMin : Number = 0 ;
+		protected var _minSpace : Number = 0 ;
 
 		/**
 		 * @private
 		 */
-		protected var _spaceFixedMax : Number = NaN ;
+		protected var _maxSpace : Number = NaN ;
 
 		//----------------------------------------------------------------------
 		
-		// TODO rename to spaceRelative
+		// TODO rename to relativeSpace
 		/**
 		 * @private
 		 */
-		protected var _spaceRelative : Number = NaN ;
+		protected var _relativeSpace : Number = NaN ;
 
 		/**
 		 * @private
 		 */
-		protected var _spaceRelativeMin : Number = 0 ;
+		protected var _minRelativeSpace : Number = 0 ;
 
 		/**
 		 * @private
 		 */
-		protected var _spaceRelativeMax : Number = NaN ;
+		protected var _maxRelativeSpace : Number = NaN ;
 
 		//----------------------------------------------------------------------
 		
@@ -107,20 +111,20 @@ package com.wemakedigital.ui
 		/**
 		 * The fixed space in pixels.
 		 */
-		public function get spaceFixed () : Number
+		public function get space () : Number
 		{
-			return this._spaceFixed;
+			return this._space;
 		}
 
 		/**
 		 * @private
 		 */
-		public function set spaceFixed ( value : Number ) : void
+		public function set space ( value : Number ) : void
 		{
-			this._spaceFixed = value ;
+			this._space = value ;
 			
 			// If space is fixed, it can't be relative.
-			if ( ! isNaN( this._spaceFixed ) ) this._spaceRelative = NaN ;
+			if ( ! isNaN( this._space ) ) this._relativeSpace = NaN ;
 			
 			this.update() ;
 		}
@@ -128,33 +132,33 @@ package com.wemakedigital.ui
 		/**
 		 * The minimum fixed space in pixels.
 		 */
-		public function get spaceFixedMin () : Number
+		public function get minSpace () : Number
 		{
-			return this._spaceFixedMin;
+			return this._minSpace;
 		}
 
 		/**
 		 * @private
 		 */
-		public function set spaceFixedMin ( value : Number ) : void
+		public function set minSpace ( value : Number ) : void
 		{
-			this._spaceFixedMin = value ;
+			this._minSpace = value ;
 		}
 
 		/**
 		 * The maximum fixed space in pixels.
 		 */
-		public function get spaceFixedMax () : Number
+		public function get maxSpace () : Number
 		{
-			return this._spaceFixedMax;
+			return this._maxSpace;
 		}
 
 		/**
 		 * @private
 		 */
-		public function set spaceFixedMax ( value : Number ) : void
+		public function set maxSpace ( value : Number ) : void
 		{
-			this._spaceFixedMax = value ;
+			this._maxSpace = value ;
 		}
 
 		//----------------------------------------------------------------------
@@ -162,20 +166,20 @@ package com.wemakedigital.ui
 		/**
 		 * The space relative to the container size.
 		 */
-		public function get spaceRelative () : Number
+		public function get relativeSpace () : Number
 		{
-			return this._spaceRelative;
+			return this._relativeSpace;
 		}
 
 		/**
 		 * @private
 		 */
-		public function set spaceRelative ( value : Number ) : void
+		public function set relativeSpace ( value : Number ) : void
 		{
-			this._spaceRelative = value ;
+			this._relativeSpace = value ;
 			
 			// If the space is relative, it can't be fixed.
-			if ( ! isNaN( this._spaceRelative ) ) this._spaceFixed = NaN ;
+			if ( ! isNaN( this._relativeSpace ) ) this._space = NaN ;
 			
 			this.update() ;
 		}
@@ -183,35 +187,35 @@ package com.wemakedigital.ui
 		/**
 		 * The minimum space relative to the container size.
 		 */
-		public function get spaceRelativeMin () : Number
+		public function get minRelativeSpace () : Number
 		{
-			return this._spaceRelativeMin;
+			return this._minRelativeSpace;
 		}
 
 		/**
 		 * @private
 		 */
-		public function set spaceRelativeMin ( value : Number ) : void
+		public function set minRelativeSpace ( value : Number ) : void
 		{
-			this._spaceRelativeMin = value ;
+			this._minRelativeSpace = value ;
 		}
 
 		/**
 		 * The maximum space relative to the container size.
 		 */
-		public function get spaceRelativeMax () : Number
+		public function get maxRelativeSpace () : Number
 		{
-			return this._spaceRelativeMax;
+			return this._maxRelativeSpace;
 		}
 
 		/**
 		 * @private
 		 */
-		public function set spaceRelativeMax ( value : Number ) : void
+		public function set maxRelativeSpace ( value : Number ) : void
 		{
-			this._spaceRelativeMax = value ;
+			this._maxRelativeSpace = value ;
 		}
-
+		
 		//----------------------------------------------------------------------
 		
 		/**
@@ -298,6 +302,24 @@ package com.wemakedigital.ui
 		{
 			this.removeSeparators() ;
 			super.removeChildren() ;
+		}
+
+		/**
+		 * @inheritDoc
+		 */
+		override internal function updateSizeOfSiblings () : void
+		{
+			if ( this.created )
+			{
+				for each ( var childComponent : Component in this.components )
+				{
+					if ( !isNaN( childComponent.spareWidth ) ) childComponent.explicitWidth = Math.max ( ( this.explicitWidth - this.measuredWidth ) * childComponent.spareWidth >> 0, 0 ) ; 
+					if ( !isNaN( childComponent.spareHeight ) ) childComponent.explicitHeight = Math.max ( ( this.explicitHeight - this.measuredHeight ) * childComponent.spareHeight >> 0, 0 ) ; 
+				}
+				
+				for each ( var childContainer : Container in this.containers )
+					childContainer.updateSizeOfSiblings() ;
+			}
 		}
 
 		/**
