@@ -1,5 +1,5 @@
-package com.wemakedigital.ui.text
-{
+package com.wemakedigital.ui.text {
+	import com.wemakedigital.log.Log;
 	import com.wemakedigital.ui.Container;
 
 	import flash.display.BitmapData;
@@ -36,6 +36,9 @@ package com.wemakedigital.ui.text
 //		protected var _marginRight : Number = 0 ;
 //		protected var _marginTop : Number = 0 ;
 //		protected var _marginBottom : Number = 0 ;
+		
+		// TODO temp
+		private var bitmapCount : uint ;
 		
 		protected var _sample : String ; 
 		
@@ -198,7 +201,7 @@ package com.wemakedigital.ui.text
 			{
 				
 				var defaultStyle : Object = { fontFamily : "_sans", 
-											  fontSize : "18",
+											  fontSize : "48",
 											  color : "#000000",
 											  fontWeight : "regular",
 											  letterSpacing : "0",
@@ -227,6 +230,8 @@ package com.wemakedigital.ui.text
 				if ( !this.autoWidth ) this.textField.width = this.explicitWidth ;
 				if ( !this.autoHeight ) this.textField.height = this.explicitHeight ;
 				
+				this.bitmapCount = 0 ;
+				
 				var cropLeft : uint = this.getCropLeft() ; 
 				var cropRight : uint = 0 ; //this.getCropRight() ; 
 				
@@ -250,8 +255,10 @@ package com.wemakedigital.ui.text
 				this._measuredHeight = this.textField.height - cropTop - cropBottom ;
 	
 				this.graphics.clear() ;
-				this.graphics.beginFill( 0xFF0000, 0.1 );
+				this.graphics.beginFill( 0x0000FF, 0.1 );
 				this.graphics.drawRect(0, 0, this.measuredWidth, this.measuredHeight ) ;
+				
+				Log.debug( this, "render", this.bitmapCount ) ;
 			}
 			super.render() ;
 		}
@@ -318,15 +325,16 @@ package com.wemakedigital.ui.text
 
 		protected function getCropLeft () : uint
 		{
-			var x : uint , y : uint, bitmapData : BitmapData ;
+			var x : uint , y : uint ;
+			var bitmapData : BitmapData = new BitmapData( 1, this.textField.getLineMetrics(0).height, true, 0x00000000 ) ;
 			this.textField.x = 0 ;
 			this.textField.y = 0 ;
 			for ( x = 0 ; x < this.textField.width ; x ++ )
 			{
-				bitmapData = new BitmapData( 1, this.textField.height, true, 0x00000000 ) ;
 				bitmapData.draw( this ) ;
 				for ( y = 0 ; y < this.textField.height ; y ++ ) 
 				{
+					this.bitmapCount ++ ;
 					if ( bitmapData.getPixel32( 0, y ) == 0xFF000000 ) // TODO 
 					{
 						bitmapData.dispose() ;
@@ -334,22 +342,23 @@ package com.wemakedigital.ui.text
 					}
 				}
 				this.textField.x -- ;
-				bitmapData.dispose() ;
 			}
+			bitmapData.dispose() ;
 			return 0 ;
 		}
 		
 		protected function getCropRight () : uint
 		{
-			var x : uint , y : uint, bitmapData : BitmapData ;
+			var x : uint , y : uint ;
+			var bitmapData : BitmapData = new BitmapData( 1, this.textField.height, true, 0x00000000 ) ;
 			this.textField.x = 1 - this.textField.width ;
 			this.textField.y = 0 ;
 			for ( x = 0 ; x < this.textField.width ; x ++ )
 			{
-				bitmapData = new BitmapData( 1, this.textField.height, true, 0x00000000 ) ;
-				bitmapData.draw( this ) ;
+				this.bitmapCount ++ ;
 				for ( y = 0 ; y < this.textField.height ; y ++ ) 
 				{
+					bitmapData.draw( this ) ;
 					if ( bitmapData.getPixel32( 0, y ) == 0xFF000000 ) // TODO 
 					{
 						bitmapData.dispose() ;
@@ -357,22 +366,23 @@ package com.wemakedigital.ui.text
 					}
 				}
 				this.textField.x ++ ;
-				bitmapData.dispose() ;
 			}
+			bitmapData.dispose() ;
 			return 0 ;
 		}
 		
 		protected function getCropTop () : uint
 		{
-			var x : uint , y : uint, bitmapData : BitmapData ;
+			var x : uint , y : uint ;
+			var bitmapData : BitmapData = new BitmapData( this.textField.textWidth, 1, true, 0x00000000 ) ;
 			this.textField.x = 0 ;
 			this.textField.y = 0 ;
 			for ( y = 0 ; y < this.textField.height ; y ++ )
 			{
-				bitmapData = new BitmapData( this.textField.width, 1, true, 0x00000000 ) ;
 				bitmapData.draw( this ) ;
-				for ( x = 0 ; x < this.textField.width ; x ++ )
+				for ( x = 0 ; x < this.textField.textWidth ; x ++ )
 				{
+					this.bitmapCount ++ ;
 					if ( bitmapData.getPixel32( x, 0 ) == 0xFF000000 ) // TODO
 					{
 						bitmapData.dispose() ;
@@ -380,22 +390,23 @@ package com.wemakedigital.ui.text
 					}
 				}
 				this.textField.y -- ; 
-				bitmapData.dispose() ;
 			}
+			bitmapData.dispose() ;
 			return 1000 ;
 		}
 		
 		protected function getCropBottom () : uint
 		{
-			var x : uint , y : uint, bitmapData : BitmapData ;
+			var x : uint , y : uint ;
+			var bitmapData : BitmapData = new BitmapData( this.textField.textWidth, 1, true, 0x00000000 ) ;
 			this.textField.x = 0 ;
 			this.textField.y = 1 - this.textField.height ;
 			for ( y = 0 ; y < this.textField.height ; y ++ )
 			{
-				bitmapData = new BitmapData( this.textField.width, 1, true, 0x00000000 ) ;
 				bitmapData.draw( this ) ;
-				for ( x = 0 ; x < this.textField.width - 1 ; x ++ )
+				for ( x = 0 ; x < this.textField.textWidth - 1 ; x ++ )
 				{
+					this.bitmapCount ++ ;
 					if ( bitmapData.getPixel32( x, 0 ) == 0xFF000000 ) // TODO
 					{
 						bitmapData.dispose() ;
@@ -403,8 +414,8 @@ package com.wemakedigital.ui.text
 					}
 				}
 				this.textField.y ++ ; 
-				bitmapData.dispose() ;
 			}
+			bitmapData.dispose() ;
 			return 0 ;
 		}
 	}
