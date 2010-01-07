@@ -1,13 +1,16 @@
-package com.wemakedigital.ui.text {
+package com.wemakedigital.ui.text 
+{
 	import com.wemakedigital.log.Log;
 	import com.wemakedigital.ui.Container;
 
 	import flash.display.BitmapData;
+	import flash.geom.Point;
 	import flash.text.AntiAliasType;
 	import flash.text.StyleSheet;
 	import flash.text.TextField;
 	import flash.text.TextFieldAutoSize;
 	import flash.text.TextFieldType;
+	import flash.text.TextLineMetrics;
 
 	public class Text extends Container
 	{
@@ -38,7 +41,7 @@ package com.wemakedigital.ui.text {
 //		protected var _marginBottom : Number = 0 ;
 		
 		// TODO temp
-		private var bitmapCount : uint ;
+		private var pixelCount : uint ;
 		
 		protected var _sample : String ; 
 		
@@ -200,8 +203,8 @@ package com.wemakedigital.ui.text {
 			if( Text.styleSheet.styleNames.indexOf(".default") < 0 )
 			{
 				
-				var defaultStyle : Object = { fontFamily : "_sans", 
-											  fontSize : "48",
+				var defaultStyle : Object = { fontFamily : "_serif", 
+											  fontSize : "50",
 											  color : "#000000",
 											  fontWeight : "regular",
 											  letterSpacing : "0",
@@ -230,10 +233,12 @@ package com.wemakedigital.ui.text {
 				if ( !this.autoWidth ) this.textField.width = this.explicitWidth ;
 				if ( !this.autoHeight ) this.textField.height = this.explicitHeight ;
 				
-				this.bitmapCount = 0 ;
+				this.pixelCount = 0 ;
 				
+				// TODO reverse for right aligned text, just use textWidth for centered text.
 				var cropLeft : uint = this.getCropLeft() ; 
-				var cropRight : uint = 0 ; //this.getCropRight() ; 
+				var cropRight : uint = this.textField.width - cropLeft - this.textField.textWidth >> 0 ;
+				this.textField.x = - cropLeft ;
 				
 				if ( this.sample && this.sample.length > 0 )
 				{
@@ -248,17 +253,18 @@ package com.wemakedigital.ui.text {
 				if ( this.sample && this.sample.length > 0 )
 					this.textField.htmlText = "<span class='" + this.style + "'>" + this.htmlText + "</span>" ;
 				
-				this.textField.x = - cropLeft ;
+				
 				this.textField.y = - cropTop ;
 				
-				this._measuredWidth = this.textField.width - cropLeft - cropRight ;
-				this._measuredHeight = this.textField.height - cropTop - cropBottom ;
+				this._measuredWidth = this.textField.width - cropLeft - cropRight >> 0 ;
+				this._measuredHeight = this.textField.height - cropTop - cropBottom >> 0 ;
 	
 				this.graphics.clear() ;
-				this.graphics.beginFill( 0x0000FF, 0.1 );
+				this.graphics.beginFill( 0xCCCCCC );
 				this.graphics.drawRect(0, 0, this.measuredWidth, this.measuredHeight ) ;
 				
-				Log.debug( this, "render", this.bitmapCount ) ;
+				Log.debug( this, "render", this.textField.textWidth ) ;
+//				Log.debug( this, "render", this.pixelCount, cropLeft, cropRight, cropTop, cropTop ) ;
 			}
 			super.render() ;
 		}
@@ -295,6 +301,8 @@ package com.wemakedigital.ui.text {
 		{
 			if ( this.created )
 			{
+				this.textField.condenseWhite = true ;
+				
 				this.textField.x = 0 ; //this.marginLeft - Text.GUTTER_LEFT ;
 				this.textField.y = 0 ; //this.marginTop - Text.GUTTER_TOP ;
 				this.textField.width = this.explicitWidth ;
@@ -310,8 +318,8 @@ package com.wemakedigital.ui.text {
 				this.textField.wordWrap = !this.autoWidth ;				
 				this.textField.multiline = true ;				
 				this.textField.autoSize = TextFieldAutoSize.LEFT ;
-				this.textField.borderColor = 0xCCCCCC ;
-				this.textField.border = true ;
+//				this.textField.borderColor = 0xCCCCCC ;
+//				this.textField.border = true ;
 
 				// TextField bug fix
 				this.textField.width;
@@ -323,66 +331,103 @@ package com.wemakedigital.ui.text {
 		
 		//----------------------------------------------------------------------
 
+//		protected function getWidestLineIndex () : uint
+//		{
+//			var i : uint, index : uint, w : uint = 0 ;
+//			for ( i = 0 ; i < this.textField.numLines ; i ++ )
+//			{
+//				var metrics : TextLineMetrics = this.textField.getLineMetrics( i ) ;
+//				if ( metrics.width > w ) 
+//				{
+//					w = metrics.width ;
+//					index = i ;
+//				}
+//			}
+//			return index ;
+//		}
+//
+//
+//		protected function getTextWidth () : uint
+//		{
+//			var index : uint = this.getWidestLineIndex() ;
+//			
+//			var i : uint, w : uint = 0 ;
+//			for ( i = 0 ; i < this.textField.numLines ; i ++ )
+//			{
+//				var metrics : TextLineMetrics = this.textField.getLineMetrics( i ) ;
+//				if ( metrics.width > w ) w = metrics.width ;
+//			}
+//			return w >> 0 ;	
+//		}
+
 		protected function getCropLeft () : uint
-		{
-			var x : uint , y : uint ;
-			var bitmapData : BitmapData = new BitmapData( 1, this.textField.getLineMetrics(0).height, true, 0x00000000 ) ;
-			this.textField.x = 0 ;
-			this.textField.y = 0 ;
-			for ( x = 0 ; x < this.textField.width ; x ++ )
+		{	
+			var point : Point = this.textField.localToGlobal( new Point() ) ;
+			var i : uint, cropLeft : uint = 0 ;
+			for ( i = 0 ; i < this.textField.numLines ; i ++ )
 			{
-				bitmapData.draw( this ) ;
-				for ( y = 0 ; y < this.textField.height ; y ++ ) 
-				{
-					this.bitmapCount ++ ;
-					if ( bitmapData.getPixel32( 0, y ) == 0xFF000000 ) // TODO 
-					{
-						bitmapData.dispose() ;
-						return x ;
-					}
-				}
-				this.textField.x -- ;
+				var metrics : TextLineMetrics = this.textField.getLineMetrics( i ) ;
+				if ( metrics.x > cropLeft ) cropLeft = metrics.x ;
 			}
-			bitmapData.dispose() ;
-			return 0 ;
+			return cropLeft ? ( cropLeft - point.x >> 0 ) : 0 ;	
+//			var x : uint , y : uint ;
+//			var bitmapData : BitmapData = new BitmapData( 1, this.textField.getLineMetrics(0).height, true, 0x00000000 ) ;
+//			this.textField.x = 0 ;
+//			this.textField.y = 0 ;
+//			for ( x = 0 ; x < this.textField.width ; x ++ )
+//			{
+//				bitmapData.draw( this ) ;
+//				for ( y = 0 ; y < this.textField.height ; y ++ ) 
+//				{
+//					this.pixelCount ++ ;
+//					if ( bitmapData.getPixel32( 0, y ) == 0xFF000000 ) // TODO 
+//					{
+//						bitmapData.dispose() ;
+//						return x ;
+//					}
+//				}
+//				this.textField.x -- ;
+//			}
+//			bitmapData.dispose() ;
+//			return 0 ;
 		}
 		
-		protected function getCropRight () : uint
-		{
-			var x : uint , y : uint ;
-			var bitmapData : BitmapData = new BitmapData( 1, this.textField.height, true, 0x00000000 ) ;
-			this.textField.x = 1 - this.textField.width ;
-			this.textField.y = 0 ;
-			for ( x = 0 ; x < this.textField.width ; x ++ )
-			{
-				this.bitmapCount ++ ;
-				for ( y = 0 ; y < this.textField.height ; y ++ ) 
-				{
-					bitmapData.draw( this ) ;
-					if ( bitmapData.getPixel32( 0, y ) == 0xFF000000 ) // TODO 
-					{
-						bitmapData.dispose() ;
-						return x ;
-					}
-				}
-				this.textField.x ++ ;
-			}
-			bitmapData.dispose() ;
-			return 0 ;
-		}
+//		protected function getCropRight () : uint
+//		{
+//			var x : uint , y : uint ;
+//			var bitmapData : BitmapData = new BitmapData( 1, this.textField.height, true, 0x00000000 ) ;
+//			this.textField.x = 1 - this.textField.width ;
+//			this.textField.y = 0 ;
+//			for ( x = 0 ; x < this.textField.width ; x ++ )
+//			{
+//				this.pixelCount ++ ;
+//				for ( y = 0 ; y < this.textField.height ; y ++ ) 
+//				{
+//					bitmapData.draw( this ) ;
+//					if ( bitmapData.getPixel32( 0, y ) == 0xFF000000 ) // TODO 
+//					{
+//						bitmapData.dispose() ;
+//						return x ;
+//					}
+//				}
+//				this.textField.x ++ ;
+//			}
+//			bitmapData.dispose() ;
+//			return 0 ;
+//		}
 		
 		protected function getCropTop () : uint
 		{
 			var x : uint , y : uint ;
 			var bitmapData : BitmapData = new BitmapData( this.textField.textWidth, 1, true, 0x00000000 ) ;
-			this.textField.x = 0 ;
+//			this.textField.x = 0 ;
 			this.textField.y = 0 ;
 			for ( y = 0 ; y < this.textField.height ; y ++ )
 			{
 				bitmapData.draw( this ) ;
 				for ( x = 0 ; x < this.textField.textWidth ; x ++ )
 				{
-					this.bitmapCount ++ ;
+					this.pixelCount ++ ;
 					if ( bitmapData.getPixel32( x, 0 ) == 0xFF000000 ) // TODO
 					{
 						bitmapData.dispose() ;
@@ -399,14 +444,14 @@ package com.wemakedigital.ui.text {
 		{
 			var x : uint , y : uint ;
 			var bitmapData : BitmapData = new BitmapData( this.textField.textWidth, 1, true, 0x00000000 ) ;
-			this.textField.x = 0 ;
+//			this.textField.x = 0 ;
 			this.textField.y = 1 - this.textField.height ;
 			for ( y = 0 ; y < this.textField.height ; y ++ )
 			{
 				bitmapData.draw( this ) ;
 				for ( x = 0 ; x < this.textField.textWidth - 1 ; x ++ )
 				{
-					this.bitmapCount ++ ;
+					this.pixelCount ++ ;
 					if ( bitmapData.getPixel32( x, 0 ) == 0xFF000000 ) // TODO
 					{
 						bitmapData.dispose() ;
