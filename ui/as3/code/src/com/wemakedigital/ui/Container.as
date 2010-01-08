@@ -480,6 +480,19 @@ package com.wemakedigital.ui
 		}
 		
 		//----------------------------------------------------------------------
+		
+		/**
+		 * @inheritDoc
+		 */
+		override public function beforeRender () : Boolean
+		{
+			var success : Boolean = true ;
+			for each ( var childComponent : Component in this.components )
+				if ( ! childComponent.beforeRender() ) success = false ;
+			return success ;
+		}
+		
+		//----------------------------------------------------------------------
 		//
 		//  Event Handlers
 		//
@@ -498,7 +511,8 @@ package com.wemakedigital.ui
 				this.updateSizeOfSiblings() ;
 				this.updateSizeOfChildren() ;
 				this.updatePositionOfChildren() ;
-				this.render() ;
+				if ( this.beforeRender() ) this.render() ;
+				else this.onRender( null ) ;
 			}
 		}
 	}
