@@ -765,5 +765,19 @@ package com.wemakedigital.ui
 //				trace ( "render", this.id ? this.id : "root", this.x, this.y, this.explicitWidth, this.explicitHeight ) ; // TODO remove this, it's just to check things aren't rendering more than once.
 			}
 		}
+		
+		//----------------------------------------------------------------------
+		
+		/**
+		 * Called by the container after the sizing and positioning in the 
+		 * container hierarchy has completed just before all invalidated 
+		 * components render themselves. This provides an opportunity for 
+		 * components to force a re-evaluation of size and position by returning
+		 * false. Default is true. 
+		 */
+		public function beforeRender () : Boolean
+		{
+			return true ;
+		}
 	}
 }
