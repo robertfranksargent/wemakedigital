@@ -1,12 +1,10 @@
 package com.wemakedigital.ui.text 
 {
-	import com.wemakedigital.log.Log;
 	import com.wemakedigital.ui.Container;
 
 	import flash.display.BitmapData;
 	import flash.geom.Point;
-	import flash.text.AntiAliasType;
-	import flash.text.StyleSheet;
+	import flash.geom.Rectangle;
 	import flash.text.TextField;
 	import flash.text.TextFieldAutoSize;
 	import flash.text.TextFieldType;
@@ -29,7 +27,10 @@ package com.wemakedigital.ui.text
 		//----------------------------------------------------------------------
 		
 		protected var _type : String = TextFieldType.DYNAMIC ;
-		protected var _antiAliasType : String = AntiAliasType.NORMAL ;
+		protected var _antiAliasType : String ;
+		protected var _gridFitType : String ;
+		protected var _thickness : Number ;
+		protected var _sharpness : Number ;
 		protected var _selectable : Boolean = false ;
 		protected var _style : String = "default" ;
 		protected var _htmlText : String = "" ;
@@ -43,12 +44,18 @@ package com.wemakedigital.ui.text
 		
 		//----------------------------------------------------------------------
 		
-		protected var _trimSample : String ; 
-		protected var _trimSmoothingFontSize : Number ;
+		protected var _trimSample : String = "bg" ; 
 		protected var _trimTop : Boolean = true ;
 		protected var _trimBottom : Boolean = true ;
-		protected var _trimLineStart : Boolean = true ;
-		protected var _trimLineEnd : Boolean = false ;
+		protected var _trimStart : Boolean = true ;
+		protected var _trimEnd : Boolean = false ;
+		
+		protected var trimTopHeight : Number = 0 ; 
+		protected var trimBottomHeight : Number = 0 ; 
+		protected var trimStartWidth : Number = 0 ; 
+		protected var trimEndWidth : Number = 0 ; 
+		
+		protected var beforeRenderFlag : Boolean = false ;
 		
 		//----------------------------------------------------------------------
 		//
@@ -77,7 +84,7 @@ package com.wemakedigital.ui.text
 		//----------------------------------------------------------------------
 		
 		/**
-		 * TODO
+		 * The key of the TextManager associated with this Text.
 		 */
 		public function get key ( ) : String
 		{
@@ -94,7 +101,7 @@ package com.wemakedigital.ui.text
 		}
 		
 		/**
-		 * TODO
+		 * The TextManager associated with this Text.
 		 */
 		public function get textManager ( ) : TextManager
 		{
@@ -122,6 +129,39 @@ package com.wemakedigital.ui.text
 		public function set antiAliasType ( value : String ) : void
 		{
 			this._antiAliasType = value ;
+			this.update() ;
+		}
+
+		public function get gridFitType ( ) : String
+		{
+			return this._gridFitType ;
+		}
+
+		public function set gridFitType ( value : String ) : void
+		{
+			this._gridFitType = value ;
+			this.update() ;
+		}
+
+		public function get thickness ( ) : Number
+		{
+			return this._thickness ;
+		}
+
+		public function set thickness ( value : Number ) : void
+		{
+			this._thickness = value ;
+			this.update() ;
+		}
+
+		public function get sharpness ( ) : Number
+		{
+			return this._sharpness ;
+		}
+
+		public function set sharpness ( value : Number ) : void
+		{
+			this._sharpness = value ;
 			this.update() ;
 		}
 		
@@ -195,7 +235,7 @@ package com.wemakedigital.ui.text
 //
 //		public function get marginBottom ( ) : Number
 //		{
-//			return this._marginBottom + 2 ; // TODO Improve this hack
+//			return this._marginBottom + 2 ; // Improve this hack
 //		}
 //		
 //		public function set marginBottom ( value : Number ) : void
@@ -207,7 +247,10 @@ package com.wemakedigital.ui.text
 		//----------------------------------------------------------------------
 		
 		/**
-		 * TODO
+		 * A short sample of text to use when trimming top and bottom. Include 
+		 * capitals or letters like "b" and "d" if you want to allow space for 
+		 * ascenders and letters like "g" and "p" for descenders. The default 
+		 * sample is "bg". 
 		 */
 		public function get trimSample ( ) : String
 		{
@@ -227,27 +270,7 @@ package com.wemakedigital.ui.text
 		}
 		
 		/**
-		 * TODO
-		 */
-		public function get trimSmoothingFontSize ( ) : Number
-		{
-			return this._trimSmoothingFontSize ;
-		}
-		
-		/**
-		 * @private
-		 */
-		public function set trimSmoothingFontSize ( value : Number ) : void
-		{
-			if ( this._trimSmoothingFontSize != value ) 
-			{
-				this._trimSmoothingFontSize = value ;
-				this.update() ;
-			}
-		}
-		
-		/**
-		 * TODO
+		 * Trim white space from the bottom of the text field.
 		 */
 		public function get trimTop ( ) : Boolean
 		{
@@ -267,7 +290,7 @@ package com.wemakedigital.ui.text
 		}
 		
 		/**
-		 * TODO
+		 * Trim white space from the bottom of the text field, use when autoHeight is true.
 		 */
 		public function get trimBottom ( ) : Boolean
 		{
@@ -287,41 +310,41 @@ package com.wemakedigital.ui.text
 		}
 		
 		/**
-		 * TODO
+		 * Trim white space from the start of the text field.
 		 */
-		public function get trimLineStart ( ) : Boolean
+		public function get trimStart ( ) : Boolean
 		{
-			return this._trimLineStart ;
+			return this._trimStart ;
 		}
 		
 		/**
 		 * @private
 		 */
-		public function set trimLineStart ( value : Boolean ) : void
+		public function set trimStart ( value : Boolean ) : void
 		{
-			if ( this._trimLineStart != value ) 
+			if ( this._trimStart != value ) 
 			{
-				this._trimLineStart = value ;
+				this._trimStart = value ;
 				this.update() ;
 			}
 		}
 		
 		/**
-		 * TODO
+		 * Trim white space from the end of the text field, use when autoWidth is true.
 		 */
-		public function get trimLineEnd ( ) : Boolean
+		public function get trimEnd ( ) : Boolean
 		{
-			return this._trimLineEnd ;
+			return this._trimEnd ;
 		}
 		
 		/**
 		 * @private
 		 */
-		public function set trimLineEnd ( value : Boolean ) : void
+		public function set trimEnd ( value : Boolean ) : void
 		{
-			if ( this._trimLineEnd != value ) 
+			if ( this._trimEnd != value ) 
 			{
-				this._trimLineEnd = value ;
+				this._trimEnd = value ;
 				this.update() ;
 			}
 		}
@@ -338,6 +361,8 @@ package com.wemakedigital.ui.text
 		public function Text ()
 		{
 			super() ;
+			
+			this.mouseChildren = false ;
 		}
 		
 		//----------------------------------------------------------------------
@@ -351,18 +376,18 @@ package com.wemakedigital.ui.text
 		 */
 		override public function beforeRender () : Boolean
 		{
-			
-			if ( this.autoWidth ) 
+			if ( this.created && this.invalidated && !this.beforeRenderFlag )
 			{
-				this.textField.width = this.explicitWidth ;
-				this.trimHorizontal() ;
-			}
-			else if ( this.autoHeight ) 
-			{
+				this.textField.width = this.explicitWidth ; 
 				this.textField.height = this.explicitHeight ;
-				this.trimVertical() ;
-			}
 				
+				this.trimHorizontal() ;
+				this.trimVertical() ;
+				
+				this.beforeRenderFlag = true ;
+				
+				return false ;
+			}
 			return true ;
 		}
 		
@@ -373,51 +398,7 @@ package com.wemakedigital.ui.text
 		{
 			if ( this.created && this.invalidated )
 			{
-				if ( !this.autoWidth ) 
-				{
-					this.textField.width = this.explicitWidth ;
-					this.trimHorizontal() ;
-				}
-				
-				if ( !this.autoHeight ) 
-				{
-					this.textField.height = this.explicitHeight ;
-					this.trimVertical() ;
-				}
-				
-				
-				
-				
-//				// TODO reverse for right aligned text, just use textWidth for centered text.
-//				var cropLeft : uint = this.getCropLeft() ; 
-//				var cropRight : uint = this.textField.width - cropLeft - this.textField.textWidth >> 0 ;
-//				this.textField.x = - cropLeft ;
-//				
-//				if ( this.sample && this.sample.length > 0 )
-//				{
-//					for ( var i : uint = 1, replace : String = this.sample ; i < this.textField.numLines ; i++ )
-//						replace += "<br/>" + this.sample ;
-//					this.textField.htmlText = "<span class='" + this.style + "'>" + replace + "</span>" ;
-//				}
-//				
-//				var cropTop : uint = this.getCropTop() ; 
-//				var cropBottom : uint = this.getCropBottom() ; 
-//	
-//				if ( this.sample && this.sample.length > 0 )
-//					this.textField.htmlText = "<span class='" + this.style + "'>" + this.htmlText + "</span>" ;
-//				
-//				
-//				this.textField.y = - cropTop ;
-//				
-//				this._measuredWidth = this.textField.width - cropLeft - cropRight >> 0 ;
-//				this._measuredHeight = this.textField.height - cropTop - cropBottom >> 0 ;
-//	
-//				this.graphics.clear() ;
-//				this.graphics.beginFill( 0xCCCCCC );
-//				this.graphics.drawRect(0, 0, this.measuredWidth, this.measuredHeight ) ;
-//				
-//				Log.debug( this, "render", this.textField.textWidth ) ;
-//				Log.debug( this, "render", this.pixelCount, cropLeft, cropRight, cropTop, cropTop ) ;
+				this.beforeRenderFlag = false ;
 			}
 			super.render() ;
 		}
@@ -456,14 +437,17 @@ package com.wemakedigital.ui.text
 			{
 				this.textField.condenseWhite = true ;
 				
-				this.textField.x = 0 ; //this.marginLeft - Text.GUTTER_LEFT ;
-				this.textField.y = 0 ; //this.marginTop - Text.GUTTER_TOP ;
+				this.textField.x = 0 ; 
+				this.textField.y = 0 ; 
 				this.textField.width = this.explicitWidth ;
 				this.textField.height = this.explicitHeight ;
 				
 				this.textField.type = this.type ;
 				this.textField.embedFonts = this.textManager.embedFonts;
-				this.textField.antiAliasType = this.antiAliasType ;
+				this.textField.antiAliasType = this.antiAliasType || this.textManager.antiAliasType ;
+				this.textField.gridFitType = this.gridFitType || this.textManager.gridFitType ;
+				this.textField.thickness = this.thickness || this.textManager.thickness ;
+				this.textField.sharpness = this.sharpness || this.textManager.sharpness ;
 				this.textField.selectable = this.selectable ;
 				this.textField.mouseEnabled = this.selectable ;
 				this.textField.styleSheet = this.textManager.styleSheet ;
@@ -471,26 +455,12 @@ package com.wemakedigital.ui.text
 				this.textField.wordWrap = !this.autoWidth ;				
 				this.textField.multiline = true ;				
 				this.textField.autoSize = TextFieldAutoSize.LEFT ;
-//				this.textField.borderColor = 0xCCCCCC ;
-//				this.textField.border = true ;
 
 				// TextField bug fix
-				this.textField.width;
-				this.textField.height;
+				this.textField.width ;
+				this.textField.height ;
 				
-				// var textTrim : TextTrim = this.textManager.getTrimData( this.style, this.antiAliasType, this.trimSample ) ;
-				
-				if ( this.autoWidth )
-				{
-					
-				}
-				
-				if ( this.autoHeight )
-				{
-					
-				}
-				
-				this.invalidate() ;		
+				this.invalidate() ;
 			}
 		}
 		
@@ -498,100 +468,137 @@ package com.wemakedigital.ui.text
 
 		protected function trimHorizontal () : void
 		{
+			var textTrim : TextTrim = this.textManager.getTrimData( this.style, this.trimSample ) ; 
 			
+			if ( this.trimStart )
+			{
+				if ( !isNaN( textTrim.trimStartWidth ) ) this.trimStartWidth = textTrim.trimStartWidth ;
+				else textTrim.trimStartWidth = this.trimStartWidth = this.getTrimStartWidth( this.getTrimStartRectangle() ) ; 
+			}
+			else this.trimStartWidth = 2 ;
+
+			this.trimEndWidth = this.trimEnd ? this.getTrimEndWidth () : 0 ;
+			
+			this.textField.x = - this.trimStartWidth ; 
+			this.textField.y = 0 ; 
+			
+			this._measuredWidth = Math.round( this.trimEnd ? this.textField.width - this.trimEndWidth - this.trimStartWidth : this.textField.textWidth ) ;
 		}
+		
+		protected function getTrimStartRectangle () : Rectangle
+		{
+			var rectangle : Rectangle = new Rectangle( 0, 0, this.textField.textWidth, 0 ) ;
+			var metrics : TextLineMetrics ;
+			for ( var i : uint = 0, n : uint = this.textField.numLines; i < n; i ++ )
+			{
+				metrics = this.textField.getLineMetrics( i ) ; 
+				if ( metrics.x > rectangle.x ) 
+				{
+					rectangle.x = metrics.x ;
+					rectangle.y = metrics.height * i ;
+					rectangle.height = metrics.height ;
+				}
+			}
+			if ( !this.textField.embedFonts ) rectangle.x = Math.max ( 0, rectangle.x - this.textField.localToGlobal( new Point() ).x >> 0 ) ;
+			return rectangle ;
+		}
+		
+		protected function getTrimStartWidth ( rectangle : Rectangle ) : uint
+		{
+			var x : uint , y : uint ;
+			var bitmapData : BitmapData = new BitmapData( 1, rectangle.height, true, 0x00000000 ) ;
+			this.textField.x = - rectangle.x ;
+			this.textField.y = - rectangle.y ;
+			for ( x = 0 ; x < this.textField.width ; x ++ )
+			{
+				bitmapData.draw( this ) ;
+				for ( y = 0 ; y < this.textField.height ; y ++ ) 
+				{
+					var pixel : uint = bitmapData.getPixel32( 0, y ) ;
+					if ( pixel != 0x00000000 ) 
+					{
+						bitmapData.dispose() ;
+						return x + rectangle.x ;
+					}
+				}
+				this.textField.x -- ;
+			}
+			bitmapData.dispose() ;
+			return 0 ;
+		}
+		
+		protected function getTrimEndWidth () : uint
+		{
+			var x : uint , y : uint ;
+			var bitmapData : BitmapData = new BitmapData( 1, this.textField.height, true, 0x00000000 ) ;
+			this.textField.x = 1 - this.textField.width ;
+			this.textField.y = 0 ;
+			for ( x = 0 ; x < this.textField.width ; x ++ )
+			{
+				bitmapData.draw( this ) ;
+				for ( y = 0 ; y < this.textField.height ; y ++ ) 
+				{
+					var pixel : uint = bitmapData.getPixel32( 0, y ) ;
+					if ( pixel != 0x00000000 ) 
+					{
+						bitmapData.dispose() ;
+						return x ;
+					}
+				}
+				this.textField.x ++ ;
+			}
+			bitmapData.dispose() ;
+			return 0 ;
+		}
+		
+		//----------------------------------------------------------------------
 		
 		protected function trimVertical () : void
 		{
+			var textTrim : TextTrim = this.textManager.getTrimData( this.style, this.trimSample ) ;
+			var cached : Boolean = !isNaN( textTrim.trimTopHeight ) && !isNaN( textTrim.trimBottomHeight ) ;
 			
-		}
-	
-//		protected function getWidestLineIndex () : uint
-//		{
-//			var i : uint, index : uint, w : uint = 0 ;
-//			for ( i = 0 ; i < this.textField.numLines ; i ++ )
-//			{
-//				var metrics : TextLineMetrics = this.textField.getLineMetrics( i ) ;
-//				if ( metrics.width > w ) 
-//				{
-//					w = metrics.width ;
-//					index = i ;
-//				}
-//			}
-//			return index ;
-//		}
-//
-//
-//		protected function getTextWidth () : uint
-//		{
-//			var index : uint = this.getWidestLineIndex() ;
-//			
-//			var i : uint, w : uint = 0 ;
-//			for ( i = 0 ; i < this.textField.numLines ; i ++ )
-//			{
-//				var metrics : TextLineMetrics = this.textField.getLineMetrics( i ) ;
-//				if ( metrics.width > w ) w = metrics.width ;
-//			}
-//			return w >> 0 ;	
-//		}
-
-		protected function getCropLeft () : uint
-		{	
-			var point : Point = this.textField.localToGlobal( new Point() ) ;
-			var i : uint, cropLeft : uint = 0 ;
-			for ( i = 0 ; i < this.textField.numLines ; i ++ )
+			if ( !cached ) 
 			{
-				var metrics : TextLineMetrics = this.textField.getLineMetrics( i ) ;
-				if ( metrics.x > cropLeft ) cropLeft = metrics.x ;
+				if ( this.trimSample && this.trimSample.length > 0 )
+				{
+					for ( var i : uint = 1, replace : String = this.trimSample ; i < this.textField.numLines ; i++ )
+						replace += "<br/>" + this.trimSample ;
+					this.textField.htmlText = "<span class='" + this.style + "'>" + replace + "</span>" ;
+				}
 			}
-			return cropLeft ? ( cropLeft - point.x >> 0 ) : 0 ;	
-//			var x : uint , y : uint ;
-//			var bitmapData : BitmapData = new BitmapData( 1, this.textField.getLineMetrics(0).height, true, 0x00000000 ) ;
-//			this.textField.x = 0 ;
-//			this.textField.y = 0 ;
-//			for ( x = 0 ; x < this.textField.width ; x ++ )
-//			{
-//				bitmapData.draw( this ) ;
-//				for ( y = 0 ; y < this.textField.height ; y ++ ) 
-//				{
-//					this.pixelCount ++ ;
-//					if ( bitmapData.getPixel32( 0, y ) == 0xFF000000 ) // TODO 
-//					{
-//						bitmapData.dispose() ;
-//						return x ;
-//					}
-//				}
-//				this.textField.x -- ;
-//			}
-//			bitmapData.dispose() ;
-//			return 0 ;
+			
+			if ( this.trimTop )
+			{
+				if ( !isNaN( textTrim.trimTopHeight ) ) this.trimTopHeight = textTrim.trimTopHeight ;
+				else textTrim.trimTopHeight = this.trimTopHeight = this.getTrimTopHeight() ; 
+			}
+			else this.trimTopHeight = 0 ;
+
+			if ( this.trimBottom )
+			{
+				if ( !isNaN( textTrim.trimBottomHeight ) ) this.trimBottomHeight = textTrim.trimBottomHeight ;
+				else textTrim.trimBottomHeight = this.trimBottomHeight = this.getTrimBottomHeight() ; 
+			}
+			else this.trimBottomHeight = 0 ;
+			
+			if ( !cached ) 
+			{
+				if ( this.trimSample && this.trimSample.length > 0 )
+					this.textField.htmlText = "<span class='" + this.style + "'>" + this.htmlText + "</span>" ;
+			}
+				
+			this.textField.x = - this.trimStartWidth ; 
+			this.textField.y = - this.trimTopHeight ; 
+			
+			this._measuredHeight = Math.round( this.trimBottom ? this.textField.height - this.trimTopHeight - this.trimBottomHeight : this.textField.textHeight ) ;
+			
+			this.graphics.clear() ;
+			this.graphics.beginFill( 0xFF0000, 0.2 );
+			this.graphics.drawRect(0, 0, this.measuredWidth, this.measuredHeight ) ;
 		}
-		
-//		protected function getCropRight () : uint
-//		{
-//			var x : uint , y : uint ;
-//			var bitmapData : BitmapData = new BitmapData( 1, this.textField.height, true, 0x00000000 ) ;
-//			this.textField.x = 1 - this.textField.width ;
-//			this.textField.y = 0 ;
-//			for ( x = 0 ; x < this.textField.width ; x ++ )
-//			{
-//				this.pixelCount ++ ;
-//				for ( y = 0 ; y < this.textField.height ; y ++ ) 
-//				{
-//					bitmapData.draw( this ) ;
-//					if ( bitmapData.getPixel32( 0, y ) == 0xFF000000 ) // TODO 
-//					{
-//						bitmapData.dispose() ;
-//						return x ;
-//					}
-//				}
-//				this.textField.x ++ ;
-//			}
-//			bitmapData.dispose() ;
-//			return 0 ;
-//		}
-		
-		protected function getCropTop () : uint
+
+		protected function getTrimTopHeight () : uint
 		{
 			var x : uint , y : uint ;
 			var bitmapData : BitmapData = new BitmapData( this.textField.textWidth, 1, true, 0x00000000 ) ;
@@ -601,7 +608,8 @@ package com.wemakedigital.ui.text
 				bitmapData.draw( this ) ;
 				for ( x = 0 ; x < this.textField.textWidth ; x ++ )
 				{
-					if ( bitmapData.getPixel32( x, 0 ) == 0xFF000000 ) // TODO
+					var pixel : uint = bitmapData.getPixel32( x, 0 ) ;
+					if ( pixel != 0x00000000 ) 
 					{
 						bitmapData.dispose() ;
 						return y ;
@@ -610,10 +618,10 @@ package com.wemakedigital.ui.text
 				this.textField.y -- ; 
 			}
 			bitmapData.dispose() ;
-			return 1000 ;
+			return 0 ;
 		}
 		
-		protected function getCropBottom () : uint
+		protected function getTrimBottomHeight () : uint
 		{
 			var x : uint , y : uint ;
 			var bitmapData : BitmapData = new BitmapData( this.textField.textWidth, 1, true, 0x00000000 ) ;
@@ -623,7 +631,8 @@ package com.wemakedigital.ui.text
 				bitmapData.draw( this ) ;
 				for ( x = 0 ; x < this.textField.textWidth - 1 ; x ++ )
 				{
-					if ( bitmapData.getPixel32( x, 0 ) == 0xFF000000 ) // TODO
+					var pixel : uint = bitmapData.getPixel32( x, 0 ) ;
+					if ( pixel != 0x00000000 ) 
 					{
 						bitmapData.dispose() ;
 						return y ;

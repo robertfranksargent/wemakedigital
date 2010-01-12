@@ -18,11 +18,6 @@ package com.wemakedigital.ui.text
 		public var style : String ;
 		
 		/**
-		 * The anti alias type of the text field.
-		 */
-		public var antiAliasType : String ;
-		
-		/**
 		 * The sample text used for trimming.
 		 */
 		public var sample : String ;
@@ -30,17 +25,17 @@ package com.wemakedigital.ui.text
 		/**
 		 * The pixels to trim from the top.
 		 */
-		public var trimTop : Number ;
+		public var trimTopHeight : Number ;
 		
 		/**
 		 * The pixels to trim from the bottom.
 		 */
-		public var trimBottom : Number ;
+		public var trimBottomHeight : Number ;
 		
 		/**
 		 * The pixels to trim from the start of the line.
 		 */
-		public var trimLineStart : Number ;
+		public var trimStartWidth : Number ;
 
 		//----------------------------------------------------------------------
 		//
@@ -55,10 +50,9 @@ package com.wemakedigital.ui.text
 		 * @param antiAliasType The anti alias type of the text field.
 		 * @param sample The sample text used for trimming.
 		 */
-		public function TextTrim ( style : String, antiAliasType : String, sample : String ) 
+		public function TextTrim ( style : String, sample : String ) 
 		{
 			this.style = style ;
-			this.antiAliasType = antiAliasType ;
 			this.sample = sample ;
 		}
 	}
