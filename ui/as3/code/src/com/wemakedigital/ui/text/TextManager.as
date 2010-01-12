@@ -1,5 +1,7 @@
 package com.wemakedigital.ui.text 
 {
+	import flash.text.GridFitType;
+	import flash.text.AntiAliasType;
 	import flash.events.EventDispatcher;
 	import flash.text.StyleSheet;
 	import flash.utils.Dictionary;
@@ -94,6 +96,26 @@ package com.wemakedigital.ui.text
 		 */
 		public var embedFonts : Boolean = false ;
 		
+		/**
+		 * Default antiAliasType.
+		 */
+		public var antiAliasType : String = AntiAliasType.ADVANCED ;
+		
+		/**
+		 * Default gridFitType.
+		 */
+		public var gridFitType : String = GridFitType.NONE ;
+		
+		/**
+		 * Default thickness.
+		 */
+		public var thickness : Number = 0 ;
+		
+		/**
+		 * Default sharpness.
+		 */
+		public var sharpness : Number = 0 ;
+		
 		//----------------------------------------------------------------------
 		//
 		//  Constructor
@@ -126,12 +148,12 @@ package com.wemakedigital.ui.text
 		 * @param sample The sample text used for trimming.
 		 * @return A TextTrim object.
 		 */
-		public function getTrimData ( style : String, antiAliasType : String, sample : String ) : TextTrim
+		public function getTrimData ( style : String, sample : String ) : TextTrim
 		{
 			for each ( var textTrim : TextTrim in this.trimData )
-				if ( textTrim.style == style && textTrim.antiAliasType == antiAliasType && textTrim.sample == sample ) 
+				if ( textTrim.style == style && textTrim.sample == sample ) 
 					return textTrim ;
-			return new TextTrim ( style, antiAliasType, sample ) ;
+			return new TextTrim ( style, sample ) ;
 		}
 	}
 }

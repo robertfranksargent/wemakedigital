@@ -503,7 +503,7 @@ package com.wemakedigital.ui
 		 */
 		override protected function onRender ( e : Event ) : void
 		{		
-			( e.target as Stage ).removeEventListener( Event.RENDER, this.onRender ) ;
+			if ( e ) ( e.target as Stage ).removeEventListener( Event.RENDER, this.onRender ) ;
 			if ( this.created ) 
 			{
 				this.updateSizeOfContainers() ;
