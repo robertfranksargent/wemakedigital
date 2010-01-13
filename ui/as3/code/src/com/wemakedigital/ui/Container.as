@@ -121,7 +121,7 @@ package com.wemakedigital.ui
 			this._measuredHeight = 0 ;
 			for each ( var child : Component in this.components )
 			{
-				if ( ( child.y + child.explicitHeight ) > this._measuredHeight ) this._measuredHeight = (child.y + child.explicitWidth ) ;  
+				if ( ( child.y + child.explicitHeight ) > this._measuredHeight ) this._measuredHeight = (child.y + child.explicitHeight ) ;  
 			}
 			return this._measuredHeight ;
 		}
