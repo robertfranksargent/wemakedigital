@@ -1,6 +1,8 @@
 package com.wemakedigital.ui.text 
 {
 	import com.wemakedigital.ui.Container;
+	import com.wemakedigital.ui.text.manager.TextManager;
+	import com.wemakedigital.ui.text.manager.TextTrim;
 
 	import flash.display.BitmapData;
 	import flash.geom.Point;
@@ -9,9 +11,12 @@ package com.wemakedigital.ui.text
 	import flash.text.TextFieldAutoSize;
 	import flash.text.TextFieldType;
 	import flash.text.TextLineMetrics;
-
+	
+	/**
+	 * Dynamic text component
+	 */
 	public class Text extends Container
-	{	
+	{
 		//----------------------------------------------------------------------
 		//
 		//  Variables
@@ -23,24 +28,20 @@ package com.wemakedigital.ui.text
 		//----------------------------------------------------------------------
 		
 		protected var _key : String = TextManager.DEFAULT_KEY ;
-		
-		//----------------------------------------------------------------------
-		
-		protected var _type : String = TextFieldType.DYNAMIC ;
 		protected var _antiAliasType : String ;
 		protected var _gridFitType : String ;
 		protected var _thickness : Number ;
 		protected var _sharpness : Number ;
-		protected var _selectable : Boolean = false ;
 		protected var _style : String = "default" ;
+		protected var _selectable : Boolean = false ;
 		protected var _htmlText : String = "" ;
 
 		//----------------------------------------------------------------------
 		
-//		protected var _marginLeft : Number = 0 ;
-//		protected var _marginRight : Number = 0 ;
-//		protected var _marginTop : Number = 0 ;
-//		protected var _marginBottom : Number = 0 ;
+		protected var _marginLeft : Number = 0 ;
+		protected var _marginRight : Number = 0 ;
+		protected var _marginTop : Number = 0 ;
+		protected var _marginBottom : Number = 0 ;
 		
 		//----------------------------------------------------------------------
 		
@@ -55,6 +56,8 @@ package com.wemakedigital.ui.text
 		protected var trimStartWidth : Number = 0 ; 
 		protected var trimEndWidth : Number = 0 ; 
 		
+		//----------------------------------------------------------------------
+		
 		protected var beforeRenderFlag : Boolean = false ;
 		
 		//----------------------------------------------------------------------
@@ -68,8 +71,7 @@ package com.wemakedigital.ui.text
 		 */
 		override public function get measuredWidth () : Number
 		{
-//			return this.marginLeft + ( this.textField ? this.textField.textWidth : 0 ) + this.marginRight ;
-			return this._measuredWidth || ( this.textField ? this.textField.width : 0 ) ;
+			return ( this._measuredWidth || ( this.textField ? this.textField.width : 0 ) ) + this.marginLeft + this.marginRight ;
 		}
 
 		/**
@@ -77,8 +79,7 @@ package com.wemakedigital.ui.text
 		 */
 		override public function get measuredHeight () : Number
 		{
-//			return this.marginTop + ( this.textField ? this.textField.textHeight : 0 ) + this.marginBottom ;
-			return this._measuredHeight || ( this.textField ? this.textField.height : 0 ) ;
+			return ( this._measuredHeight || ( this.textField ? this.textField.height : 0 ) ) + this.marginTop + this.marginBottom ;
 		}
 		
 		//----------------------------------------------------------------------
@@ -109,17 +110,6 @@ package com.wemakedigital.ui.text
 		}
 		
 		//----------------------------------------------------------------------
-		
-		public function get type ( ) : String
-		{
-			return this._type ;
-		}
-		
-		public function set type ( value : String ) : void
-		{
-			this._type = value ;
-			this.update() ;
-		}
 		
 		public function get antiAliasType ( ) : String
 		{
@@ -165,16 +155,7 @@ package com.wemakedigital.ui.text
 			this.update() ;
 		}
 		
-		public function get selectable ( ) : Boolean
-		{
-			return this._selectable ;
-		}
-		
-		public function set selectable ( value : Boolean ) : void
-		{
-			this._selectable = value ;
-			this.update() ;
-		}
+		//----------------------------------------------------------------------
 		
 		public function get style ( ) : String
 		{
@@ -184,6 +165,17 @@ package com.wemakedigital.ui.text
 		public function set style ( value : String ) : void
 		{
 			this._style = value ;
+			this.update() ;
+		}
+		
+		public function get selectable ( ) : Boolean
+		{
+			return this._selectable ;
+		}
+		
+		public function set selectable ( value : Boolean ) : void
+		{
+			this._selectable = value ;
 			this.update() ;
 		}
 		
@@ -200,49 +192,49 @@ package com.wemakedigital.ui.text
 		
 		//----------------------------------------------------------------------
 		
-//		public function get marginLeft ( ) : Number
-//		{
-//			return this._marginLeft ;
-//		}
-//		
-//		public function set marginLeft ( value : Number ) : void
-//		{
-//			this._marginLeft = value ;
-//			this.update() ;
-//		}
-//
-//		public function get marginRight ( ) : Number
-//		{
-//			return this._marginRight ;
-//		}
-//		
-//		public function set marginRight ( value : Number ) : void
-//		{
-//			this._marginRight = value ;
-//			this.update() ;
-//		}
-//
-//		public function get marginTop ( ) : Number
-//		{
-//			return this._marginTop ;
-//		}
-//		
-//		public function set marginTop ( value : Number ) : void
-//		{
-//			this._marginTop = value ;
-//			this.update() ;
-//		}
-//
-//		public function get marginBottom ( ) : Number
-//		{
-//			return this._marginBottom + 2 ; // Improve this hack
-//		}
-//		
-//		public function set marginBottom ( value : Number ) : void
-//		{
-//			this._marginBottom = value ;
-//			this.update() ;
-//		}
+		public function get marginLeft ( ) : Number
+		{
+			return this._marginLeft ;
+		}
+		
+		public function set marginLeft ( value : Number ) : void
+		{
+			this._marginLeft = value ;
+			this.update() ;
+		}
+
+		public function get marginRight ( ) : Number
+		{
+			return this._marginRight ;
+		}
+		
+		public function set marginRight ( value : Number ) : void
+		{
+			this._marginRight = value ;
+			this.update() ;
+		}
+
+		public function get marginTop ( ) : Number
+		{
+			return this._marginTop ;
+		}
+		
+		public function set marginTop ( value : Number ) : void
+		{
+			this._marginTop = value ;
+			this.update() ;
+		}
+
+		public function get marginBottom ( ) : Number
+		{
+			return this._marginBottom ;
+		}
+		
+		public function set marginBottom ( value : Number ) : void
+		{
+			this._marginBottom = value ;
+			this.update() ;
+		}
 		
 		//----------------------------------------------------------------------
 		
@@ -361,8 +353,6 @@ package com.wemakedigital.ui.text
 		public function Text ()
 		{
 			super() ;
-			
-			this.mouseChildren = false ;
 		}
 		
 		//----------------------------------------------------------------------
@@ -383,6 +373,9 @@ package com.wemakedigital.ui.text
 				
 				this.trimHorizontal() ;
 				this.trimVertical() ;
+				
+				this.textField.x = - this.trimStartWidth + marginLeft ; 
+				this.textField.y = - this.trimTopHeight + marginTop ; 
 				
 				this.beforeRenderFlag = true ;
 				
@@ -410,7 +403,13 @@ package com.wemakedigital.ui.text
 		 */
 		override protected function create () : void
 		{
+			this.mouseChildren = false ;
+			
 			this.textField = new TextField( ) ;
+			this.textField.condenseWhite = true ;
+			this.textField.type = TextFieldType.DYNAMIC ;
+			this.textField.multiline = true ;		
+			
 			this.addChild( this.textField ) ;
 			
 			super.create() ;
@@ -435,14 +434,11 @@ package com.wemakedigital.ui.text
 		{
 			if ( this.created )
 			{
-				this.textField.condenseWhite = true ;
+//				this.textField.x = 0 ; 
+//				this.textField.y = 0 ; 
+//				this.textField.width = this.explicitWidth ;
+//				this.textField.height = this.explicitHeight ;
 				
-				this.textField.x = 0 ; 
-				this.textField.y = 0 ; 
-				this.textField.width = this.explicitWidth ;
-				this.textField.height = this.explicitHeight ;
-				
-				this.textField.type = this.type ;
 				this.textField.embedFonts = this.textManager.embedFonts;
 				this.textField.antiAliasType = this.antiAliasType || this.textManager.antiAliasType ;
 				this.textField.gridFitType = this.gridFitType || this.textManager.gridFitType ;
@@ -453,12 +449,10 @@ package com.wemakedigital.ui.text
 				this.textField.styleSheet = this.textManager.styleSheet ;
 				this.textField.htmlText = "<span class='" + this.style + "'>" + this.htmlText + "</span>" ;
 				this.textField.wordWrap = !this.autoWidth ;				
-				this.textField.multiline = true ;				
 				this.textField.autoSize = TextFieldAutoSize.LEFT ;
-
-				// TextField bug fix
-				this.textField.width ;
-				this.textField.height ;
+				
+				if ( !isNaN( this.width ) && this.explicitWidth != this.width ) this.explicitWidth = this.width ;
+				if ( !isNaN( this.height ) && this.explicitHeight != this.height ) this.explicitHeight = this.height ;
 				
 				this.invalidate() ;
 			}
@@ -593,9 +587,9 @@ package com.wemakedigital.ui.text
 			
 			this._measuredHeight = Math.round( this.trimBottom ? this.textField.height - this.trimTopHeight - this.trimBottomHeight : this.textField.textHeight ) ;
 			
-			this.graphics.clear() ;
-			this.graphics.beginFill( 0xFF0000, 0.2 );
-			this.graphics.drawRect(0, 0, this.measuredWidth, this.measuredHeight ) ;
+//			this.content.graphics.clear() ;
+//			this.content.graphics.beginFill( 0xFF0000, 0.2 );
+//			this.content.graphics.drawRect( this.marginLeft, this.marginTop, this._measuredWidth, this._measuredHeight ) ;
 		}
 
 		protected function getTrimTopHeight () : uint

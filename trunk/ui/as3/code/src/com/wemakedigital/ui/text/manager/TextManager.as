@@ -1,4 +1,4 @@
-package com.wemakedigital.ui.text 
+package com.wemakedigital.ui.text.manager 
 {
 	import flash.text.GridFitType;
 	import flash.text.AntiAliasType;
@@ -75,11 +75,13 @@ package com.wemakedigital.ui.text
 			if ( ! this._styleSheet ) this._styleSheet = new StyleSheet() ;
 			if ( this._styleSheet.styleNames.indexOf( ".default" ) < 0 )
 				this._styleSheet.setStyle( ".default", { fontFamily : "_serif", 
-														 fontSize : "50",
+														 fontSize : "10",
 														 color : "#000000",
 														 fontWeight : "regular",
 														 letterSpacing : "0",
 														 leading : "0" } ) ;
+			if ( this._styleSheet.styleNames.indexOf( ".defaultbuttonover" ) < 0 )
+				this._styleSheet.setStyle( ".defaultbuttonover", { color : "#00FF00" } ) ;
 			return this._styleSheet ;
 		}
 		
