@@ -392,8 +392,8 @@ package com.wemakedigital.ui
 				for each ( var childContainer : Container in this.containers )
 					childContainer.updateSizeOfContainers() ;
 				
-				if ( this.autoWidth ) this.explicitWidth = this.measuredWidth ;
-				if ( this.autoHeight ) this.explicitHeight = this.measuredHeight ;
+				if ( this.autoWidth ) this.explicitWidth = Math.min ( Math.max ( this.measuredWidth, this.minWidth ), isNaN ( this.maxWidth ) ? Number.MAX_VALUE : this.maxWidth ) ;
+				if ( this.autoHeight ) this.explicitHeight = Math.min ( Math.max ( this.measuredHeight, this.minHeight ), isNaN ( this.maxHeight ) ? Number.MAX_VALUE : this.maxHeight ) ;
 			}
 		}
 		
@@ -406,8 +406,8 @@ package com.wemakedigital.ui
 			{
 				for each ( var childComponent : Component in this.components )
 				{
-					if ( !isNaN( childComponent.relativeWidth ) ) childComponent.explicitWidth = this.explicitWidth * childComponent.relativeWidth >> 0 ; 
-					if ( !isNaN( childComponent.relativeHeight ) ) childComponent.explicitHeight = this.explicitHeight * childComponent.relativeHeight >> 0 ;
+					if ( !isNaN( childComponent.relativeWidth ) ) childComponent.explicitWidth = Math.min ( Math.max ( this.explicitWidth * childComponent.relativeWidth >> 0, childComponent.minWidth ), isNaN ( childComponent.maxWidth ) ? Number.MAX_VALUE : childComponent.maxWidth ) ; 
+					if ( !isNaN( childComponent.relativeHeight ) ) childComponent.explicitHeight = Math.min ( Math.max ( this.explicitHeight * childComponent.relativeHeight >> 0, childComponent.minHeight ), isNaN ( childComponent.maxHeight ) ? Number.MAX_VALUE : childComponent.maxHeight ) ;
 					if ( !isNaN( childComponent.left ) && !isNaN( childComponent.right ) ) childComponent.explicitWidth = this.explicitWidth - childComponent.left - childComponent.right ;
 					if ( !isNaN( childComponent.top ) && !isNaN( childComponent.bottom ) ) childComponent.explicitHeight = this.explicitHeight - childComponent.top - childComponent.bottom ;
 				}
@@ -426,8 +426,8 @@ package com.wemakedigital.ui
 			{
 				for each ( var childComponent : Component in this.components )
 				{
-					if ( !isNaN( childComponent.spareWidth ) ) childComponent.explicitWidth = Math.max ( ( this.explicitWidth - this.totalWidth ) * childComponent.spareWidth >> 0, 0 ) ; 
-					if ( !isNaN( childComponent.spareHeight ) ) childComponent.explicitHeight = Math.max ( ( this.explicitHeight - this.totalHeight ) * childComponent.spareHeight >> 0, 0 ) ; 
+					if ( !isNaN( childComponent.spareWidth ) ) childComponent.explicitWidth = Math.min ( Math.max ( ( this.explicitWidth - this.totalWidth ) * childComponent.spareWidth >> 0, childComponent.minWidth ), isNaN ( childComponent.maxWidth ) ? Number.MAX_VALUE : childComponent.maxWidth ) ; 
+					if ( !isNaN( childComponent.spareHeight ) ) childComponent.explicitHeight = Math.min ( Math.max ( ( this.explicitHeight - this.totalHeight ) * childComponent.spareHeight >> 0, childComponent.minHeight ), isNaN ( childComponent.maxHeight ) ? Number.MAX_VALUE : childComponent.maxHeight ) ; 
 				}
 				
 				for each ( var childContainer : Container in this.containers )

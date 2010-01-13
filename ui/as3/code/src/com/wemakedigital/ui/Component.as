@@ -205,14 +205,17 @@ package com.wemakedigital.ui
 		 */
 		override public function set width (value : Number) : void
 		{
-			value = Math.max ( this.minWidth, isNaN ( this.maxWidth ) ? value : Math.min ( this.maxWidth, value ) ) ;
-			if ( value != this.width )
+			if ( !isNaN ( value ) )
 			{
-				this._width = value ;
-				this._autoWidth = false ;
-				this._relativeWidth = NaN ;
-				this._spareWidth = NaN ;
-				this.update() ;
+				value = Math.max ( this.minWidth, isNaN ( this.maxWidth ) ? value : Math.min ( this.maxWidth, value ) ) ;
+				if ( value != this.width )
+				{
+					this._width = value ;
+					this._autoWidth = false ;
+					this._relativeWidth = NaN ;
+					this._spareWidth = NaN ;
+					this.update() ;
+				}
 			}
 		}
 		
@@ -221,14 +224,17 @@ package com.wemakedigital.ui
 		 */
 		override public function set height (value : Number) : void
 		{
-			value = Math.max ( this.minHeight, isNaN ( this.maxHeight ) ? value : Math.min ( this.maxHeight, value ) ) ;
-			if ( value != this.height )
+			if ( !isNaN ( value ) )
 			{
-				this._height = value ;
-				this._autoHeight = false ;
-				this._relativeHeight = NaN ;
-				this._spareHeight = NaN ;
-				this.update() ;
+				value = Math.max ( this.minHeight, isNaN ( this.maxHeight ) ? value : Math.min ( this.maxHeight, value ) ) ;
+				if ( value != this.height )
+				{
+					this._height = value ;
+					this._autoHeight = false ;
+					this._relativeHeight = NaN ;
+					this._spareHeight = NaN ;
+					this.update() ;
+				}
 			}
 		}
 

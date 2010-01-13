@@ -1,6 +1,5 @@
 package com.wemakedigital.ui.text 
 {
-	import com.wemakedigital.log.Log;
 	import com.wemakedigital.ui.Container;
 	import com.wemakedigital.ui.text.manager.TextManager;
 
@@ -32,7 +31,7 @@ package com.wemakedigital.ui.text
 		protected var _thickness : Number ;
 		protected var _sharpness : Number ;
 		protected var _style : String = "default" ;
-		protected var _selectable : Boolean = false ;
+		protected var _selectable : Boolean = true ;
 		protected var _htmlText : String = "" ;
 
 		//----------------------------------------------------------------------
@@ -271,17 +270,13 @@ package com.wemakedigital.ui.text
 		 */
 		override protected function create () : void
 		{
-//			TODO this.mouseChildren = false ;
-			
 			this.textField = new TextField( ) ;
 			this.textField.condenseWhite = true ;
 			this.textField.type = TextFieldType.INPUT ;
 			this.textField.multiline = true ;		
-			
 			this.addChild( this.textField ) ;
 			
 			this.updateStyle() ;
-			
 			super.create() ;
 		}
 		
@@ -309,17 +304,15 @@ package com.wemakedigital.ui.text
 				this.textField.gridFitType = this.gridFitType || this.textManager.gridFitType ;
 				this.textField.thickness = this.thickness || this.textManager.thickness ;
 				this.textField.sharpness = this.sharpness || this.textManager.sharpness ;
-//				TODO this.textField.selectable = this.selectable ;
-//				this.textField.mouseEnabled = this.selectable ;
+				this.textField.selectable = this.selectable ;
+				this.textField.mouseEnabled = this.selectable ;
 				this.textField.defaultTextFormat = this.textFormat ;
-//				this.textField.styleSheet = this.textManager.styleSheet ;
 				this.textField.wordWrap = !this.autoWidth ;				
 				this.textField.autoSize = TextFieldAutoSize.LEFT ;
 				
 				if ( !isNaN( this.width ) && this.explicitWidth != this.width ) this.explicitWidth = this.width ;
 				if ( !isNaN( this.height ) && this.explicitHeight != this.height ) this.explicitHeight = this.height ;
-				else if ( this.autoHeight ) this.explicitHeight = this.textHeightWhenEmpty ;
-				 
+				
 				this.invalidate() ;
 			}
 		}
