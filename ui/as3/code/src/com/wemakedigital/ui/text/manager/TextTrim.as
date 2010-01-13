@@ -1,4 +1,4 @@
-package com.wemakedigital.ui.text 
+package com.wemakedigital.ui.text.manager 
 {
 
 	/**

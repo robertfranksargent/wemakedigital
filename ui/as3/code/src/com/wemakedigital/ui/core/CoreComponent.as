@@ -87,7 +87,7 @@ package com.wemakedigital.ui.core
 		/**
 		 * @private
 		 */
-		protected var _colour : Number = NaN ;
+		protected var _colour : int = -1 ;
 		
 		/**
 		 * @private
@@ -314,7 +314,7 @@ package com.wemakedigital.ui.core
 		 * <code>0x000000</code> (black). The default is <code>NaN</code> which 
 		 * will not render a background.
 		 */
-		public function get colour () : Number
+		public function get colour () : int
 		{
 			return this._colour ;
 		}
@@ -322,7 +322,7 @@ package com.wemakedigital.ui.core
 		/**
 		 * @private
 		 */
-		public function set colour (value : Number) : void
+		public function set colour (value : int) : void
 		{
 			this._colour = value ;
 			this.update() ;
@@ -484,7 +484,7 @@ package com.wemakedigital.ui.core
 		 */
 		protected function renderColour() : void
 		{
-			if ( ! isNaN ( this.colour ) ) 
+			if ( this.colour > -1 ) 
 			{
 				this.graphics.clear() ;
 				this.graphics.beginFill( this.colour, this.colourAlpha ) ;
