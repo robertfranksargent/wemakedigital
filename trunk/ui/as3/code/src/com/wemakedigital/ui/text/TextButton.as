@@ -78,6 +78,8 @@ package com.wemakedigital.ui.text
 		public function TextButton () 
 		{
 			super( );
+			this.tabEnabled = false ;
+			this.tabChildren = false ;
 		}
 		
 		//----------------------------------------------------------------------
