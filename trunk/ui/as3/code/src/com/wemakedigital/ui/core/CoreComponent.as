@@ -1,5 +1,7 @@
 package com.wemakedigital.ui.core
 {
+	import com.wemakedigital.ui.core.events.RenderEvent;
+
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import flash.display.Stage;
@@ -444,7 +446,11 @@ package com.wemakedigital.ui.core
 		 */
 		public function render () : void
 		{
-			if ( this.created ) renderColour() ;
+			if ( this.created ) 
+			{
+				renderColour() ;
+				this.dispatchEvent( new RenderEvent( RenderEvent.RENDER ) ) ;
+			}
 		}
 		
 		//----------------------------------------------------------------------
