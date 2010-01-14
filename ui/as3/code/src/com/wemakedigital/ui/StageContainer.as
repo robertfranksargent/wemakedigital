@@ -43,8 +43,8 @@ package com.wemakedigital.ui
 			{
 				if ( this.explicitWidth != this.stage.stageWidth || this.explicitHeight != this.stage.stageHeight ) 
 				{
-					this.explicitWidth = this.stage.stageWidth ;
-					this.explicitHeight = this.stage.stageHeight ;
+					this.explicitWidth = Math.min ( Math.max ( this.stage.stageWidth, this.minWidth ), isNaN ( this.maxWidth ) ? Number.MAX_VALUE : this.maxWidth ) ;
+					this.explicitHeight = Math.min ( Math.max ( this.stage.stageHeight, this.minHeight ), isNaN ( this.maxHeight ) ? Number.MAX_VALUE : this.maxHeight ) ;
 					this.invalidate() ;
 				}
 			}
