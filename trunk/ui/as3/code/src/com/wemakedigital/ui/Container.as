@@ -30,7 +30,7 @@ package com.wemakedigital.ui
 		/**
 		 * @private
 		 */
-		protected var _children : Array ;
+		protected var _children : Array = [] ;
 		
 		//----------------------------------------------------------------------
 		
