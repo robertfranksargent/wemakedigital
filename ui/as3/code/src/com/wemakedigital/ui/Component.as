@@ -158,6 +158,11 @@ package com.wemakedigital.ui
 		 * @private
 		 */
 		protected var invalidated : Boolean = false ;
+
+		/**
+		 * @private
+		 */
+		protected var resized : Boolean = false ;
 		
 		//----------------------------------------------------------------------
 		//
@@ -249,6 +254,7 @@ package com.wemakedigital.ui
 			{
 				this._explicitWidth = value ;
 				this.invalidated = true ;
+				this.resized = true ;
 			}
 		}
 		
@@ -261,6 +267,7 @@ package com.wemakedigital.ui
 			{
 				this._explicitHeight = value ;
 				this.invalidated = true ;
+				this.resized = true ;
 			}
 		}
 
@@ -768,6 +775,11 @@ package com.wemakedigital.ui
 			{
 				super.render() ;
 				this.invalidated = false ;
+				if ( this.resized )
+				{
+					this.dispatchEvent( new Event( Event.RESIZE ) ) ;
+					this.resized = false ;
+				}
 //				trace ( "render", this.id ? this.id : "root", this.x, this.y, this.explicitWidth, this.explicitHeight ) ; // TODO remove this, it's just to check things aren't rendering more than once.
 			}
 		}
