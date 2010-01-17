@@ -3,6 +3,7 @@ package com.wemakedigital.ui
 	import mx.utils.ObjectUtil;
 
 	import flash.display.DisplayObject;
+	import flash.display.Shape;
 	import flash.display.Sprite;
 	import flash.display.Stage;
 	import flash.events.Event;
@@ -25,12 +26,32 @@ package com.wemakedigital.ui
 		 */
 		protected var content : Sprite ;
 		
+		/**
+		 * @private
+		 */
+		protected var contentMask : Shape ;
+		
+		/**
+		 * @private
+		 */
+		protected var _scrollHorizontal : Number = 0 ;
+		
+		/**
+		 * @private
+		 */
+		protected var _scrollVertical : Number = 0 ;
+		
 		//----------------------------------------------------------------------
 
 		/**
 		 * @private
 		 */
 		protected var _children : Array = [] ;
+		
+		/**
+		 * @private
+		 */
+		protected var _maskChildren : Boolean = true ;
 		
 		//----------------------------------------------------------------------
 		
@@ -75,6 +96,64 @@ package com.wemakedigital.ui
 			for each ( var child : DisplayObject in displayObjects )
 				this.addChild( child ) ;
 		}
+		
+		/**
+		 * Mask children to the container size (default is false).
+		 */
+		public function get maskChildren () : Boolean
+		{
+			return this._maskChildren;
+		}
+		
+		/**
+		 * @private
+		 */
+		public function set maskChildren ( value : Boolean ) : void
+		{
+			if ( this._maskChildren != value ) 
+			{
+				this._maskChildren = value ;
+				this.update() ;
+			}
+		}
+		
+		//----------------------------------------------------------------------
+		
+		/**
+		 * The horizontal scroll ratio between 0 (scrolled to left) and 1 (scrolled to right).
+		 */
+		public function get scrollHorizontal () : Number
+		{
+			return this._scrollHorizontal;
+		}
+		
+		/**
+		 * @private
+		 */
+		public function set scrollHorizontal ( value : Number ) : void
+		{
+			this._scrollHorizontal = Math.max ( 0 , Math.min ( 1, value ) ) ;
+			this.scroll() ;
+		}
+		
+		/**
+		 * The vertical scroll ratio between 0 (scrolled to top) and 1 (scrolled to bottom).
+		 */
+		public function get scrollVertical () : Number
+		{
+			return this._scrollVertical;
+		}
+		
+		/**
+		 * @private
+		 */
+		public function set scrollVertical ( value : Number ) : void
+		{
+			this._scrollVertical = Math.max ( 0 , Math.min ( 1, value ) ) ;
+			this.scroll() ;
+		}
+		
+		//----------------------------------------------------------------------
 		
 		/**
 		 * The Component children of this container.
@@ -167,7 +246,9 @@ package com.wemakedigital.ui
 			this._height = NaN ;
 			
 			this.content = new Sprite() ;
+			this.contentMask = new Shape() ;
 			super.addChild( this.content ) ;
+			super.addChild( this.contentMask ) ;
 		}
 		
 		//----------------------------------------------------------------------
@@ -375,9 +456,40 @@ package com.wemakedigital.ui
 		 */
 		override public function render () : void
 		{
+			if ( this.created )
+			{
+				this.contentMask.graphics.clear() ;
+				if ( this.maskChildren )
+				{
+					this.contentMask.graphics.beginFill( 0x000000, 0 ) ;
+					this.contentMask.graphics.drawRect(0, 0, this.explicitWidth, this.explicitHeight ) ;
+				}
+			}
+			this.scroll() ;
 			super.render() ;
 			for each ( var childComponent : Component in this.components )
 				childComponent.render() ;
+		}
+		
+		/**
+		 * @inheritDoc
+		 */
+		override protected function update () : void
+		{
+			if ( this.created )
+			{
+				this.content.mask = this.maskChildren ? this.contentMask : null ;
+			}
+			super.update() ;
+		}
+		
+		/**
+		 * @private
+		 */
+		protected function scroll () : void
+		{
+			this.content.x = ( this.measuredWidth <= this.explicitWidth ? 0 : this.scrollHorizontal ) * ( this.explicitWidth - this.measuredWidth ) ;
+			this.content.y = ( this.measuredHeight <= this.explicitHeight ? 0 : this.scrollVertical ) * ( this.explicitHeight - this.measuredHeight ) ;
 		}
 		
 		//----------------------------------------------------------------------
