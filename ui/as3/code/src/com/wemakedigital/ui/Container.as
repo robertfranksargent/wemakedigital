@@ -490,8 +490,9 @@ package com.wemakedigital.ui
 		{
 			this.content.x = ( this.measuredWidth <= this.explicitWidth ? 0 : this.scrollHorizontal ) * ( this.explicitWidth - this.measuredWidth ) ;
 			this.content.y = ( this.measuredHeight <= this.explicitHeight ? 0 : this.scrollVertical ) * ( this.explicitHeight - this.measuredHeight ) ;
+			this.dispatchEvent( new Event ( Event.SCROLL ) ) ;
 		}
-		
+
 		//----------------------------------------------------------------------
 		
 		/**
