@@ -371,11 +371,19 @@ package com.wemakedigital.ui.text
 				this.textField.width = this.explicitWidth ; 
 				this.textField.height = this.explicitHeight ;
 				
-				this.trimHorizontal() ;
-				this.trimVertical() ;
-				
-				this.textField.x = - this.trimStartWidth + marginLeft ; 
-				this.textField.y = - this.trimTopHeight + marginTop ; 
+				if ( this.htmlText.length > 0 )
+				{
+					this.trimHorizontal() ;
+					this.trimVertical() ;
+					
+					this.textField.x = - this.trimStartWidth + marginLeft ; 
+					this.textField.y = - this.trimTopHeight + marginTop ; 
+				}
+				else
+				{	
+					this._measuredWidth = 0 ; ; 
+					this._measuredHeight = 0 ;
+				}
 				
 				this.beforeRenderFlag = true ;
 				
