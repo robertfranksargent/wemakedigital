@@ -373,17 +373,17 @@ package com.wemakedigital.ui.text
 				
 				if ( this.htmlText.length > 0 )
 				{
-//					this.trimHorizontal() ;
-//					this.trimVertical() ;
-//					
-//					this.textField.x = - this.trimStartWidth + marginLeft ; 
-//					this.textField.y = - this.trimTopHeight + marginTop ;
+					this.trimHorizontal() ;
+					this.trimVertical() ;
+					
+					this.textField.x = - this.trimStartWidth + marginLeft ; 
+					this.textField.y = - this.trimTopHeight + marginTop ;
 
-					this.textField.x = marginLeft ; 
-					this.textField.y = marginTop ;
-
-					this._measuredWidth = NaN ;
-					this._measuredHeight = NaN ; 
+//					this.textField.x = marginLeft ; 
+//					this.textField.y = marginTop ;
+//
+//					this._measuredWidth = NaN ;
+//					this._measuredHeight = NaN ; 
 				}
 				else
 				{	
@@ -474,182 +474,182 @@ package com.wemakedigital.ui.text
 		
 		//----------------------------------------------------------------------
 
-//		protected function trimHorizontal () : void
-//		{
-//			var textTrim : TextTrim = this.textManager.getTrimData( this.style, this.trimSample ) ; 
-//			
-//			if ( this.trimStart )
-//			{
-//				if ( !isNaN( textTrim.trimStartWidth ) ) this.trimStartWidth = textTrim.trimStartWidth ;
-//				else textTrim.trimStartWidth = this.trimStartWidth = this.getTrimStartWidth( this.getTrimStartRectangle() ) ; 
-//			}
-//			else this.trimStartWidth = 2 ;
-//
-//			this.trimEndWidth = this.trimEnd ? this.getTrimEndWidth () : 0 ;
-//			
-//			this.textField.x = - this.trimStartWidth ; 
-//			this.textField.y = 0 ; 
-//			
-//			this._measuredWidth = Math.round( this.trimEnd ? this.textField.width - this.trimEndWidth - this.trimStartWidth : this.textField.textWidth ) ;
-//		}
-//		
-//		protected function getTrimStartRectangle () : Rectangle
-//		{
-//			var rectangle : Rectangle = new Rectangle( 0, 0, this.textField.textWidth, 0 ) ;
-//			var metrics : TextLineMetrics ;
-//			for ( var i : uint = 0, n : uint = this.textField.numLines; i < n; i ++ )
-//			{
-//				metrics = this.textField.getLineMetrics( i ) ; 
-//				if ( metrics.x > rectangle.x ) 
-//				{
-//					rectangle.x = metrics.x ;
-//					rectangle.y = metrics.height * i ;
-//					rectangle.height = metrics.height ;
-//				}
-//			}
-//			if ( !this.textField.embedFonts ) rectangle.x = Math.max ( 0, rectangle.x - this.textField.localToGlobal( new Point() ).x >> 0 ) ;
-//			return rectangle ;
-//		}
-//		
-//		protected function getTrimStartWidth ( rectangle : Rectangle ) : uint
-//		{
-//			var x : uint , y : uint ;
-//			var bitmapData : BitmapData = new BitmapData( 1, rectangle.height, true, 0x00000000 ) ;
-//			this.textField.x = - rectangle.x ;
-//			this.textField.y = - rectangle.y ;
-//			for ( x = 0 ; x < this.textField.width ; x ++ )
-//			{
-//				bitmapData.draw( this ) ;
-//				for ( y = 0 ; y < this.textField.height ; y ++ ) 
-//				{
-//					var pixel : uint = bitmapData.getPixel32( 0, y ) ;
-//					if ( pixel != 0x00000000 ) 
-//					{
-//						bitmapData.dispose() ;
-//						return x + rectangle.x ;
-//					}
-//				}
-//				this.textField.x -- ;
-//			}
-//			bitmapData.dispose() ;
-//			return 0 ;
-//		}
-//		
-//		protected function getTrimEndWidth () : uint
-//		{
-//			var x : uint , y : uint ;
-//			var bitmapData : BitmapData = new BitmapData( 1, this.textField.height, true, 0x00000000 ) ;
-//			this.textField.x = 1 - this.textField.width ;
-//			this.textField.y = 0 ;
-//			for ( x = 0 ; x < this.textField.width ; x ++ )
-//			{
-//				bitmapData.draw( this ) ;
-//				for ( y = 0 ; y < this.textField.height ; y ++ ) 
-//				{
-//					var pixel : uint = bitmapData.getPixel32( 0, y ) ;
-//					if ( pixel != 0x00000000 ) 
-//					{
-//						bitmapData.dispose() ;
-//						return x ;
-//					}
-//				}
-//				this.textField.x ++ ;
-//			}
-//			bitmapData.dispose() ;
-//			return 0 ;
-//		}
-//		
-//		//----------------------------------------------------------------------
-//		
-//		protected function trimVertical () : void
-//		{
-//			var textTrim : TextTrim = this.textManager.getTrimData( this.style, this.trimSample ) ;
-//			var cached : Boolean = !isNaN( textTrim.trimTopHeight ) && !isNaN( textTrim.trimBottomHeight ) ;
-//			
-//			if ( !cached ) 
-//			{
-//				if ( this.trimSample && this.trimSample.length > 0 )
-//				{
-//					for ( var i : uint = 1, replace : String = this.trimSample ; i < this.textField.numLines ; i++ )
-//						replace += "<br/>" + this.trimSample ;
-//					this.textField.htmlText = "<span class='" + this.style + "'>" + replace + "</span>" ;
-//				}
-//			}
-//			
-//			if ( this.trimTop )
-//			{
-//				if ( !isNaN( textTrim.trimTopHeight ) ) this.trimTopHeight = textTrim.trimTopHeight ;
-//				else textTrim.trimTopHeight = this.trimTopHeight = this.getTrimTopHeight() ; 
-//			}
-//			else this.trimTopHeight = 0 ;
-//
-//			if ( this.trimBottom )
-//			{
-//				if ( !isNaN( textTrim.trimBottomHeight ) ) this.trimBottomHeight = textTrim.trimBottomHeight ;
-//				else textTrim.trimBottomHeight = this.trimBottomHeight = this.getTrimBottomHeight() ; 
-//			}
-//			else this.trimBottomHeight = 0 ;
-//			
-//			if ( !cached ) 
-//			{
-//				if ( this.trimSample && this.trimSample.length > 0 )
-//					this.textField.htmlText = "<span class='" + this.style + "'>" + this.htmlText + "</span>" ;
-//			}
-//				
-//			this.textField.x = - this.trimStartWidth ; 
-//			this.textField.y = - this.trimTopHeight ; 
-//			
-//			this._measuredHeight = Math.round( this.trimBottom ? this.textField.height - this.trimTopHeight - this.trimBottomHeight : this.textField.textHeight ) ;
-//			
-////			this.content.graphics.clear() ;
-////			this.content.graphics.beginFill( 0xFF0000, 0.2 );
-////			this.content.graphics.drawRect( this.marginLeft, this.marginTop, this._measuredWidth, this._measuredHeight ) ;
-//		}
-//
-//		protected function getTrimTopHeight () : uint
-//		{
-//			var x : uint , y : uint ;
-//			var bitmapData : BitmapData = new BitmapData( this.textField.textWidth, 1, true, 0x00000000 ) ;
-//			this.textField.y = 0 ;
-//			for ( y = 0 ; y < this.textField.height ; y ++ )
-//			{
-//				bitmapData.draw( this ) ;
-//				for ( x = 0 ; x < this.textField.textWidth ; x ++ )
-//				{
-//					var pixel : uint = bitmapData.getPixel32( x, 0 ) ;
-//					if ( pixel != 0x00000000 ) 
-//					{
-//						bitmapData.dispose() ;
-//						return y ;
-//					}
-//				}
-//				this.textField.y -- ; 
-//			}
-//			bitmapData.dispose() ;
-//			return 0 ;
-//		}
-//		
-//		protected function getTrimBottomHeight () : uint
-//		{
-//			var x : uint , y : uint ;
-//			var bitmapData : BitmapData = new BitmapData( this.textField.textWidth, 1, true, 0x00000000 ) ;
-//			this.textField.y = 1 - this.textField.height ;
-//			for ( y = 0 ; y < this.textField.height ; y ++ )
-//			{
-//				bitmapData.draw( this ) ;
-//				for ( x = 0 ; x < this.textField.textWidth - 1 ; x ++ )
-//				{
-//					var pixel : uint = bitmapData.getPixel32( x, 0 ) ;
-//					if ( pixel != 0x00000000 ) 
-//					{
-//						bitmapData.dispose() ;
-//						return y ;
-//					}
-//				}
-//				this.textField.y ++ ; 
-//			}
-//			bitmapData.dispose() ;
-//			return 0 ;
-//		}
+		protected function trimHorizontal () : void
+		{
+			var textTrim : TextTrim = this.textManager.getTrimData( this.style, this.trimSample ) ; 
+			
+			if ( this.trimStart )
+			{
+				if ( !isNaN( textTrim.trimStartWidth ) ) this.trimStartWidth = textTrim.trimStartWidth ;
+				else textTrim.trimStartWidth = this.trimStartWidth = this.getTrimStartWidth( this.getTrimStartRectangle() ) ; 
+			}
+			else this.trimStartWidth = 2 ;
+
+			this.trimEndWidth = this.trimEnd ? this.getTrimEndWidth () : 0 ;
+			
+			this.textField.x = - this.trimStartWidth ; 
+			this.textField.y = 0 ; 
+			
+			this._measuredWidth = Math.round( this.trimEnd ? this.textField.width - this.trimEndWidth - this.trimStartWidth : this.textField.textWidth ) ;
+		}
+		
+		protected function getTrimStartRectangle () : Rectangle
+		{
+			var rectangle : Rectangle = new Rectangle( 0, 0, this.textField.textWidth, 0 ) ;
+			var metrics : TextLineMetrics ;
+			for ( var i : uint = 0, n : uint = this.textField.numLines; i < n; i ++ )
+			{
+				metrics = this.textField.getLineMetrics( i ) ; 
+				if ( metrics.x > rectangle.x ) 
+				{
+					rectangle.x = metrics.x ;
+					rectangle.y = metrics.height * i ;
+					rectangle.height = metrics.height ;
+				}
+			}
+			if ( !this.textField.embedFonts ) rectangle.x = Math.max ( 0, rectangle.x - this.textField.localToGlobal( new Point() ).x >> 0 ) ;
+			return rectangle ;
+		}
+		
+		protected function getTrimStartWidth ( rectangle : Rectangle ) : uint
+		{
+			var x : uint , y : uint ;
+			var bitmapData : BitmapData = new BitmapData( 1, rectangle.height, true, 0x00000000 ) ;
+			this.textField.x = - rectangle.x ;
+			this.textField.y = - rectangle.y ;
+			for ( x = 0 ; x < this.textField.width ; x ++ )
+			{
+				bitmapData.draw( this ) ;
+				for ( y = 0 ; y < this.textField.height ; y ++ ) 
+				{
+					var pixel : uint = bitmapData.getPixel32( 0, y ) ;
+					if ( pixel != 0x00000000 ) 
+					{
+						bitmapData.dispose() ;
+						return x + rectangle.x ;
+					}
+				}
+				this.textField.x -- ;
+			}
+			bitmapData.dispose() ;
+			return 0 ;
+		}
+		
+		protected function getTrimEndWidth () : uint
+		{
+			var x : uint , y : uint ;
+			var bitmapData : BitmapData = new BitmapData( 1, this.textField.height, true, 0x00000000 ) ;
+			this.textField.x = 1 - this.textField.width ;
+			this.textField.y = 0 ;
+			for ( x = 0 ; x < this.textField.width ; x ++ )
+			{
+				bitmapData.draw( this ) ;
+				for ( y = 0 ; y < this.textField.height ; y ++ ) 
+				{
+					var pixel : uint = bitmapData.getPixel32( 0, y ) ;
+					if ( pixel != 0x00000000 ) 
+					{
+						bitmapData.dispose() ;
+						return x ;
+					}
+				}
+				this.textField.x ++ ;
+			}
+			bitmapData.dispose() ;
+			return 0 ;
+		}
+		
+		//----------------------------------------------------------------------
+		
+		protected function trimVertical () : void
+		{
+			var textTrim : TextTrim = this.textManager.getTrimData( this.style, this.trimSample ) ;
+			var cached : Boolean = !isNaN( textTrim.trimTopHeight ) && !isNaN( textTrim.trimBottomHeight ) ;
+			
+			if ( !cached ) 
+			{
+				if ( this.trimSample && this.trimSample.length > 0 )
+				{
+					for ( var i : uint = 1, replace : String = this.trimSample ; i < this.textField.numLines ; i++ )
+						replace += "<br/>" + this.trimSample ;
+					this.textField.htmlText = "<span class='" + this.style + "'>" + replace + "</span>" ;
+				}
+			}
+			
+			if ( this.trimTop )
+			{
+				if ( !isNaN( textTrim.trimTopHeight ) ) this.trimTopHeight = textTrim.trimTopHeight ;
+				else textTrim.trimTopHeight = this.trimTopHeight = this.getTrimTopHeight() ; 
+			}
+			else this.trimTopHeight = 0 ;
+
+			if ( this.trimBottom )
+			{
+				if ( !isNaN( textTrim.trimBottomHeight ) ) this.trimBottomHeight = textTrim.trimBottomHeight ;
+				else textTrim.trimBottomHeight = this.trimBottomHeight = this.getTrimBottomHeight() ; 
+			}
+			else this.trimBottomHeight = 0 ;
+			
+			if ( !cached ) 
+			{
+				if ( this.trimSample && this.trimSample.length > 0 )
+					this.textField.htmlText = "<span class='" + this.style + "'>" + this.htmlText + "</span>" ;
+			}
+				
+			this.textField.x = - this.trimStartWidth ; 
+			this.textField.y = - this.trimTopHeight ; 
+			
+			this._measuredHeight = Math.round( this.trimBottom ? this.textField.height - this.trimTopHeight - this.trimBottomHeight : this.textField.textHeight ) ;
+			
+//			this.content.graphics.clear() ;
+//			this.content.graphics.beginFill( 0xFF0000, 0.2 );
+//			this.content.graphics.drawRect( this.marginLeft, this.marginTop, this._measuredWidth, this._measuredHeight ) ;
+		}
+
+		protected function getTrimTopHeight () : uint
+		{
+			var x : uint , y : uint ;
+			var bitmapData : BitmapData = new BitmapData( this.textField.textWidth, 1, true, 0x00000000 ) ;
+			this.textField.y = 0 ;
+			for ( y = 0 ; y < this.textField.height ; y ++ )
+			{
+				bitmapData.draw( this ) ;
+				for ( x = 0 ; x < this.textField.textWidth ; x ++ )
+				{
+					var pixel : uint = bitmapData.getPixel32( x, 0 ) ;
+					if ( pixel != 0x00000000 ) 
+					{
+						bitmapData.dispose() ;
+						return y ;
+					}
+				}
+				this.textField.y -- ; 
+			}
+			bitmapData.dispose() ;
+			return 0 ;
+		}
+		
+		protected function getTrimBottomHeight () : uint
+		{
+			var x : uint , y : uint ;
+			var bitmapData : BitmapData = new BitmapData( this.textField.textWidth, 1, true, 0x00000000 ) ;
+			this.textField.y = 1 - this.textField.height ;
+			for ( y = 0 ; y < this.textField.height ; y ++ )
+			{
+				bitmapData.draw( this ) ;
+				for ( x = 0 ; x < this.textField.textWidth - 1 ; x ++ )
+				{
+					var pixel : uint = bitmapData.getPixel32( x, 0 ) ;
+					if ( pixel != 0x00000000 ) 
+					{
+						bitmapData.dispose() ;
+						return y ;
+					}
+				}
+				this.textField.y ++ ; 
+			}
+			bitmapData.dispose() ;
+			return 0 ;
+		}
 	}
 }
