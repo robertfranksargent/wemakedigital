@@ -1,5 +1,6 @@
 package com.wemakedigital.ui.text 
 {
+	import com.wemakedigital.log.Log;
 	import com.wemakedigital.ui.Container;
 	import com.wemakedigital.ui.text.manager.TextManager;
 	import com.wemakedigital.ui.text.manager.TextTrim;
@@ -11,7 +12,7 @@ package com.wemakedigital.ui.text
 	import flash.text.TextFieldAutoSize;
 	import flash.text.TextFieldType;
 	import flash.text.TextLineMetrics;
-	
+
 	/**
 	 * Dynamic text component
 	 */
@@ -513,49 +514,63 @@ package com.wemakedigital.ui.text
 		
 		protected function getTrimStartWidth ( rectangle : Rectangle ) : uint
 		{
-			var x : uint , y : uint ;
-			var bitmapData : BitmapData = new BitmapData( 1, rectangle.height, true, 0x00000000 ) ;
-			this.textField.x = - rectangle.x ;
-			this.textField.y = - rectangle.y ;
-			for ( x = 0 ; x < this.textField.width ; x ++ )
+			try 
 			{
-				bitmapData.draw( this ) ;
-				for ( y = 0 ; y < this.textField.height ; y ++ ) 
+				var x : uint , y : uint ;
+				var bitmapData : BitmapData = new BitmapData( 1, rectangle.height, true, 0x00000000 ) ;
+				this.textField.x = - rectangle.x ;
+				this.textField.y = - rectangle.y ;
+				for ( x = 0 ; x < this.textField.width ; x ++ )
 				{
-					var pixel : uint = bitmapData.getPixel32( 0, y ) ;
-					if ( pixel != 0x00000000 ) 
+					bitmapData.draw( this ) ;
+					for ( y = 0 ; y < this.textField.height ; y ++ ) 
 					{
-						bitmapData.dispose() ;
-						return x + rectangle.x ;
+						var pixel : uint = bitmapData.getPixel32( 0, y ) ;
+						if ( pixel != 0x00000000 ) 
+						{
+							bitmapData.dispose() ;
+							return x + rectangle.x ;
+						}
 					}
+					this.textField.x -- ;
 				}
-				this.textField.x -- ;
+				bitmapData.dispose() ;
+			} 
+			catch ( e : Error )
+			{
+				Log.error( this, "getTrimStartWidth" , e.name, e.message ) ;
 			}
-			bitmapData.dispose() ;
 			return 0 ;
 		}
 		
 		protected function getTrimEndWidth () : uint
 		{
-			var x : uint , y : uint ;
-			var bitmapData : BitmapData = new BitmapData( 1, this.textField.height, true, 0x00000000 ) ;
-			this.textField.x = 1 - this.textField.width ;
-			this.textField.y = 0 ;
-			for ( x = 0 ; x < this.textField.width ; x ++ )
+			try 
 			{
-				bitmapData.draw( this ) ;
-				for ( y = 0 ; y < this.textField.height ; y ++ ) 
+				var x : uint , y : uint ;
+				var bitmapData : BitmapData = new BitmapData( 1, this.textField.height, true, 0x00000000 ) ;
+				this.textField.x = 1 - this.textField.width ;
+				this.textField.y = 0 ;
+				for ( x = 0 ; x < this.textField.width ; x ++ )
 				{
-					var pixel : uint = bitmapData.getPixel32( 0, y ) ;
-					if ( pixel != 0x00000000 ) 
+					bitmapData.draw( this ) ;
+					for ( y = 0 ; y < this.textField.height ; y ++ ) 
 					{
-						bitmapData.dispose() ;
-						return x ;
+						var pixel : uint = bitmapData.getPixel32( 0, y ) ;
+						if ( pixel != 0x00000000 ) 
+						{
+							bitmapData.dispose() ;
+							return x ;
+						}
 					}
+					this.textField.x ++ ;
 				}
-				this.textField.x ++ ;
+				bitmapData.dispose() ;
 			}
-			bitmapData.dispose() ;
+			catch ( e : Error )
+			{
+				Log.error( this, "getTrimStartWidth" , e.name, e.message ) ;
+			}
 			return 0 ;
 		}
 		
@@ -608,47 +623,61 @@ package com.wemakedigital.ui.text
 
 		protected function getTrimTopHeight () : uint
 		{
-			var x : uint , y : uint ;
-			var bitmapData : BitmapData = new BitmapData( this.textField.textWidth, 1, true, 0x00000000 ) ;
-			this.textField.y = 0 ;
-			for ( y = 0 ; y < this.textField.height ; y ++ )
+			try
 			{
-				bitmapData.draw( this ) ;
-				for ( x = 0 ; x < this.textField.textWidth ; x ++ )
+				var x : uint , y : uint ;
+				var bitmapData : BitmapData = new BitmapData( this.textField.textWidth, 1, true, 0x00000000 ) ;
+				this.textField.y = 0 ;
+				for ( y = 0 ; y < this.textField.height ; y ++ )
 				{
-					var pixel : uint = bitmapData.getPixel32( x, 0 ) ;
-					if ( pixel != 0x00000000 ) 
+					bitmapData.draw( this ) ;
+					for ( x = 0 ; x < this.textField.textWidth ; x ++ )
 					{
-						bitmapData.dispose() ;
-						return y ;
+						var pixel : uint = bitmapData.getPixel32( x, 0 ) ;
+						if ( pixel != 0x00000000 ) 
+						{
+							bitmapData.dispose() ;
+							return y ;
+						}
 					}
+					this.textField.y -- ; 
 				}
-				this.textField.y -- ; 
+				bitmapData.dispose() ;
+			} 
+			catch ( e : Error )
+			{
+				Log.error( this, "getTrimStartWidth" , e.name, e.message ) ;
 			}
-			bitmapData.dispose() ;
 			return 0 ;
 		}
 		
 		protected function getTrimBottomHeight () : uint
 		{
-			var x : uint , y : uint ;
-			var bitmapData : BitmapData = new BitmapData( this.textField.textWidth, 1, true, 0x00000000 ) ;
-			this.textField.y = 1 - this.textField.height ;
-			for ( y = 0 ; y < this.textField.height ; y ++ )
+			try
 			{
-				bitmapData.draw( this ) ;
-				for ( x = 0 ; x < this.textField.textWidth - 1 ; x ++ )
+				var x : uint , y : uint ;
+				var bitmapData : BitmapData = new BitmapData( this.textField.textWidth, 1, true, 0x00000000 ) ;
+				this.textField.y = 1 - this.textField.height ;
+				for ( y = 0 ; y < this.textField.height ; y ++ )
 				{
-					var pixel : uint = bitmapData.getPixel32( x, 0 ) ;
-					if ( pixel != 0x00000000 ) 
+					bitmapData.draw( this ) ;
+					for ( x = 0 ; x < this.textField.textWidth - 1 ; x ++ )
 					{
-						bitmapData.dispose() ;
-						return y ;
+						var pixel : uint = bitmapData.getPixel32( x, 0 ) ;
+						if ( pixel != 0x00000000 ) 
+						{
+							bitmapData.dispose() ;
+							return y ;
+						}
 					}
+					this.textField.y ++ ; 
 				}
-				this.textField.y ++ ; 
+				bitmapData.dispose() ;
+			} 
+			catch ( e : Error )
+			{
+				Log.error( this, "getTrimStartWidth" , e.name, e.message ) ;
 			}
-			bitmapData.dispose() ;
 			return 0 ;
 		}
 	}
