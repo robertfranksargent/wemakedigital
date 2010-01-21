@@ -59,7 +59,7 @@ package com.wemakedigital.ui.text.manager
 		/**
 		 * @private
 		 */
-		protected var trimData : Array = [] ;
+		public var trimData : Array = [] ;
 
 		//----------------------------------------------------------------------
 		//
@@ -152,10 +152,13 @@ package com.wemakedigital.ui.text.manager
 		 */
 		public function getTrimData ( style : String, sample : String ) : TextTrim
 		{
-			for each ( var textTrim : TextTrim in this.trimData )
+			var textTrim : TextTrim ;
+			for each ( textTrim in this.trimData )
 				if ( textTrim.style == style && textTrim.sample == sample ) 
 					return textTrim ;
-			return new TextTrim ( style, sample ) ;
+			textTrim = new TextTrim ( style, sample ) ;
+			this.trimData.push( textTrim ) ;
+			return textTrim ;
 		}
 	}
 }
