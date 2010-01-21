@@ -1,5 +1,7 @@
 package com.wemakedigital.ui 
 {
+	import com.wemakedigital.log.Log;
+
 	import mx.utils.ObjectUtil;
 
 	import flash.display.DisplayObject;
@@ -64,6 +66,11 @@ package com.wemakedigital.ui
 		 * @private
 		 */
 		protected var _measuredHeight : Number ;
+		
+		//----------------------------------------------------------------------
+		
+		protected var rendering : Boolean = false ;
+		protected var renderAgain : Boolean = false ;
 		
 		//----------------------------------------------------------------------
 		//
@@ -133,7 +140,7 @@ package com.wemakedigital.ui
 		public function set scrollHorizontal ( value : Number ) : void
 		{
 			this._scrollHorizontal = Math.max ( 0 , Math.min ( 1, value ) ) ;
-			this.scroll() ;
+			this.update() ;
 		}
 		
 		/**
@@ -150,7 +157,7 @@ package com.wemakedigital.ui
 		public function set scrollVertical ( value : Number ) : void
 		{
 			this._scrollVertical = Math.max ( 0 , Math.min ( 1, value ) ) ;
-			this.scroll() ;
+			this.update() ;
 		}
 		
 		//----------------------------------------------------------------------
@@ -337,7 +344,7 @@ package com.wemakedigital.ui
 			{
 				if ( child is Component ) ( child as Component ).container = null ;
 				this._children.splice( this.children.indexOf( child ), 1 ) ;
-				this.content.removeChild( child ) ;
+				if ( this.content.contains( child ) ) this.content.removeChild( child ) ;
 				this.update() ;
 			}
 			return child ;
@@ -445,8 +452,12 @@ package com.wemakedigital.ui
 				if ( this.container ) this.container.invalidatedChild() ; 
 				else 
 				{
-					this.stage.addEventListener( Event.RENDER, this.onRender ) ;
-					this.stage.invalidate() ;	
+					if ( this.rendering ) this.renderAgain = true ;
+					else
+					{
+						this.stage.addEventListener( Event.RENDER, this.onRender ) ;
+						this.stage.invalidate() ;
+					}	
 				}
 			}
 		}
@@ -456,7 +467,7 @@ package com.wemakedigital.ui
 		 */
 		override public function render () : void
 		{
-			if ( this.created )
+			if ( this.created && this.invalidated )
 			{
 				this.contentMask.graphics.clear() ;
 				if ( this.maskChildren )
@@ -464,8 +475,8 @@ package com.wemakedigital.ui
 					this.contentMask.graphics.beginFill( 0x000000, 0 ) ;
 					this.contentMask.graphics.drawRect(0, 0, this.explicitWidth, this.explicitHeight ) ;
 				}
+				this.scroll() ;
 			}
-			this.scroll() ;
 			super.render() ;
 			for each ( var childComponent : Component in this.components )
 				childComponent.render() ;
@@ -616,6 +627,7 @@ package com.wemakedigital.ui
 		 */
 		override protected function onRender ( e : Event ) : void
 		{		
+			this.rendering = true ;
 			if ( e ) ( e.target as Stage ).removeEventListener( Event.RENDER, this.onRender ) ;
 			if ( this.created ) 
 			{
@@ -625,8 +637,18 @@ package com.wemakedigital.ui
 				this.updateSizeOfChildren() ;
 				this.updatePositionOfChildren() ;
 				if ( this.beforeRender() ) this.render() ;
-				else this.onRender( null ) ;
+				else 
+				{
+					this.onRender( null ) ;
+					return ;
+				}
 			}
+			if ( this.renderAgain )
+			{
+				this.renderAgain = false ;
+				this.onRender( null ) ;
+			}
+			this.rendering = false ;
 		}
 	}
 }
