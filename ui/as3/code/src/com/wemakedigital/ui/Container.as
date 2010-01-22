@@ -1,7 +1,5 @@
 package com.wemakedigital.ui 
 {
-	import com.wemakedigital.log.Log;
-
 	import mx.utils.ObjectUtil;
 
 	import flash.display.DisplayObject;
@@ -53,7 +51,7 @@ package com.wemakedigital.ui
 		/**
 		 * @private
 		 */
-		protected var _maskChildren : Boolean = true ;
+		protected var _maskChildren : Boolean = false ;
 		
 		//----------------------------------------------------------------------
 		
