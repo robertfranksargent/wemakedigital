@@ -381,6 +381,10 @@ package com.wemakedigital.ui.core
 		}
 		
 		//----------------------------------------------------------------------
+		
+		public var destroyChildren : Boolean = true ;
+		
+		//----------------------------------------------------------------------
 		//
 		//  Constructor
 		//
@@ -467,7 +471,7 @@ package com.wemakedigital.ui.core
 		 */
 		protected function destroy () : void
 		{
-			this.removeChildren() ;
+			if ( this.destroyChildren ) this.removeChildren() ;
 			this.created = false ; 
 		}
 		
