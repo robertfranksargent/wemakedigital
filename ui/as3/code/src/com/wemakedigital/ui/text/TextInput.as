@@ -3,6 +3,7 @@ package com.wemakedigital.ui.text
 	import com.wemakedigital.ui.Container;
 	import com.wemakedigital.ui.text.manager.TextManager;
 
+	import flash.display.Shape;
 	import flash.text.TextField;
 	import flash.text.TextFieldAutoSize;
 	import flash.text.TextFieldType;
@@ -21,6 +22,7 @@ package com.wemakedigital.ui.text
 		
 		protected var textField : TextField ;
 		protected var textFormat : TextFormat ;
+		protected var borderShape : Shape ;
 		protected var textHeightWhenEmpty : Number = 0 ;
 		
 		//----------------------------------------------------------------------
@@ -32,7 +34,6 @@ package com.wemakedigital.ui.text
 		protected var _sharpness : Number ;
 		protected var _style : String = "default" ;
 		protected var _selectable : Boolean = true ;
-		protected var _htmlText : String = "" ;
 
 		//----------------------------------------------------------------------
 		
@@ -40,6 +41,12 @@ package com.wemakedigital.ui.text
 		protected var _marginRight : Number = 0 ;
 		protected var _marginTop : Number = 0 ;
 		protected var _marginBottom : Number = 0 ;
+		
+		//----------------------------------------------------------------------
+
+		protected var _border : Boolean = false ;
+		protected var _borderColour : uint = 0xFF0000 ;
+		protected var _borderThickness : uint = 1 ;
 		
 		//----------------------------------------------------------------------
 		
@@ -165,15 +172,14 @@ package com.wemakedigital.ui.text
 			this.update() ;
 		}
 		
-		public function get htmlText ( ) : String
+		public function get text ( ) : String
 		{
-			return this._htmlText ;
+			return this.textField ? this.textField.text : "" ;
 		}
 		
-		public function set htmlText ( value : String ) : void
+		public function set text ( value : String ) : void
 		{
-			this._htmlText = value ;
-			this.update() ;
+			if ( this.textField ) this.textField.text = value ;
 		}
 		
 		//----------------------------------------------------------------------
@@ -223,6 +229,41 @@ package com.wemakedigital.ui.text
 		}
 		
 		//----------------------------------------------------------------------
+		
+		public function get border ( ) : Boolean
+		{
+			return this._border ;
+		}
+		
+		public function set border ( value : Boolean ) : void
+		{
+			this._border = value ;
+			this.update() ;
+		}
+
+		public function get borderColour ( ) : uint
+		{
+			return this._borderColour ;
+		}
+		
+		public function set borderColour ( value : uint ) : void
+		{
+			this._borderColour = value ;
+			this.update() ;
+		}
+
+		public function get borderThickness ( ) : uint
+		{
+			return this._borderThickness ;
+		}
+		
+		public function set borderThickness ( value : uint ) : void
+		{
+			this._borderThickness = value ;
+			this.update() ;
+		}
+		
+		//----------------------------------------------------------------------
 		//
 		//  Constructor
 		//
@@ -259,6 +300,16 @@ package com.wemakedigital.ui.text
 				
 				this.textField.x = marginLeft ; 
 				this.textField.y = marginTop ; 
+				
+				this.borderShape.graphics.clear() ;
+				if ( this.border )
+				{
+					this.borderShape.graphics.beginFill( this.borderColour ) ;
+					this.borderShape.graphics.drawRect( 0, 0, this.explicitWidth, this.borderThickness ) ;
+					this.borderShape.graphics.drawRect( 0, this.explicitHeight - this.borderThickness, this.explicitWidth, this.borderThickness ) ;
+					this.borderShape.graphics.drawRect( 0, this.borderThickness, this.borderThickness, this.explicitHeight - ( 2 * this.borderThickness ) ) ;
+					this.borderShape.graphics.drawRect( this.explicitWidth - this.borderThickness, this.borderThickness, this.borderThickness, this.explicitHeight - ( 2 * this.borderThickness ) ) ;
+				}
 			}
 			super.render() ;
 		}
@@ -276,6 +327,9 @@ package com.wemakedigital.ui.text
 			this.textField.multiline = true ;		
 			this.addChild( this.textField ) ;
 			
+			this.borderShape = new Shape() ;
+			this.addChild( this.borderShape ) ;
+			
 			this.updateStyle() ;
 			super.create() ;
 		}
@@ -291,7 +345,7 @@ package com.wemakedigital.ui.text
 		}
 		
 		//----------------------------------------------------------------------
-		
+
 		/**
 		 * @inheritDoc
 		 */
