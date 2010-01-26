@@ -361,8 +361,9 @@ package com.wemakedigital.ui.text
 				this.textField.selectable = this.selectable ;
 				this.textField.mouseEnabled = this.selectable ;
 				this.textField.defaultTextFormat = this.textFormat ;
-				this.textField.wordWrap = !this.autoWidth ;				
-				this.textField.autoSize = TextFieldAutoSize.LEFT ;
+				this.textField.wordWrap = false ;				
+				this.textField.multiline = false ;				
+				this.textField.autoSize = TextFieldAutoSize.NONE ;
 				
 				if ( !isNaN( this.width ) && this.explicitWidth != this.width ) this.explicitWidth = this.width ;
 				if ( !isNaN( this.height ) && this.explicitHeight != this.height ) this.explicitHeight = this.height ;
