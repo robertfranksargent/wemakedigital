@@ -417,9 +417,7 @@ package com.wemakedigital.ui.text
 		 * @inheritDoc
 		 */
 		override protected function create () : void
-		{
-			this.mouseChildren = false ;
-			
+		{	
 			this.textField = new TextField( ) ;
 			this.textField.condenseWhite = true ;
 			this.textField.type = TextFieldType.DYNAMIC ;
@@ -465,6 +463,8 @@ package com.wemakedigital.ui.text
 				this.textField.htmlText = "<span class='" + this.style + "'>" + this.htmlText + "</span>" ;
 				this.textField.wordWrap = !this.autoWidth ;				
 				this.textField.autoSize = TextFieldAutoSize.LEFT ;
+				
+				this.mouseChildren = this.selectable ;
 				
 				if ( !isNaN( this.width ) && this.explicitWidth != this.width ) this.explicitWidth = this.width ;
 				if ( !isNaN( this.height ) && this.explicitHeight != this.height ) this.explicitHeight = this.height ;
