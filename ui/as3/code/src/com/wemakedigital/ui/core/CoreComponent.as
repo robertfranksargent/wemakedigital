@@ -497,7 +497,7 @@ package com.wemakedigital.ui.core
 		 */
 		protected function renderColour() : void
 		{
-			if ( this.colour > -1 ) 
+			if ( this.colour > -1 && !isNaN( this.explicitWidth ) && !isNaN( this.explicitHeight ) ) 
 			{
 				this.graphics.clear() ;
 				this.graphics.beginFill( this.colour, this.colourAlpha ) ;
