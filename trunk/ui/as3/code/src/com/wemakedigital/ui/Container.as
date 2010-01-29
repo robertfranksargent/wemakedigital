@@ -373,7 +373,7 @@ package com.wemakedigital.ui
 		 */
 		override public function swapChildren (child1 : DisplayObject, child2 : DisplayObject) : void
 		{
-			if ( this.contains( child2 ) && this.contains( child2 ) )
+			if ( child1 != child2 && this.contains( child1 ) && this.contains( child2 ) )
 			{
 				var index1 : int = this.getChildIndex( child1 ) ;
 				var index2 : int = this.getChildIndex( child2 ) ;
