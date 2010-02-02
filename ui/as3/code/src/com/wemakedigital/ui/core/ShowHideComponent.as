@@ -99,8 +99,16 @@ package com.wemakedigital.ui.core
 		 */
 		protected function onEnterFrameShow ( e : Event ) : void
 		{
-			this.alpha += 1 / ( this.stage.frameRate * this.showTime ) ; 
-			if ( this.alpha >= 1 ) this.onShowComplete() ;
+			if ( this.stage )
+			{
+				this.alpha += 1 / ( this.stage.frameRate * this.showTime ) ; 
+				if ( this.alpha >= 1 ) this.onShowComplete() ;
+			}
+			else
+			{
+				this.alpha = 1 ;
+				this.onShowComplete() ;
+			}
 		}
 		
 		/**
@@ -108,8 +116,16 @@ package com.wemakedigital.ui.core
 		 */
 		protected function onEnterFrameHide ( e : Event ) : void
 		{
-			this.alpha -= 1 / ( this.stage.frameRate * this.showTime ) ; 
-			if ( this.alpha <= 0 ) this.onHideComplete() ;
+			if ( this.stage )
+			{
+				this.alpha -= 1 / ( this.stage.frameRate * this.showTime ) ; 
+				if ( this.alpha <= 0 ) this.onHideComplete() ;
+			}
+			else
+			{
+				this.alpha = 0 ;
+				this.onHideComplete() ;
+			}
 		}
 		
 		/**
