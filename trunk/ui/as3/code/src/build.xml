@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="UI Framework" default="all" basedir=".">
+<project name="Make Digital UI Framework" default="all">
 
 	<property file="build.properties" />
 	
@@ -10,29 +10,19 @@
 	
 	<target name="swc" description="Build SWC">
 		<exec executable="${compc.exe}">
-			<arg value="-compute-digest=false"/>
-			<arg value="-source-path=."/>
-			<!--<arg value="-include-sources"/>
-			<arg value="${src.dir}"/>-->
-			<arg value="-include-classes"/>
-			<arg value="com.wemakedigital.ui.core.CoreComponent"/>
-			<arg value="-external-library-path"/>
-			<arg value="${libs.dir}"/>
-			<arg value="-output"/>
-			<arg value="${lib.output}"/>
+			<arg line="-source-path=${src.dir}"/>
+			<arg line="-include-sources ${src.dir}/com/wemakedigital/ui"/>
+			<arg line="-external-library-path+=${libs.dir}"/>
+			<arg line="-output ${compc.output}"/>
 		</exec>
 	</target>
 	
 	<target name="docs" description="Build Documentation">
 		<exec executable="${asdoc.exe}" failonerror="true">
-			<!--<arg line="-doc-sources ${src.dir}" />-->
-			<arg value="-source-path=."/>
-			<arg line="-doc-classes com.wemakedigital.ui.core.CoreComponent" />
+			<arg line="-doc-sources ${src.dir}" />
 			<arg line="-window-title '${asdoc.title}'" />
-			<arg value="-external-library-path"/>
-			<arg value="${libs.dir}"/>
+			<arg line="-external-library-path+=${libs.dir}"/>
 			<arg line="-output ${asdoc.output}" />
 		</exec>
 	</target>
-	
 </project>
