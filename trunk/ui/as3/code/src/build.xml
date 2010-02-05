@@ -16,7 +16,7 @@
 			<arg value="${src.dir}"/>-->
 			<arg value="-include-classes"/>
 			<arg value="com.wemakedigital.ui.core.CoreComponent"/>
-			<arg value="-include-libraries"/>
+			<arg value="-external-library-path"/>
 			<arg value="${libs.dir}"/>
 			<arg value="-output"/>
 			<arg value="${lib.output}"/>
