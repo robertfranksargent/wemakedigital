@@ -99,7 +99,7 @@ package com.wemakedigital.ui.core
 		/**
 		 * @private
 		 */
-		protected var _interactive : Boolean ;
+		protected var _interactive : Boolean = true ;
 		
 		//----------------------------------------------------------------------
 		//
