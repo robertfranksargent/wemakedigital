@@ -19,13 +19,13 @@ package com.wemakedigital.ui.core
 		/**
 		 * The length of the show tween in seconds.
 		 */
-		public var showTime : Number = 0.2 ;
-		
+		public var showTime : Number = .2 ;
+
 		/**
 		 * The length of the hide tween in seconds.
 		 */
-		public var hideTime : Number = 0.2 ;
-		
+		public var hideTime : Number = .2 ;
+
 		//----------------------------------------------------------------------
 		//
 		//  Constructor
@@ -35,11 +35,11 @@ package com.wemakedigital.ui.core
 		/**
 		 * Constructor.
 		 */
-		public function ShowHideComponent ()
+		public function ShowHideComponent ( )
 		{
-			super( );
+			super( ) ;
 		}
-		
+
 		//----------------------------------------------------------------------
 		//
 		//  Methods
@@ -64,10 +64,10 @@ package com.wemakedigital.ui.core
 			else
 			{
 				this.alpha = 1 ;	
-				this.onShowComplete() ;
+				this.onShowComplete( ) ;
 			}
 		}
-		
+
 		/**
 		 * Hide the sprite.
 		 * 
@@ -84,10 +84,10 @@ package com.wemakedigital.ui.core
 			else
 			{
 				this.alpha = 0 ;	
-				this.onHideComplete() ;
+				this.onHideComplete( ) ;
 			}
 		}
-		
+
 		//----------------------------------------------------------------------
 		//
 		//  Event Handlers
@@ -101,16 +101,23 @@ package com.wemakedigital.ui.core
 		{
 			if ( this.stage )
 			{
-				this.alpha += 1 / ( this.stage.frameRate * this.showTime ) ; 
-				if ( this.alpha >= 1 ) this.onShowComplete() ;
+				if ( this.alpha >= 1 )
+				{
+					this.alpha = 1 ;
+					this.onShowComplete( ) ;
+				}
+				else
+				{
+					this.alpha += 1 / ( this.stage.frameRate * this.showTime ) ; 
+				}
 			}
 			else
 			{
 				this.alpha = 1 ;
-				this.onShowComplete() ;
+				this.onShowComplete( ) ;
 			}
 		}
-		
+
 		/**
 		 * @private
 		 */
@@ -118,34 +125,41 @@ package com.wemakedigital.ui.core
 		{
 			if ( this.stage )
 			{
-				this.alpha -= 1 / ( this.stage.frameRate * this.showTime ) ; 
-				if ( this.alpha <= 0 ) this.onHideComplete() ;
+				if ( this.alpha <= 0 )
+				{
+					this.alpha = 0 ;
+					this.onHideComplete( ) ;
+				}
+				else
+				{
+					this.alpha -= 1 / ( this.stage.frameRate * this.showTime ) ; 
+				}
 			}
 			else
 			{
 				this.alpha = 0 ;
-				this.onHideComplete() ;
+				this.onHideComplete( ) ;
 			}
 		}
-		
+
 		/**
 		 * @private
 		 */
-		protected function onShowComplete () : void
+		protected function onShowComplete ( ) : void
 		{
 			this.removeEventListener( Event.ENTER_FRAME , this.onEnterFrameShow ) ;
 			this.visible = true ;
-			this.dispatchEvent( new ShowHideEvent ( ShowHideEvent.SHOW_COMPLETE ) ) ;
+			this.dispatchEvent( new ShowHideEvent( ShowHideEvent.SHOW_COMPLETE ) ) ;
 		}
-		
+
 		/**
 		 * @private
 		 */
-		protected function onHideComplete () : void
+		protected function onHideComplete ( ) : void
 		{
 			this.removeEventListener( Event.ENTER_FRAME , this.onEnterFrameHide ) ;
 			this.visible = false ;
-			this.dispatchEvent( new ShowHideEvent ( ShowHideEvent.HIDE_COMPLETE ) ) ;			
+			this.dispatchEvent( new ShowHideEvent( ShowHideEvent.HIDE_COMPLETE ) ) ;			
 		}
 	}
 }
