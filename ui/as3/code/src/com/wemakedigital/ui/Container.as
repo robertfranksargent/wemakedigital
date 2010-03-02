@@ -210,6 +210,19 @@ package com.wemakedigital.ui
 		}
 
 		/**
+		 * The overall height of all the children in position of this component.
+		 */
+		public function get measuredHeight ( ) : Number
+		{
+			this._measuredHeight = 0 ;
+			for each ( var child : Component in this.components )
+			{
+				if ( ( child.y + child.explicitHeight ) > this._measuredHeight ) this._measuredHeight = ( child.y + child.explicitHeight ) ;  
+			}
+			return this._measuredHeight ;
+		}
+
+		/**
 		 * The overall height of all the visible children in position of this component.
 		 */
 		public function get measuredHeightVisible ( ) : Number
@@ -217,7 +230,7 @@ package com.wemakedigital.ui
 			this._measuredHeightVisible = 0 ;
 			for each ( var child : Component in this.components )
 			{
-				if ( ( child.y + child.explicitHeight ) > this._measuredHeightVisible ) this._measuredHeightVisible = ( child.y + child.explicitHeight ) ;  
+				if ( child.visible && ( child.y + child.explicitHeight ) > this._measuredHeightVisible ) this._measuredHeightVisible = ( child.y + child.explicitHeight ) ;  
 			}
 			return this._measuredHeightVisible ;
 		}
@@ -230,22 +243,9 @@ package com.wemakedigital.ui
 			this._measuredWidthVisible = 0 ;
 			for each ( var child : Component in this.components )
 			{
-				if ( ( child.x + child.explicitWidth ) > this._measuredWidthVisible ) this._measuredWidthVisible = ( child.x + child.explicitWidth ) ;  
+				if ( child.visible && ( child.x + child.explicitWidth ) > this._measuredWidthVisible ) this._measuredWidthVisible = ( child.x + child.explicitWidth ) ;  
 			}
 			return this._measuredWidthVisible ;
-		}
-
-		/**
-		 * The overall height of all the children in position of this component.
-		 */
-		public function get measuredHeight ( ) : Number
-		{
-			this._measuredHeight = 0 ;
-			for each ( var child : Component in this.components )
-			{
-				if ( ( child.y + child.explicitHeight ) > this._measuredHeight ) this._measuredHeight = ( child.y + child.explicitHeight ) ;  
-			}
-			return this._measuredHeight ;
 		}
 
 		/**
