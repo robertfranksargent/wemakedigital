@@ -5,6 +5,7 @@ package com.wemakedigital.ui.text
 	import com.wemakedigital.ui.text.Text;
 
 	import flash.events.MouseEvent;
+	import flash.text.StyleSheet;
 
 	/**
 	 * Simple text button component.
@@ -20,6 +21,7 @@ package com.wemakedigital.ui.text
 		protected var _styleOver : String ;
 		protected var _toggle : Boolean = false ;
 		protected var _selected : Boolean = false ;
+		protected var _rolledOver : Boolean = false ;
 		protected var tween : TweenMax ;
 
 		//----------------------------------------------------------------------
@@ -77,7 +79,7 @@ package com.wemakedigital.ui.text
 		 */
 		public function TextButton ( ) 
 		{
-			super( );
+			super( ) ;
 			this.tabEnabled = false ;
 			this.tabChildren = false ;
 		}
@@ -91,7 +93,7 @@ package com.wemakedigital.ui.text
 		/**
 		 * @inheritDoc
 		 */
-		override protected function create () : void
+		override protected function create ( ) : void
 		{
 			this.addEventListener( MouseEvent.ROLL_OVER , this.onRollOver ) ;
 			this.addEventListener( MouseEvent.ROLL_OUT , this.onRollOut ) ;
@@ -108,7 +110,7 @@ package com.wemakedigital.ui.text
 		/**
 		 * @inheritDoc
 		 */
-		override protected function destroy () : void
+		override protected function destroy ( ) : void
 		{
 			super.destroy( ) ;
 			
@@ -123,13 +125,13 @@ package com.wemakedigital.ui.text
 		/**
 		 * @inheritDoc
 		 */
-		override protected function update () : void
+		override protected function update ( ) : void
 		{
 			if ( this.created )
 			{
 				this._selectable = false ; 
 				
-				this.selected ? this.onRollOver( null ) : this.onRollOut( null ); 
+				this.selected ? this.onRollOver( null ) : this.onRollOut( null ) ; 
 				
 				// Give the button an invisible background as its hit area.
 				if ( this._colour < 0 )
@@ -139,6 +141,30 @@ package com.wemakedigital.ui.text
 				}
 			}
 			super.update( ) ;
+			
+			this.updateTextDecoration( ) ;
+		}
+
+		protected function updateTextDecoration ( ) : void
+		{
+			var styleSheet : StyleSheet = this.textManager.styleSheet ;
+			if ( styleSheet && this.styleOver && this.textField && this.htmlText )
+			{
+				var styleOver : Object = styleSheet.getStyle( "." + this.styleOver ) ;
+				if ( styleOver )
+				{
+					var textDecoration : String = styleOver[ "textDecoration" ] ;
+					
+					if ( ( this._rolledOver || this.selected ) && textDecoration == "underline" )
+					{
+						this.textField.htmlText = "<span class='" + this.style + "'><u>" + this.htmlText + "</u></span>" ;
+					}
+					else
+					{
+						this.textField.htmlText = "<span class='" + this.style + "'>" + this.htmlText + "</span>" ;		
+					}
+				}
+			}
 		}
 
 		//----------------------------------------------------------------------
@@ -152,14 +178,11 @@ package com.wemakedigital.ui.text
 		 */
 		protected function onRollOver ( e : MouseEvent ) : void
 		{
+			this._rolledOver = true ;
+			
 			var styleOver : Object = this.textManager.styleSheet.getStyle( "." + this.styleOver ) ;
 			var color : Number = Number( "0x" + String( styleOver[ "color" ] ).substring( 1 ) ) ;
-			var textDecoration : String = styleOver[ "textDecoration" ] ;
-			
-			if ( textDecoration == "underline" )
-			{
-				this.textField.htmlText = "<span class='" + this.style + "'><u>" + this.htmlText + "</u></span>" ;
-			}
+			this.updateTextDecoration( ) ;
 			
 			if ( this.tween ) this.tween.pause( ) ;
 			this.tween = TweenMax.to( this.textField , .15 , { tint : color } ) ;
@@ -170,9 +193,11 @@ package com.wemakedigital.ui.text
 		 */
 		protected function onRollOut ( e : MouseEvent ) : void
 		{
+			this._rolledOver = false ;
+			
 			if ( ! this.selected )
 			{
-				this.textField.htmlText = "<span class='" + this.style + "'>" + this.htmlText + "</span>" ;
+				this.updateTextDecoration( ) ;
 				
 				if ( this.tween ) this.tween.pause( ) ;
 				this.tween = TweenMax.to( this.textField , .15 , { removeTint : true } ) ;
@@ -187,7 +212,7 @@ package com.wemakedigital.ui.text
 			if ( this.toggle )
 			{ 
 				this.selected = !this.selected ;
-				this.selected ? this.onRollOver( null ) : this.onRollOut( null );
+				this.selected ? this.onRollOver( null ) : this.onRollOut( null ) ;
 			}
 		}
 	}
