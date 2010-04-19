@@ -313,8 +313,8 @@ package com.wemakedigital.ui
 			{
 				for each ( var childComponent : Component in this.components )
 				{
-					if ( !isNaN( childComponent.spareWidth ) ) childComponent.explicitWidth = Math.min ( Math.max ( ( this.explicitWidth - this.measuredWidth ) * childComponent.spareWidth >> 0, childComponent.minWidth ), isNaN ( childComponent.maxWidth ) ? Number.MAX_VALUE : childComponent.maxWidth ) ; 
-					if ( !isNaN( childComponent.spareHeight ) ) childComponent.explicitHeight = Math.min ( Math.max ( ( this.explicitHeight - this.measuredHeight ) * childComponent.spareHeight >> 0, childComponent.minHeight ), isNaN ( childComponent.maxHeight ) ? Number.MAX_VALUE : childComponent.maxHeight ) ; 
+					if ( ! isNaN( childComponent.spareWidth ) ) childComponent.explicitWidth = Math.min( Math.max( Math.round( ( this.explicitWidth - this.measuredWidth ) * childComponent.spareWidth ) , childComponent.minWidth ) , isNaN( childComponent.maxWidth ) ? Number.MAX_VALUE : childComponent.maxWidth ) ; 
+					if ( ! isNaN( childComponent.spareHeight ) ) childComponent.explicitHeight = Math.min( Math.max( Math.round( ( this.explicitHeight - this.measuredHeight ) * childComponent.spareHeight ) , childComponent.minHeight ) , isNaN( childComponent.maxHeight ) ? Number.MAX_VALUE : childComponent.maxHeight ) ; 
 				}
 				
 				for each ( var childContainer : Container in this.containers )

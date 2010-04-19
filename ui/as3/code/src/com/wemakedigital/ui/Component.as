@@ -145,6 +145,13 @@ package com.wemakedigital.ui
 		/**
 		 * @private
 		 */
+		protected var _round : Boolean = false ;	
+		
+		//----------------------------------------------------------------------
+		
+		/**
+		 * @private
+		 */
 		protected var _horizontalCentre : Number = NaN ;
 		
 		/**
@@ -684,6 +691,22 @@ package com.wemakedigital.ui
 			}
 			
 			this.update() ;
+		}
+		
+		//----------------------------------------------------------------------		
+		
+		public function set round ( value : Boolean ) : void
+		{
+			if ( value != this.round )
+			{
+				this._round = value ;
+				this.update( ) ;
+			}
+		}
+		
+		public function get round ( ) : Boolean
+		{
+			return this._round ;
 		}
 		
 		//----------------------------------------------------------------------
