@@ -566,8 +566,8 @@ package com.wemakedigital.ui
 			{
 				for each ( var childComponent : Component in this.components )
 				{
-					if ( !isNaN( childComponent.relativeWidth ) ) childComponent.explicitWidth = Math.min( Math.max( this.explicitWidth * childComponent.relativeWidth >> 0 , childComponent.minWidth ) , isNaN( childComponent.maxWidth ) ? Number.MAX_VALUE : childComponent.maxWidth ) ; 
-					if ( !isNaN( childComponent.relativeHeight ) ) childComponent.explicitHeight = Math.min( Math.max( this.explicitHeight * childComponent.relativeHeight >> 0 , childComponent.minHeight ) , isNaN( childComponent.maxHeight ) ? Number.MAX_VALUE : childComponent.maxHeight ) ;
+					if ( !isNaN( childComponent.relativeWidth ) ) childComponent.explicitWidth = Math.min( Math.max( Math.round( this.explicitWidth * childComponent.relativeWidth ) , childComponent.minWidth ) , isNaN( childComponent.maxWidth ) ? Number.MAX_VALUE : childComponent.maxWidth ) ; 
+					if ( !isNaN( childComponent.relativeHeight ) ) childComponent.explicitHeight = Math.min( Math.max( Math.round( this.explicitHeight * childComponent.relativeHeight ) , childComponent.minHeight ) , isNaN( childComponent.maxHeight ) ? Number.MAX_VALUE : childComponent.maxHeight ) ;
 					if ( !isNaN( childComponent.left ) && !isNaN( childComponent.right ) ) childComponent.explicitWidth = this.explicitWidth - childComponent.left - childComponent.right ;
 					if ( !isNaN( childComponent.top ) && !isNaN( childComponent.bottom ) ) childComponent.explicitHeight = this.explicitHeight - childComponent.top - childComponent.bottom ;
 				}
@@ -586,8 +586,8 @@ package com.wemakedigital.ui
 			{
 				for each ( var childComponent : Component in this.components )
 				{
-					if ( !isNaN( childComponent.spareWidth ) ) childComponent.explicitWidth = Math.min( Math.max( ( this.explicitWidth - this.totalWidth ) * childComponent.spareWidth >> 0 , childComponent.minWidth ) , isNaN( childComponent.maxWidth ) ? Number.MAX_VALUE : childComponent.maxWidth ) ; 
-					if ( !isNaN( childComponent.spareHeight ) ) childComponent.explicitHeight = Math.min( Math.max( ( this.explicitHeight - this.totalHeight ) * childComponent.spareHeight >> 0 , childComponent.minHeight ) , isNaN( childComponent.maxHeight ) ? Number.MAX_VALUE : childComponent.maxHeight ) ; 
+					if ( !isNaN( childComponent.spareWidth ) ) childComponent.explicitWidth = Math.min( Math.max( Math.round( ( this.explicitWidth - this.totalWidth ) * childComponent.spareWidth ) , childComponent.minWidth ) , isNaN( childComponent.maxWidth ) ? Number.MAX_VALUE : childComponent.maxWidth ) ; 
+					if ( !isNaN( childComponent.spareHeight ) ) childComponent.explicitHeight = Math.min( Math.max( Math.round( ( this.explicitHeight - this.totalHeight ) * childComponent.spareHeight ) , childComponent.minHeight ) , isNaN( childComponent.maxHeight ) ? Number.MAX_VALUE : childComponent.maxHeight ) ; 
 				}
 				
 				for each ( var childContainer : Container in this.containers )
@@ -604,8 +604,8 @@ package com.wemakedigital.ui
 			{
 				for each ( var childComponent : Component in this.components )
 				{
-					var x : int = this.getChildX( childComponent ) >> 0 ;
-					var y : int = this.getChildY( childComponent ) >> 0 ;
+					var x : int = Math.round( this.getChildX( childComponent ) ) ;
+					var y : int = Math.round( this.getChildY( childComponent ) ) ;
 					if ( childComponent.x != x ) childComponent.x = x ;
 					if ( childComponent.y != y ) childComponent.y = y ;
 				}
