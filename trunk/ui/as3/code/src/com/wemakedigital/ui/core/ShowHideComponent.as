@@ -132,7 +132,7 @@ package com.wemakedigital.ui.core
 				}
 				else
 				{
-					this.alpha -= 1 / ( this.stage.frameRate * this.showTime ) ; 
+					this.alpha -= 1 / ( this.stage.frameRate * this.hideTime ) ; 
 				}
 			}
 			else
