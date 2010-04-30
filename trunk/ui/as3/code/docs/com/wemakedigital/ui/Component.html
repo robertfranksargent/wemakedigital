@@ -4,7 +4,7 @@
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="../../../style.css" type="text/css" media="screen">
 <link rel="stylesheet" href="../../../print.css" type="text/css" media="print">
-<meta content="Component,com.wemakedigital.ui.Component,container,id,maxRelativeHeight,maxRelativeWidth,minRelativeHeight,minRelativeWidth,relativeHeight,relativeWidth,invalidate,removeRenderEventListeners,update" name="keywords">
+<meta content="Component,com.wemakedigital.ui.Component,autoHeight,autoWidth,bottom,container,horizontalCentre,id,left,maxRelativeHeight,maxRelativeWidth,maxSpareHeight,maxSpareWidth,minRelativeHeight,minRelativeWidth,minSpareHeight,minSpareWidth,relativeHeight,relativeWidth,right,round,spareHeight,spareWidth,top,verticalCentre,beforeRender,invalidate,render" name="keywords">
 <title>com.wemakedigital.ui.Component</title>
 </head>
 <body>
@@ -38,7 +38,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <td class="classHeaderTableLabel">Class</td><td class="classSignature">public class Component</td>
 </tr>
 <tr>
-<td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">Component <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../images/inherit-arrow.gif"> <a href="core/CoreComponent.html">CoreComponent</a> <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../images/inherit-arrow.gif"> flash.display.Sprite</td>
+<td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">Component <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../images/inherit-arrow.gif"> <a href="core/ShowHideComponent.html">ShowHideComponent</a> <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../images/inherit-arrow.gif"> <a href="core/CoreComponent.html">CoreComponent</a> <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../images/inherit-arrow.gif"> flash.display.Sprite</td>
 </tr>
 <tr>
 <td class="classHeaderTableLabel">Subclasses</td><td><a href="../ui/Container.html">Container</a></td>
@@ -82,8 +82,23 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr>
 <th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
 </tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#autoHeight">autoHeight</a> : Boolean<div class="summaryTableDescription">
+   The auto height mode of the component.</div>
+</td><td class="summaryTableOwnerCol">Component</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#autoWidth">autoWidth</a> : Boolean<div class="summaryTableDescription">
+   The auto width mode of the component.</div>
+</td><td class="summaryTableOwnerCol">Component</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#bottom">bottom</a> : Number<div class="summaryTableDescription">
+   Anchor padding from the bottom of the container.</div>
+</td><td class="summaryTableOwnerCol">Component</td>
+</tr>
 <tr class="hideInheritedProperty">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="core/CoreComponent.html#colour">colour</a> : Number<div class="summaryTableDescription">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="core/CoreComponent.html#colour">colour</a> : int<div class="summaryTableDescription">
    Optional background colour.</div>
 </td><td class="summaryTableOwnerCol"><a href="core/CoreComponent.html">CoreComponent</a></td>
 </tr>
@@ -104,6 +119,10 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </td><td class="summaryTableOwnerCol"><a href="core/CoreComponent.html">CoreComponent</a></td>
 </tr>
 <tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="core/CoreComponent.html#destroyChildren">destroyChildren</a> : Boolean = true<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol"><a href="core/CoreComponent.html">CoreComponent</a></td>
+</tr>
+<tr class="hideInheritedProperty">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="core/CoreComponent.html#displayHeight">displayHeight</a> : Number<div class="summaryTableDescription">
    The <code>height</code> property inherited from 
    <code>flash.display.DisplayObject</code>.</div>
@@ -116,9 +135,29 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </td><td class="summaryTableOwnerCol"><a href="core/CoreComponent.html">CoreComponent</a></td>
 </tr>
 <tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="core/CoreComponent.html#explicitHeight">explicitHeight</a> : Number<div class="summaryTableDescription">
+   The explicit height of the component, used by the render method.</div>
+</td><td class="summaryTableOwnerCol"><a href="core/CoreComponent.html">CoreComponent</a></td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="core/CoreComponent.html#explicitWidth">explicitWidth</a> : Number<div class="summaryTableDescription">
+   The explicit width of the component, used by the render method.</div>
+</td><td class="summaryTableOwnerCol"><a href="core/CoreComponent.html">CoreComponent</a></td>
+</tr>
+<tr class="hideInheritedProperty">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="core/CoreComponent.html#height">height</a> : Number<div class="summaryTableDescription">
    The height of the component.</div>
 </td><td class="summaryTableOwnerCol"><a href="core/CoreComponent.html">CoreComponent</a></td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="core/ShowHideComponent.html#hideTime">hideTime</a> : Number = .2<div class="summaryTableDescription">
+   The length of the hide tween in seconds.</div>
+</td><td class="summaryTableOwnerCol"><a href="core/ShowHideComponent.html">ShowHideComponent</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#horizontalCentre">horizontalCentre</a> : Number<div class="summaryTableDescription">
+   Anchor padding from the horizontal centre of the container.</div>
+</td><td class="summaryTableOwnerCol">Component</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#id">id</a> : String<div class="summaryTableDescription">
@@ -130,6 +169,11 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
    Enables and disables mouse and keyboard interactivity with the 
    component.</div>
 </td><td class="summaryTableOwnerCol"><a href="core/CoreComponent.html">CoreComponent</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#left">left</a> : Number<div class="summaryTableDescription">
+   Anchor padding from the left of the container.</div>
+</td><td class="summaryTableOwnerCol">Component</td>
 </tr>
 <tr class="hideInheritedProperty">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="core/CoreComponent.html#maxHeight">maxHeight</a> : Number<div class="summaryTableDescription">
@@ -146,6 +190,17 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#maxRelativeWidth">maxRelativeWidth</a> : Number<div class="summaryTableDescription">
    The maximum relative width of the component.</div>
+</td><td class="summaryTableOwnerCol">Component</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#maxSpareHeight">maxSpareHeight</a> : Number<div class="summaryTableDescription">
+   The maximum spare height of the component
+   </div>
+</td><td class="summaryTableOwnerCol">Component</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#maxSpareWidth">maxSpareWidth</a> : Number<div class="summaryTableDescription">
+   The maximum spare width of the component.</div>
 </td><td class="summaryTableOwnerCol">Component</td>
 </tr>
 <tr class="hideInheritedProperty">
@@ -168,6 +223,16 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
    The minumum relative width of the component.</div>
 </td><td class="summaryTableOwnerCol">Component</td>
 </tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#minSpareHeight">minSpareHeight</a> : Number<div class="summaryTableDescription">
+   The minumum spare height of the component.</div>
+</td><td class="summaryTableOwnerCol">Component</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#minSpareWidth">minSpareWidth</a> : Number<div class="summaryTableDescription">
+   The minumum spare width of the component.</div>
+</td><td class="summaryTableOwnerCol">Component</td>
+</tr>
 <tr class="hideInheritedProperty">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="core/CoreComponent.html#minWidth">minWidth</a> : Number<div class="summaryTableDescription">
    The minumum width of the component.</div>
@@ -181,6 +246,40 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#relativeWidth">relativeWidth</a> : Number<div class="summaryTableDescription">
    The relative width of the component.</div>
+</td><td class="summaryTableOwnerCol">Component</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#right">right</a> : Number<div class="summaryTableDescription">
+   Anchor padding from the right of the container.</div>
+</td><td class="summaryTableOwnerCol">Component</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#round">round</a> : Boolean<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">Component</td>
+</tr>
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="core/ShowHideComponent.html#showTime">showTime</a> : Number = .2<div class="summaryTableDescription">
+   The length of the show tween in seconds.</div>
+</td><td class="summaryTableOwnerCol"><a href="core/ShowHideComponent.html">ShowHideComponent</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#spareHeight">spareHeight</a> : Number<div class="summaryTableDescription">
+   The spare height of the component.</div>
+</td><td class="summaryTableOwnerCol">Component</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#spareWidth">spareWidth</a> : Number<div class="summaryTableDescription">
+   The spare width of the component.</div>
+</td><td class="summaryTableOwnerCol">Component</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#top">top</a> : Number<div class="summaryTableDescription">
+   Anchor padding from the top of the container.</div>
+</td><td class="summaryTableOwnerCol">Component</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#verticalCentre">verticalCentre</a> : Number<div class="summaryTableDescription">
+   Anchor padding from the vertical centre of the container.</div>
 </td><td class="summaryTableOwnerCol">Component</td>
 </tr>
 <tr class="hideInheritedProperty">
@@ -224,6 +323,24 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
+<a class="signatureLink" href="#beforeRender()">beforeRender</a>():Boolean</div>
+<div class="summaryTableDescription">
+   Called by the container after the sizing and positioning in the 
+   container hierarchy has completed just before all invalidated 
+   components render themselves.</div>
+</td><td class="summaryTableOwnerCol">Component</td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="core/ShowHideComponent.html#hide()">hide</a>(animate:Boolean = true):void</div>
+<div class="summaryTableDescription">
+   Hide the sprite.</div>
+</td><td class="summaryTableOwnerCol"><a href="core/ShowHideComponent.html">ShowHideComponent</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
 <a class="signatureLink" href="#invalidate()">invalidate</a>():void</div>
 <div class="summaryTableDescription">
    
@@ -250,19 +367,19 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#removeRenderEventListeners()">removeRenderEventListeners</a>():void</div>
+<a class="signatureLink" href="#render()">render</a>():void</div>
 <div class="summaryTableDescription">
-   Removes any <code>flash.events.Event.RENDER</code> event listeners 
-   added due to invalidation.</div>
+   
+   Renders and re-renders the component display.</div>
 </td><td class="summaryTableOwnerCol">Component</td>
 </tr>
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="core/CoreComponent.html#render()">render</a>():void</div>
+<a class="signatureLink" href="core/ShowHideComponent.html#show()">show</a>(animate:Boolean = true):void</div>
 <div class="summaryTableDescription">
-   Renders and re-renders the component display.</div>
-</td><td class="summaryTableOwnerCol"><a href="core/CoreComponent.html">CoreComponent</a></td>
+   Show the sprite.</div>
+</td><td class="summaryTableOwnerCol"><a href="core/ShowHideComponent.html">ShowHideComponent</a></td>
 </tr>
 </table>
 </div>
@@ -277,7 +394,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a onclick="javascript:setInheritedVisible(true,'ProtectedMethod');" href="#protectedMethodSummary" class="showHideLink"><img src="../../../images/collapsed.gif" class="showHideLinkImage"> Show Inherited Protected Methods</a>
 </div>
 </div>
-<table id="summaryTableProtectedMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<table id="summaryTableProtectedMethod" class="summaryTable hideInheritedProtectedMethod" cellpadding="3" cellspacing="0">
 <tr>
 <th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
 </tr>
@@ -307,14 +424,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
    Renders the coloured background.</div>
 </td><td class="summaryTableOwnerCol"><a href="core/CoreComponent.html">CoreComponent</a></td>
 </tr>
-<tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<tr class="hideInheritedProtectedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#update()">update</a>():void</div>
+<a class="signatureLink" href="core/CoreComponent.html#update()">update</a>():void</div>
 <div class="summaryTableDescription">
-   
    Updates the component when a property changes.</div>
-</td><td class="summaryTableOwnerCol">Component</td>
+</td><td class="summaryTableOwnerCol"><a href="core/CoreComponent.html">CoreComponent</a></td>
 </tr>
 </table>
 </div>
@@ -325,10 +441,58 @@ showHideInherited();
 <div class="MainContent">
 <a name="propertyDetail"></a>
 <div class="detailSectionHeader">Property detail</div>
+<a name="autoHeight"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">autoHeight</td><td class="detailHeaderType">property</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>autoHeight:Boolean</code>&nbsp;&nbsp;[read-write]<p>
+   The auto height mode of the component.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get autoHeight():Boolean</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set autoHeight(value:Boolean):void</code>
+<br>
+</div>
+<a name="autoWidth"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">autoWidth</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>autoWidth:Boolean</code>&nbsp;&nbsp;[read-write]<p>
+   The auto width mode of the component.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get autoWidth():Boolean</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set autoWidth(value:Boolean):void</code>
+<br>
+</div>
+<a name="bottom"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">bottom</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>bottom:Number</code>&nbsp;&nbsp;[read-write]<p>
+   Anchor padding from the bottom of the container.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get bottom():Number</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set bottom(value:Number):void</code>
+<br>
+</div>
 <a name="container"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">container</td><td class="detailHeaderType">property</td>
+<td class="detailHeaderName">container</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
 </tr>
 </table>
 <div class="detailBody">
@@ -339,6 +503,22 @@ showHideInherited();
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function get container():<a href="../ui/Container.html">Container</a></code>
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function set container(value:<a href="../ui/Container.html">Container</a>):void</code>
+<br>
+</div>
+<a name="horizontalCentre"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">horizontalCentre</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>horizontalCentre:Number</code>&nbsp;&nbsp;[read-write]<p>
+   Anchor padding from the horizontal centre of the container.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get horizontalCentre():Number</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set horizontalCentre(value:Number):void</code>
 <br>
 </div>
 <a name="id"></a>
@@ -356,6 +536,22 @@ showHideInherited();
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function get id():String</code>
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function set id(value:String):void</code>
+<br>
+</div>
+<a name="left"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">left</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>left:Number</code>&nbsp;&nbsp;[read-write]<p>
+   Anchor padding from the left of the container.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get left():Number</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set left(value:Number):void</code>
 <br>
 </div>
 <a name="maxRelativeHeight"></a>
@@ -390,6 +586,38 @@ showHideInherited();
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function set maxRelativeWidth(value:Number):void</code>
 <br>
 </div>
+<a name="maxSpareHeight"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">maxSpareHeight</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>maxSpareHeight:Number</code>&nbsp;&nbsp;[read-write]<p>
+   The maximum spare height of the component
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get maxSpareHeight():Number</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set maxSpareHeight(value:Number):void</code>
+<br>
+</div>
+<a name="maxSpareWidth"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">maxSpareWidth</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>maxSpareWidth:Number</code>&nbsp;&nbsp;[read-write]<p>
+   The maximum spare width of the component.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get maxSpareWidth():Number</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set maxSpareWidth(value:Number):void</code>
+<br>
+</div>
 <a name="minRelativeHeight"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -420,6 +648,38 @@ showHideInherited();
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function get minRelativeWidth():Number</code>
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function set minRelativeWidth(value:Number):void</code>
+<br>
+</div>
+<a name="minSpareHeight"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">minSpareHeight</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>minSpareHeight:Number</code>&nbsp;&nbsp;[read-write]<p>
+   The minumum spare height of the component.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get minSpareHeight():Number</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set minSpareHeight(value:Number):void</code>
+<br>
+</div>
+<a name="minSpareWidth"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">minSpareWidth</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>minSpareWidth:Number</code>&nbsp;&nbsp;[read-write]<p>
+   The minumum spare width of the component.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get minSpareWidth():Number</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set minSpareWidth(value:Number):void</code>
 <br>
 </div>
 <a name="relativeHeight"></a>
@@ -454,6 +714,100 @@ showHideInherited();
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function set relativeWidth(value:Number):void</code>
 <br>
 </div>
+<a name="right"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">right</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>right:Number</code>&nbsp;&nbsp;[read-write]<p>
+   Anchor padding from the right of the container.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get right():Number</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set right(value:Number):void</code>
+<br>
+</div>
+<a name="round"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">round</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>round:Boolean</code>&nbsp;&nbsp;[read-write]<span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get round():Boolean</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set round(value:Boolean):void</code>
+<br>
+</div>
+<a name="spareHeight"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">spareHeight</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>spareHeight:Number</code>&nbsp;&nbsp;[read-write]<p>
+   The spare height of the component.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get spareHeight():Number</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set spareHeight(value:Number):void</code>
+<br>
+</div>
+<a name="spareWidth"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">spareWidth</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>spareWidth:Number</code>&nbsp;&nbsp;[read-write]<p>
+   The spare width of the component.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get spareWidth():Number</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set spareWidth(value:Number):void</code>
+<br>
+</div>
+<a name="top"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">top</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>top:Number</code>&nbsp;&nbsp;[read-write]<p>
+   Anchor padding from the top of the container.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get top():Number</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set top(value:Number):void</code>
+<br>
+</div>
+<a name="verticalCentre"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">verticalCentre</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>verticalCentre:Number</code>&nbsp;&nbsp;[read-write]<p>
+   Anchor padding from the vertical centre of the container.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get verticalCentre():Number</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set verticalCentre(value:Number):void</code>
+<br>
+</div>
 <a name="constructorDetail"></a>
 <div class="detailSectionHeader">Constructor detail</div>
 <a name="Component()"></a>
@@ -468,10 +822,31 @@ showHideInherited();
    </p></div>
 <a name="methodDetail"></a>
 <div class="detailSectionHeader">Method detail</div>
+<a name="beforeRender()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">beforeRender</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function beforeRender():Boolean</code><p>
+   Called by the container after the sizing and positioning in the 
+   container hierarchy has completed just before all invalidated 
+   components render themselves. This provides an opportunity for 
+   components to force a re-evaluation of size and position by returning
+   false. Default is true. 
+   </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><code>Boolean</code></td>
+</tr>
+</table>
+</div>
 <a name="invalidate()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">invalidate</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+<td class="detailHeaderName">invalidate</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
 </tr>
 </table>
 <div class="detailBody">
@@ -480,27 +855,16 @@ showHideInherited();
    Invalidates the component, forcing it to render on the next 
    <code>flash.events.Event.RENDER</code> event.
    </p></div>
-<a name="removeRenderEventListeners()"></a>
+<a name="render()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">removeRenderEventListeners</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+<td class="detailHeaderName">render</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
 </tr>
 </table>
 <div class="detailBody">
-<code>public function removeRenderEventListeners():void</code><p>
-   Removes any <code>flash.events.Event.RENDER</code> event listeners 
-   added due to invalidation. 
-   </p></div>
-<a name="update()"></a>
-<table cellspacing="0" cellpadding="0" class="detailHeader">
-<tr>
-<td class="detailHeaderName">update</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
-</tr>
-</table>
-<div class="detailBody">
-<code>protected override function update():void</code><p>
+<code>public override function render():void</code><p>
    
-   Updates the component when a property changes.
+   Renders and re-renders the component display.
    </p></div>
 <br>
 <br>

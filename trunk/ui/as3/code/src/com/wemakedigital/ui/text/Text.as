@@ -11,6 +11,7 @@ package com.wemakedigital.ui.text
 	import flash.text.TextField;
 	import flash.text.TextFieldAutoSize;
 	import flash.text.TextFieldType;
+	import flash.text.TextFormat;
 	import flash.text.TextLineMetrics;
 
 	/**
@@ -35,7 +36,12 @@ package com.wemakedigital.ui.text
 		protected var _sharpness : Number ;
 		protected var _style : String = "default" ;
 		protected var _selectable : Boolean = false ;
+		protected var _wordWrap : Boolean = false ;
+		protected var _autoSize : String = TextFieldAutoSize.LEFT ;
 		protected var _htmlText : String = "" ;
+		protected var _maxChars : uint = 0 ;
+		protected var _text : String = "" ;
+		protected var _textFormat : TextFormat ;
 
 		//----------------------------------------------------------------------
 		
@@ -191,6 +197,28 @@ package com.wemakedigital.ui.text
 			this.update() ;
 		}
 		
+		public function get text ( ) : String
+		{
+			return this._text ;
+		}
+
+		public function set text ( value : String ) : void
+		{
+			this._text = value ;
+			this.update( ) ;
+		}
+
+		public function get textFormat ( ) : TextFormat
+		{
+			return this._textFormat ;
+		}
+
+		public function set textFormat ( value : TextFormat ) : void
+		{
+			this._textFormat = value ;
+			this.update( ) ;
+		}		
+		
 		//----------------------------------------------------------------------
 		
 		public function get marginLeft ( ) : Number
@@ -342,6 +370,73 @@ package com.wemakedigital.ui.text
 			}
 		}
 		
+		/**
+		 * The text field's internal width.
+		 */
+		public function get textWidth ( ) : Number
+		{
+			return this.textField.textWidth ;
+		}
+		
+		/**
+		 * The text field's internal height.
+		 */
+		public function get textHeight ( ) : Number
+		{
+			return this.textField.textHeight ;
+		}
+		
+		/**
+		 * @private
+		 */
+		public function set wordWrap ( value : Boolean ) : void
+		{
+			this._wordWrap = value ;
+			this.update( ) ;
+		}
+
+		/**
+		 * A value of <code>true</code> if the text field's content should wrap.
+		 */
+		public function get wordWrap ( ) : Boolean
+		{
+			return this._wordWrap ;
+		}
+
+		/**
+		 * The text field alignment.
+		 */
+		public function get autoSize ( ) : String
+		{
+			return this._autoSize ;
+		}
+
+		/**
+		 * @private
+		 */
+		public function set autoSize ( value : String ) : void
+		{
+			this._autoSize = value ;
+			this.update( ) ;
+		}
+
+		/**
+		 * The maximum number of characters allowed in the text input field.
+		 */
+		public function get maxChars ( ) : uint 
+		{
+			return this._maxChars ;
+		}
+
+		/**
+		 * @private
+		 */
+		public function set maxChars ( value : uint ) : void
+		{
+			this._maxChars = value ;
+			this.update( ) ;
+		}
+		
 		//----------------------------------------------------------------------
 		//
 		//  Constructor
@@ -460,9 +555,15 @@ package com.wemakedigital.ui.text
 				this.textField.selectable = this.selectable ;
 				this.textField.mouseEnabled = this.selectable ;
 				this.textField.styleSheet = this.textManager.styleSheet ;
-				this.textField.htmlText = "<span class='" + this.style + "'>" + this.htmlText + "</span>" ;
-				this.textField.wordWrap = !this.autoWidth ;				
-				this.textField.autoSize = TextFieldAutoSize.LEFT ;
+				this.textField.htmlText = "<span class='" + this.style + "'>" + ( this.htmlText.length > 0 ? this.htmlText : this.text ) + "</span>" ;
+				this.textField.wordWrap = this.wordWrap ;
+				this.textField.autoSize = this.autoSize ;
+				this.textField.maxChars = this.maxChars ;
+				
+				if ( this.textFormat && ! this.textField.styleSheet )
+				{
+					this.textField.setTextFormat( this.textFormat ) ;
+				}
 				
 				this.mouseChildren = this.selectable ;
 				

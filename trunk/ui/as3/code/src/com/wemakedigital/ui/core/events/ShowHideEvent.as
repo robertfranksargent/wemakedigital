@@ -25,6 +25,16 @@ package com.wemakedigital.ui.core.events
 		 */
 		public static const HIDE_COMPLETE : String = "HIDE_COMPLETE" ;
 		
+		/**
+		 * Show start event type.
+		 */
+		public static const SHOW_START : String = "SHOW_START" ;
+		
+		/**
+		 * Hide start event type.
+		 */
+		public static const HIDE_START : String = "HIDE_START" ;
+		
 		//----------------------------------------------------------------------
 		//
 		//  Constructor
@@ -34,9 +44,9 @@ package com.wemakedigital.ui.core.events
 		/**
 		 * Constructor.
 		 */
-		public function ShowHideEvent (type : String, bubbles : Boolean = true, cancelable : Boolean = false)
+		public function ShowHideEvent ( type : String, bubbles : Boolean = true, cancelable : Boolean = false )
 		{
-			super( type , bubbles , cancelable );
+			super( type , bubbles , cancelable ) ;
 		}
 	}
 }

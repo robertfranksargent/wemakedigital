@@ -19,39 +19,121 @@ package com.wemakedigital.ui.text
 		//  Variables
 		//
 		//----------------------------------------------------------------------
-		
+
 		protected var textField : TextField ;
-		protected var textFormat : TextFormat ;
 		protected var borderShape : Shape ;
 		protected var textHeightWhenEmpty : Number = 0 ;
-		
+
 		//----------------------------------------------------------------------
-		
+
+		/**
+		 * @private
+		 */
 		protected var _key : String = TextManager.DEFAULT_KEY ;
+
+		/**
+		 * @private
+		 */
 		protected var _antiAliasType : String ;
+
+		/**
+		 * @private
+		 */
 		protected var _gridFitType : String ;
+
+		/**
+		 * @private
+		 */
 		protected var _thickness : Number ;
+
+		/**
+		 * @private
+		 */
 		protected var _sharpness : Number ;
+
+		/**
+		 * @private
+		 */
 		protected var _style : String = "default" ;
+
+		/**
+		 * @private
+		 */
 		protected var _selectable : Boolean = true ;
 
-		//----------------------------------------------------------------------
-		
-		protected var _marginLeft : Number = 0 ;
-		protected var _marginRight : Number = 0 ;
-		protected var _marginTop : Number = 0 ;
-		protected var _marginBottom : Number = 0 ;
-		
+		/**
+		 * @private
+		 */
+		protected var _wordWrap : Boolean = true ;
+
+		/**
+		 * @private
+		 */
+		protected var _autoSize : String = TextFieldAutoSize.LEFT ;
+
+		/**
+		 * @private
+		 */
+		protected var _maxChars : uint = 0 ;
+
 		//----------------------------------------------------------------------
 
-		protected var _border : Boolean = false ;
-		protected var _borderColour : uint = 0xFF0000 ;
-		protected var _borderThickness : uint = 1 ;
-		
+		/**
+		 * @private
+		 */
+		protected var _marginLeft : Number = 0 ;
+
+		/**
+		 * @private
+		 */
+		protected var _marginRight : Number = 0 ;
+
+		/**
+		 * @private
+		 */
+		protected var _marginTop : Number = 0 ;
+
+		/**
+		 * @private
+		 */
+		protected var _marginBottom : Number = 0 ;
+
 		//----------------------------------------------------------------------
-		
+
+		/**
+		 * @private
+		 */
+		protected var _border : Boolean = false ;
+
+		/**
+		 * @private
+		 */
+		protected var _borderColour : uint = 0xFF0000 ;
+
+		/**
+		 * @private
+		 */
+		protected var _borderThickness : uint = 1 ;
+
+		//----------------------------------------------------------------------
+
+		/**
+		 * @private
+		 */
+		protected var _text : String = "" ;
+
+		/**
+		 * @private
+		 */
+		protected var _textFormat : TextFormat ;
+
+		//----------------------------------------------------------------------
+
+		/**
+		 * @private
+		 */
 		protected var beforeRenderFlag : Boolean = false ;
-		
+
 		//----------------------------------------------------------------------
 		//
 		//  Properties
@@ -61,7 +143,7 @@ package com.wemakedigital.ui.text
 		/**
 		 * @inheritDoc
 		 */
-		override public function get measuredWidth () : Number
+		override public function get measuredWidth ( ) : Number
 		{
 			return ( this.textField ? this.textField.width : 0 ) + this.marginLeft + this.marginRight ;
 		}
@@ -69,11 +151,11 @@ package com.wemakedigital.ui.text
 		/**
 		 * @inheritDoc
 		 */
-		override public function get measuredHeight () : Number
+		override public function get measuredHeight ( ) : Number
 		{
 			return ( this.textField && this.textField.text.length > 0 ? this.textField.height : this.textHeightWhenEmpty ) + this.marginTop + this.marginBottom ;
 		}
-		
+
 		//----------------------------------------------------------------------
 		
 		/**
@@ -83,16 +165,16 @@ package com.wemakedigital.ui.text
 		{
 			return this._key ;
 		}
-		
+
 		/**
 		 * @private
 		 */
 		public function set key ( value : String ) : void
 		{
 			this._key = value ;
-			this.update() ;
+			this.update( ) ;
 		}
-		
+
 		/**
 		 * The TextManager associated with this Text.
 		 */
@@ -100,18 +182,18 @@ package com.wemakedigital.ui.text
 		{
 			return TextManager.getInstance( this.key ) ;
 		}
-		
+
 		//----------------------------------------------------------------------
-		
+
 		public function get antiAliasType ( ) : String
 		{
 			return this._antiAliasType ;
 		}
-		
+
 		public function set antiAliasType ( value : String ) : void
 		{
 			this._antiAliasType = value ;
-			this.update() ;
+			this.update( ) ;
 		}
 
 		public function get gridFitType ( ) : String
@@ -122,7 +204,7 @@ package com.wemakedigital.ui.text
 		public function set gridFitType ( value : String ) : void
 		{
 			this._gridFitType = value ;
-			this.update() ;
+			this.update( ) ;
 		}
 
 		public function get thickness ( ) : Number
@@ -133,7 +215,7 @@ package com.wemakedigital.ui.text
 		public function set thickness ( value : Number ) : void
 		{
 			this._thickness = value ;
-			this.update() ;
+			this.update( ) ;
 		}
 
 		public function get sharpness ( ) : Number
@@ -144,125 +226,188 @@ package com.wemakedigital.ui.text
 		public function set sharpness ( value : Number ) : void
 		{
 			this._sharpness = value ;
-			this.update() ;
+			this.update( ) ;
 		}
-		
+
 		//----------------------------------------------------------------------
-		
+
 		public function get style ( ) : String
 		{
 			return this._style ? this._style : "default" ;
 		}
-		
+
 		public function set style ( value : String ) : void
 		{
 			this._style = value ;
-			if ( this.created ) this.updateStyle() ;
-			this.update() ;
+			if ( this.created ) this.updateStyle( ) ;
+			this.update( ) ;
 		}
-		
+
 		public function get selectable ( ) : Boolean
 		{
 			return this._selectable ;
 		}
-		
+
 		public function set selectable ( value : Boolean ) : void
 		{
 			this._selectable = value ;
-			this.update() ;
+			this.update( ) ;
 		}
-		
+
 		public function get text ( ) : String
 		{
-			return this.textField ? this.textField.text : "" ;
+			return this._text ;
 		}
-		
+
 		public function set text ( value : String ) : void
 		{
-			if ( this.textField ) this.textField.text = value ;
+			this._text = value ;
+			this.update( ) ;
 		}
-		
+
+		public function get textFormat ( ) : TextFormat
+		{
+			return this._textFormat ;
+		}
+
+		public function set textFormat ( value : TextFormat ) : void
+		{
+			this._textFormat = value ;
+			this.update( ) ;
+		}
+
 		//----------------------------------------------------------------------
-		
+
 		public function get marginLeft ( ) : Number
 		{
 			return this._marginLeft ;
 		}
-		
+
 		public function set marginLeft ( value : Number ) : void
 		{
 			this._marginLeft = value ;
-			this.update() ;
+			this.update( ) ;
 		}
 
 		public function get marginRight ( ) : Number
 		{
 			return this._marginRight ;
 		}
-		
+
 		public function set marginRight ( value : Number ) : void
 		{
 			this._marginRight = value ;
-			this.update() ;
+			this.update( ) ;
 		}
 
 		public function get marginTop ( ) : Number
 		{
 			return this._marginTop ;
 		}
-		
+
 		public function set marginTop ( value : Number ) : void
 		{
 			this._marginTop = value ;
-			this.update() ;
+			this.update( ) ;
 		}
 
 		public function get marginBottom ( ) : Number
 		{
 			return this._marginBottom ;
 		}
-		
+
 		public function set marginBottom ( value : Number ) : void
 		{
 			this._marginBottom = value ;
-			this.update() ;
+			this.update( ) ;
 		}
-		
+
 		//----------------------------------------------------------------------
-		
+
 		public function get border ( ) : Boolean
 		{
 			return this._border ;
 		}
-		
+
 		public function set border ( value : Boolean ) : void
 		{
 			this._border = value ;
-			this.update() ;
+			this.update( ) ;
 		}
 
 		public function get borderColour ( ) : uint
 		{
 			return this._borderColour ;
 		}
-		
+
 		public function set borderColour ( value : uint ) : void
 		{
 			this._borderColour = value ;
-			this.update() ;
+			this.update( ) ;
 		}
 
 		public function get borderThickness ( ) : uint
 		{
 			return this._borderThickness ;
 		}
-		
+
 		public function set borderThickness ( value : uint ) : void
 		{
 			this._borderThickness = value ;
-			this.update() ;
+			this.update( ) ;
 		}
-		
+
+		/**
+		 * @private
+		 */
+		public function set wordWrap ( value : Boolean ) : void
+		{
+			this._wordWrap = value ;
+			this.update( ) ;
+		}
+
+		/**
+		 * A value of <code>true</code> if the text field's content should wrap.
+		 */
+		public function get wordWrap ( ) : Boolean
+		{
+			return this._wordWrap ;
+		}
+
+		/**
+		 * The text field alignment.
+		 */
+		public function get autoSize ( ) : String
+		{
+			return this._autoSize ;
+		}
+
+		/**
+		 * @private
+		 */
+		public function set autoSize ( value : String ) : void
+		{
+			this._autoSize = value ;
+			this.update( ) ;
+		}
+
+		/**
+		 * The maximum number of characters allowed in the text input field.
+		 */
+		public function get maxChars ( ) : uint 
+		{
+			return this._maxChars ;
+		}
+
+		/**
+		 * @private
+		 */
+		public function set maxChars ( value : uint ) : void
+		{
+			this._maxChars = value ;
+			this.update( ) ;
+		}
+
 		//----------------------------------------------------------------------
 		//
 		//  Constructor
@@ -272,16 +417,16 @@ package com.wemakedigital.ui.text
 		/**
 		 * Constructor.
 		 */
-		public function TextInput ()
+		public function TextInput ( )
 		{
-			super() ;
+			super( ) ;
 			
 			this._autoWidth = false ;
 			this._autoHeight = true ;
 			this._width = 100 ;
 			this._height = NaN ;
 		}
-		
+
 		//----------------------------------------------------------------------
 		//
 		//  Methods
@@ -291,68 +436,76 @@ package com.wemakedigital.ui.text
 		/**
 		 * @inheritDoc
 		 */
-		override public function render () : void
+		override public function render ( ) : void
 		{
 			if ( this.created && this.invalidated )
 			{
-				this.textField.width = this.explicitWidth ; 
-				this.textField.height = this.explicitHeight ;
+				if ( this.textField.multiline )
+				{
+					this.textField.width = this.explicitWidth ;
+				}
+				else if ( ! isNaN( this.explicitHeight ) )
+				{
+					this.textField.height = this.explicitHeight ;
+				}
 				
 				this.textField.x = marginLeft ; 
 				this.textField.y = marginTop ; 
 				
-				this.borderShape.graphics.clear() ;
+				this.borderShape.graphics.clear( ) ;
 				if ( this.border )
 				{
 					this.borderShape.graphics.beginFill( this.borderColour ) ;
-					this.borderShape.graphics.drawRect( 0, 0, this.explicitWidth, this.borderThickness ) ;
-					this.borderShape.graphics.drawRect( 0, this.explicitHeight - this.borderThickness, this.explicitWidth, this.borderThickness ) ;
-					this.borderShape.graphics.drawRect( 0, this.borderThickness, this.borderThickness, this.explicitHeight - ( 2 * this.borderThickness ) ) ;
-					this.borderShape.graphics.drawRect( this.explicitWidth - this.borderThickness, this.borderThickness, this.borderThickness, this.explicitHeight - ( 2 * this.borderThickness ) ) ;
+					this.borderShape.graphics.drawRect( 0 , 0 , this.explicitWidth , this.borderThickness ) ;
+					this.borderShape.graphics.drawRect( 0 , this.explicitHeight - this.borderThickness , this.explicitWidth , this.borderThickness ) ;
+					this.borderShape.graphics.drawRect( 0 , this.borderThickness , this.borderThickness , this.explicitHeight - ( 2 * this.borderThickness ) ) ;
+					this.borderShape.graphics.drawRect( this.explicitWidth - this.borderThickness , this.borderThickness , this.borderThickness , this.explicitHeight - ( 2 * this.borderThickness ) ) ;
 				}
 			}
-			super.render() ;
+			super.render( ) ;
 		}
-		
+
 		//----------------------------------------------------------------------
 		
 		/**
 		 * @inheritDoc
 		 */
-		override protected function create () : void
+		override protected function create ( ) : void
 		{
 			this.textField = new TextField( ) ;
 			this.textField.condenseWhite = true ;
 			this.textField.type = TextFieldType.INPUT ;
 			this.textField.multiline = true ;		
+			this.textField.text = this._text ;
 			this.addChild( this.textField ) ;
 			
-			this.borderShape = new Shape() ;
+			this.borderShape = new Shape( ) ;
 			this.addChild( this.borderShape ) ;
 			
-			this.updateStyle() ;
-			super.create() ;
+			this.updateStyle( ) ;
+			super.create( ) ;
 		}
-		
+
 		/**
 		 * @inheritDoc
 		 */
-		override protected function destroy () : void
+		override protected function destroy ( ) : void
 		{
-			super.destroy() ;
+			super.destroy( ) ;
 			
 			this.textField = null ;
 		}
-		
+
 		//----------------------------------------------------------------------
 
 		/**
 		 * @inheritDoc
 		 */
-		override protected function update () : void
+		override protected function update ( ) : void
 		{
 			if ( this.created )
 			{	
+				this.textField.text = this.text ;
 				this.textField.embedFonts = this.textManager.embedFonts;
 				this.textField.antiAliasType = this.antiAliasType || this.textManager.antiAliasType ;
 				this.textField.gridFitType = this.gridFitType || this.textManager.gridFitType ;
@@ -361,26 +514,32 @@ package com.wemakedigital.ui.text
 				this.textField.selectable = this.selectable ;
 				this.textField.mouseEnabled = this.selectable ;
 				this.textField.defaultTextFormat = this.textFormat ;
-				this.textField.wordWrap = false ;				
-				this.textField.multiline = false ;				
-				this.textField.autoSize = TextFieldAutoSize.NONE ;
+				this.textField.wordWrap = this.wordWrap ;				
+				this.textField.multiline = this.wordWrap ;				
+				this.textField.autoSize = this.autoSize ;
+				this.textField.maxChars = this.maxChars ;
 				
-				if ( !isNaN( this.width ) && this.explicitWidth != this.width ) this.explicitWidth = this.width ;
-				if ( !isNaN( this.height ) && this.explicitHeight != this.height ) this.explicitHeight = this.height ;
+				if ( this.textFormat && ! this.textField.styleSheet )
+				{
+					this.textField.setTextFormat( this.textFormat ) ;
+				}
 				
-				this.invalidate() ;
+				if ( ! isNaN( this.width ) && this.explicitWidth != this.width ) this.explicitWidth = this.width ;
+				if ( ! isNaN( this.height ) && this.explicitHeight != this.height ) this.explicitHeight = this.height ;
+				
+				this.invalidate( ) ;
 			}
 		}
-		
-		protected function updateStyle() : void
+
+		protected function updateStyle ( ) : void
 		{
-			var styleTextField : TextField = new TextField() ;
+			var styleTextField : TextField = new TextField( ) ;
 			styleTextField.type = TextFieldType.DYNAMIC ;
 			styleTextField.styleSheet = this.textManager.styleSheet ;
-			styleTextField.htmlText = "<span class='" + style + "'>X</span>" ;
+			styleTextField.htmlText = "<span class='" + this.style + "'>X</span>" ;
 			styleTextField.autoSize = TextFieldAutoSize.LEFT ;
 			this.textHeightWhenEmpty = styleTextField.height ;
-			this.textFormat = styleTextField.getTextFormat( 0, 1 ) ;
+			this.textFormat = styleTextField.getTextFormat( 0 , 1 ) ;
 		}
 	}
 }

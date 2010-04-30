@@ -4,7 +4,7 @@
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="../../../../style.css" type="text/css" media="screen">
 <link rel="stylesheet" href="../../../../print.css" type="text/css" media="print">
-<meta content="CoreComponent,com.wemakedigital.ui.core.CoreComponent,colour,colourAlpha,created,displayHeight,displayWidth,height,interactive,maxHeight,maxWidth,minHeight,minWidth,width,addChild,create,destroy,invalidate,removeChild,removeChildren,render,renderColour,update" name="keywords">
+<meta content="CoreComponent,com.wemakedigital.ui.core.CoreComponent,destroyChildren,colour,colourAlpha,created,displayHeight,displayWidth,explicitHeight,explicitWidth,height,interactive,maxHeight,maxWidth,minHeight,minWidth,width,addChild,create,destroy,invalidate,removeChild,removeChildren,render,renderColour,update" name="keywords">
 <title>com.wemakedigital.ui.core.CoreComponent</title>
 </head>
 <body>
@@ -40,6 +40,9 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr>
 <td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">CoreComponent <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../../images/inherit-arrow.gif"> flash.display.Sprite</td>
 </tr>
+<tr>
+<td class="classHeaderTableLabel">Subclasses</td><td><a href="../core/ShowHideComponent.html">ShowHideComponent</a></td>
+</tr>
 </table>
 <p></p>
   <p>The base component class for the ui framework.</p> 
@@ -72,7 +75,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#colour">colour</a> : Number<div class="summaryTableDescription">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#colour">colour</a> : int<div class="summaryTableDescription">
    Optional background colour.</div>
 </td><td class="summaryTableOwnerCol">CoreComponent</td>
 </tr>
@@ -87,6 +90,10 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </td><td class="summaryTableOwnerCol">CoreComponent</td>
 </tr>
 <tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#destroyChildren">destroyChildren</a> : Boolean = true<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">CoreComponent</td>
+</tr>
+<tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#displayHeight">displayHeight</a> : Number<div class="summaryTableDescription">[read-only]
    The <code>height</code> property inherited from 
    <code>flash.display.DisplayObject</code>.</div>
@@ -96,6 +103,16 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#displayWidth">displayWidth</a> : Number<div class="summaryTableDescription">[read-only]
    The <code>width</code> property inherited from 
    <code>flash.display.DisplayObject</code>.</div>
+</td><td class="summaryTableOwnerCol">CoreComponent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#explicitHeight">explicitHeight</a> : Number<div class="summaryTableDescription">
+   The explicit height of the component, used by the render method.</div>
+</td><td class="summaryTableOwnerCol">CoreComponent</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#explicitWidth">explicitWidth</a> : Number<div class="summaryTableDescription">
+   The explicit width of the component, used by the render method.</div>
 </td><td class="summaryTableOwnerCol">CoreComponent</td>
 </tr>
 <tr class="">
@@ -252,15 +269,15 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>colour:Number</code>&nbsp;&nbsp;[read-write]<p>
+<code>colour:int</code>&nbsp;&nbsp;[read-write]<p>
    Optional background colour. Hex colour values are valid e.g 
    <code>0x000000</code> (black). The default is <code>NaN</code> which 
    will not render a background.
    </p><span class="label">Implementation</span>
 <br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get colour():Number</code>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get colour():int</code>
 <br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set colour(value:Number):void</code>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set colour(value:int):void</code>
 <br>
 </div>
 <a name="colourAlpha"></a>
@@ -298,6 +315,15 @@ showHideInherited();
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function set created(value:Boolean):void</code>
 <br>
 </div>
+<a name="destroyChildren"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">destroyChildren</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public var destroyChildren:Boolean = true</code>
+</div>
 <a name="displayHeight"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -326,6 +352,38 @@ showHideInherited();
    </p><span class="label">Implementation</span>
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function get displayWidth():Number</code>
+<br>
+</div>
+<a name="explicitHeight"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">explicitHeight</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>explicitHeight:Number</code>&nbsp;&nbsp;[read-write]<p>
+   The explicit height of the component, used by the render method.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get explicitHeight():Number</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set explicitHeight(value:Number):void</code>
+<br>
+</div>
+<a name="explicitWidth"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">explicitWidth</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>explicitWidth:Number</code>&nbsp;&nbsp;[read-write]<p>
+   The explicit width of the component, used by the render method.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get explicitWidth():Number</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set explicitWidth(value:Number):void</code>
 <br>
 </div>
 <a name="height"></a>
