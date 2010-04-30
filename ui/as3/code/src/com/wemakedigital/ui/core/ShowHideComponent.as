@@ -53,6 +53,7 @@ package com.wemakedigital.ui.core
 		 */
 		public function show ( animate : Boolean = true ) : void
 		{
+			this.onShowStart( ) ;
 			this.removeEventListener( Event.ENTER_FRAME , this.onEnterFrameHide ) ;
 			
 			this.visible = true ;
@@ -75,6 +76,7 @@ package com.wemakedigital.ui.core
 		 */
 		public function hide ( animate : Boolean = true ) : void
 		{
+			this.onHideStart( ) ;
 			this.removeEventListener( Event.ENTER_FRAME , this.onEnterFrameShow ) ;
 			
 			if ( animate )
@@ -140,6 +142,22 @@ package com.wemakedigital.ui.core
 				this.alpha = 0 ;
 				this.onHideComplete( ) ;
 			}
+		}
+		
+		/**
+		 * @private
+		 */
+		protected function onShowStart ( ) : void
+		{
+			this.dispatchEvent( new ShowHideEvent( ShowHideEvent.SHOW_START ) ) ;
+		}
+
+		/**
+		 * @private
+		 */
+		protected function onHideStart ( ) : void
+		{
+			this.dispatchEvent( new ShowHideEvent( ShowHideEvent.HIDE_START ) ) ;			
 		}
 
 		/**

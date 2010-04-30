@@ -35,6 +35,27 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("CÂ
 <td colspan="2"><a name="C"></a><a onclick="javascript:loadClassListFrame('index-list.html');" href="all-index-A.html">A</a>&nbsp;&nbsp;<a onclick="javascript:loadClassListFrame('index-list.html');" href="all-index-B.html">B</a>&nbsp;&nbsp;<font style="bold" size="10px" color="black">C</font>&nbsp;&nbsp;<a onclick="javascript:loadClassListFrame('index-list.html');" href="all-index-D.html">D</a>&nbsp;&nbsp;<a onclick="javascript:loadClassListFrame('index-list.html');" href="all-index-E.html">E</a>&nbsp;&nbsp;<a onclick="javascript:loadClassListFrame('index-list.html');" href="all-index-F.html">F</a>&nbsp;&nbsp;<a onclick="javascript:loadClassListFrame('index-list.html');" href="all-index-G.html">G</a>&nbsp;&nbsp;<a onclick="javascript:loadClassListFrame('index-list.html');" href="all-index-H.html">H</a>&nbsp;&nbsp;<a onclick="javascript:loadClassListFrame('index-list.html');" href="all-index-I.html">I</a>&nbsp;&nbsp;<a onclick="javascript:loadClassListFrame('index-list.html');" href="all-index-J.html">J</a>&nbsp;&nbsp;<a onclick="javascript:loadClassListFrame('index-list.html');" href="all-index-K.html">K</a>&nbsp;&nbsp;<a onclick="javascript:loadClassListFrame('index-list.html');" href="all-index-L.html">L</a>&nbsp;&nbsp;<a onclick="javascript:loadClassListFrame('index-list.html');" href="all-index-M.html">M</a>&nbsp;&nbsp;<a onclick="javascript:loadClassListFrame('index-list.html');" href="all-index-N.html">N</a>&nbsp;&nbsp;<a onclick="javascript:loadClassListFrame('index-list.html');" href="all-index-O.html">O</a>&nbsp;&nbsp;<a onclick="javascript:loadClassListFrame('index-list.html');" href="all-index-P.html">P</a>&nbsp;&nbsp;<a onclick="javascript:loadClassListFrame('index-list.html');" href="all-index-Q.html">Q</a>&nbsp;&nbsp;<a onclick="javascript:loadClassListFrame('index-list.html');" href="all-index-R.html">R</a>&nbsp;&nbsp;<a onclick="javascript:loadClassListFrame('index-list.html');" href="all-index-S.html">S</a>&nbsp;&nbsp;<a onclick="javascript:loadClassListFrame('index-list.html');" href="all-index-T.html">T</a>&nbsp;&nbsp;<a onclick="javascript:loadClassListFrame('index-list.html');" href="all-index-U.html">U</a>&nbsp;&nbsp;<a onclick="javascript:loadClassListFrame('index-list.html');" href="all-index-V.html">V</a>&nbsp;&nbsp;<a onclick="javascript:loadClassListFrame('index-list.html');" href="all-index-W.html">W</a>&nbsp;&nbsp;<a onclick="javascript:loadClassListFrame('index-list.html');" href="all-index-X.html">X</a>&nbsp;&nbsp;<a onclick="javascript:loadClassListFrame('index-list.html');" href="all-index-Y.html">Y</a>&nbsp;&nbsp;<a onclick="javascript:loadClassListFrame('index-list.html');" href="all-index-Z.html">Z</a>&nbsp;&nbsp;</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('com/wemakedigital/ui/class-list.html');" href="com/wemakedigital/ui/HContainer.html#CENTRE">CENTRE</a> &mdash; Constant static property in class com.wemakedigital.ui.<a onclick="javascript:loadClassListFrame('com/wemakedigital/ui/class-list.html');" href="com/wemakedigital/ui/HContainer.html">HContainer</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+   Anchor centre.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('com/wemakedigital/ui/class-list.html');" href="com/wemakedigital/ui/VContainer.html#CENTRE">CENTRE</a> &mdash; Constant static property in class com.wemakedigital.ui.<a onclick="javascript:loadClassListFrame('com/wemakedigital/ui/class-list.html');" href="com/wemakedigital/ui/VContainer.html">VContainer</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+   Anchor vertical centre.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('com/wemakedigital/ui/class-list.html');" href="com/wemakedigital/ui/Container.html#children">children</a> &mdash; Property in class com.wemakedigital.ui.<a onclick="javascript:loadClassListFrame('com/wemakedigital/ui/class-list.html');" href="com/wemakedigital/ui/Container.html">Container</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+   The DisplayObjects children of this container.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('com/wemakedigital/ui/core/class-list.html');" href="com/wemakedigital/ui/core/CoreComponent.html#colour">colour</a> &mdash; Property in class com.wemakedigital.ui.core.<a onclick="javascript:loadClassListFrame('com/wemakedigital/ui/core/class-list.html');" href="com/wemakedigital/ui/core/CoreComponent.html">CoreComponent</a></td>
 </tr>
 <tr>
@@ -49,10 +70,102 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("CÂ
    The alpha transparency value of the background colour.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('com/wemakedigital/ui/class-list.html');" href="com/wemakedigital/ui/Component.html">Component</a> &mdash; Class in package <a onclick="javascript:loadClassListFrame('com/wemakedigital/ui/class-list.html');" href="com/wemakedigital/ui/package-detail.html">com.wemakedigital.ui</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+  <p>The base component class for the ui framework.</p> 
+  
+  <p>Extending the <code>flash.display.Sprite</code> class it provides 
+  methods for the following:</p>
+  
+  <ul>
+  <li>Creation when added to the display list</li>
+  <li>Destruction when removed from the display list</li>
+  <li>Updating when a property changes</li>
+  <li>Replaces the <code>width</code> and <code>height</code> properties 
+  inherited from <code>flash.display.DisplayObject</code> which become read 
+  only via <code>displayWidth</code> and <code>displayHeight</code> properties.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('com/wemakedigital/ui/class-list.html');" href="com/wemakedigital/ui/Component.html#Component()">Component</a>() &mdash; Constructor in class com.wemakedigital.ui.<a onclick="javascript:loadClassListFrame('com/wemakedigital/ui/class-list.html');" href="com/wemakedigital/ui/Component.html">Component</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+   Constructor.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('com/wemakedigital/ui/class-list.html');" href="com/wemakedigital/ui/Container.html#components">components</a> &mdash; Property in class com.wemakedigital.ui.<a onclick="javascript:loadClassListFrame('com/wemakedigital/ui/class-list.html');" href="com/wemakedigital/ui/Container.html">Container</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+   The Component children of this container.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('com/wemakedigital/ui/class-list.html');" href="com/wemakedigital/ui/package-detail.html">com.wemakedigital.ui</a> &mdash; Package</td>
+</tr>
+<tr>
+<td width="20"></td><td></td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('com/wemakedigital/ui/core/class-list.html');" href="com/wemakedigital/ui/core/package-detail.html">com.wemakedigital.ui.core</a> &mdash; Package</td>
 </tr>
 <tr>
 <td width="20"></td><td></td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('com/wemakedigital/ui/core/events/class-list.html');" href="com/wemakedigital/ui/core/events/package-detail.html">com.wemakedigital.ui.core.events</a> &mdash; Package</td>
+</tr>
+<tr>
+<td width="20"></td><td></td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('com/wemakedigital/ui/text/class-list.html');" href="com/wemakedigital/ui/text/package-detail.html">com.wemakedigital.ui.text</a> &mdash; Package</td>
+</tr>
+<tr>
+<td width="20"></td><td></td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('com/wemakedigital/ui/text/manager/class-list.html');" href="com/wemakedigital/ui/text/manager/package-detail.html">com.wemakedigital.ui.text.manager</a> &mdash; Package</td>
+</tr>
+<tr>
+<td width="20"></td><td></td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('com/wemakedigital/ui/class-list.html');" href="com/wemakedigital/ui/Component.html#container">container</a> &mdash; Property in class com.wemakedigital.ui.<a onclick="javascript:loadClassListFrame('com/wemakedigital/ui/class-list.html');" href="com/wemakedigital/ui/Component.html">Component</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+      The component's container in the display hierarchy.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('com/wemakedigital/ui/class-list.html');" href="com/wemakedigital/ui/Container.html">Container</a> &mdash; Class in package <a onclick="javascript:loadClassListFrame('com/wemakedigital/ui/class-list.html');" href="com/wemakedigital/ui/package-detail.html">com.wemakedigital.ui</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+  TODO
+  </td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('com/wemakedigital/ui/class-list.html');" href="com/wemakedigital/ui/Container.html#Container()">Container</a>() &mdash; Constructor in class com.wemakedigital.ui.<a onclick="javascript:loadClassListFrame('com/wemakedigital/ui/class-list.html');" href="com/wemakedigital/ui/Container.html">Container</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+   Constructor.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('com/wemakedigital/ui/class-list.html');" href="com/wemakedigital/ui/Container.html#containers">containers</a> &mdash; Property in class com.wemakedigital.ui.<a onclick="javascript:loadClassListFrame('com/wemakedigital/ui/class-list.html');" href="com/wemakedigital/ui/Container.html">Container</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+   The Container children of this container.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('com/wemakedigital/ui/class-list.html');" href="com/wemakedigital/ui/Container.html#contains()">contains</a>(child) &mdash; Method in class com.wemakedigital.ui.<a onclick="javascript:loadClassListFrame('com/wemakedigital/ui/class-list.html');" href="com/wemakedigital/ui/Container.html">Container</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+   </td>
 </tr>
 <tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('com/wemakedigital/ui/core/class-list.html');" href="com/wemakedigital/ui/core/CoreComponent.html">CoreComponent</a> &mdash; Class in package <a onclick="javascript:loadClassListFrame('com/wemakedigital/ui/core/class-list.html');" href="com/wemakedigital/ui/core/package-detail.html">com.wemakedigital.ui.core</a></td>
@@ -80,10 +193,47 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("CÂ
    Constructor.</td>
 </tr>
 <tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('com/wemakedigital/ui/class-list.html');" href="com/wemakedigital/ui/DistributeContainer.html#create()">create</a>() &mdash; Method in class com.wemakedigital.ui.<a onclick="javascript:loadClassListFrame('com/wemakedigital/ui/class-list.html');" href="com/wemakedigital/ui/DistributeContainer.html">DistributeContainer</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+   
+   Creates the component's children and adds event listeners when added 
+   to the display list.</td>
+</tr>
+<tr>
 <td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('com/wemakedigital/ui/core/class-list.html');" href="com/wemakedigital/ui/core/CoreComponent.html#create()">create</a>() &mdash; Method in class com.wemakedigital.ui.core.<a onclick="javascript:loadClassListFrame('com/wemakedigital/ui/core/class-list.html');" href="com/wemakedigital/ui/core/CoreComponent.html">CoreComponent</a></td>
 </tr>
 <tr>
 <td width="20"></td><td>
+   Creates the component's children and adds event listeners when added 
+   to the display list.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('com/wemakedigital/ui/text/class-list.html');" href="com/wemakedigital/ui/text/Text.html#create()">create</a>() &mdash; Method in class com.wemakedigital.ui.text.<a onclick="javascript:loadClassListFrame('com/wemakedigital/ui/text/class-list.html');" href="com/wemakedigital/ui/text/Text.html">Text</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+   
+   Creates the component's children and adds event listeners when added 
+   to the display list.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('com/wemakedigital/ui/text/class-list.html');" href="com/wemakedigital/ui/text/TextButton.html#create()">create</a>() &mdash; Method in class com.wemakedigital.ui.text.<a onclick="javascript:loadClassListFrame('com/wemakedigital/ui/text/class-list.html');" href="com/wemakedigital/ui/text/TextButton.html">TextButton</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+   
+   
+   Creates the component's children and adds event listeners when added 
+   to the display list.</td>
+</tr>
+<tr>
+<td colspan="2" class="idxrow"><a onclick="javascript:loadClassListFrame('com/wemakedigital/ui/text/class-list.html');" href="com/wemakedigital/ui/text/TextInput.html#create()">create</a>() &mdash; Method in class com.wemakedigital.ui.text.<a onclick="javascript:loadClassListFrame('com/wemakedigital/ui/text/class-list.html');" href="com/wemakedigital/ui/text/TextInput.html">TextInput</a></td>
+</tr>
+<tr>
+<td width="20"></td><td>
+   
    Creates the component's children and adds event listeners when added 
    to the display list.</td>
 </tr>
