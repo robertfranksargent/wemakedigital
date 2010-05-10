@@ -4,7 +4,7 @@
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="../../../../style.css" type="text/css" media="screen">
 <link rel="stylesheet" href="../../../../print.css" type="text/css" media="print">
-<meta content="Text,com.wemakedigital.ui.text.Text,_antiAliasType,_gridFitType,_htmlText,_key,_marginBottom,_marginLeft,_marginRight,_marginTop,_selectable,_sharpness,_style,_thickness,_trimBottom,_trimEnd,_trimSample,_trimStart,_trimTop,beforeRenderFlag,textField,trimBottomHeight,trimEndWidth,trimStartWidth,trimTopHeight,antiAliasType,gridFitType,htmlText,key,marginBottom,marginLeft,marginRight,marginTop,measuredHeight,measuredWidth,selectable,sharpness,style,textHeight,textManager,textWidth,thickness,trimBottom,trimEnd,trimSample,trimStart,trimTop,beforeRender,create,destroy,getTrimBottomHeight,getTrimEndWidth,getTrimStartRectangle,getTrimStartWidth,getTrimTopHeight,render,trimHorizontal,trimVertical,update" name="keywords">
+<meta content="Text,com.wemakedigital.ui.text.Text,_antiAliasType,_autoSize,_gridFitType,_htmlText,_key,_marginBottom,_marginLeft,_marginRight,_marginTop,_maxChars,_selectable,_sharpness,_style,_text,_textFormat,_thickness,_trimBottom,_trimEnd,_trimSample,_trimStart,_trimTop,_wordWrap,beforeRenderFlag,textField,trimBottomHeight,trimEndWidth,trimStartWidth,trimTopHeight,antiAliasType,autoSize,gridFitType,htmlText,key,marginBottom,marginLeft,marginRight,marginTop,maxChars,measuredHeight,measuredWidth,selectable,sharpness,style,text,textFormat,textHeight,textManager,textWidth,thickness,trimBottom,trimEnd,trimSample,trimStart,trimTop,wordWrap,beforeRender,create,destroy,getTrimBottomHeight,getTrimEndWidth,getTrimStartRectangle,getTrimStartWidth,getTrimTopHeight,render,trimHorizontal,trimVertical,update" name="keywords">
 <title>com.wemakedigital.ui.text.Text</title>
 </head>
 <body>
@@ -73,6 +73,11 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../Component.html#autoHeight">autoHeight</a> : Boolean<div class="summaryTableDescription">
    The auto height mode of the component.</div>
 </td><td class="summaryTableOwnerCol"><a href="../Component.html">Component</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#autoSize">autoSize</a> : String<div class="summaryTableDescription">
+   The text field alignment.</div>
+</td><td class="summaryTableOwnerCol">Text</td>
 </tr>
 <tr class="hideInheritedProperty">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../Component.html#autoWidth">autoWidth</a> : Boolean<div class="summaryTableDescription">
@@ -210,6 +215,11 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../Container.html#maskChildren">maskChildren</a> : Boolean<div class="summaryTableDescription">
    Mask children to the container size (default is false).</div>
 </td><td class="summaryTableOwnerCol"><a href="../Container.html">Container</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#maxChars">maxChars</a> : uint<div class="summaryTableDescription">
+   The maximum number of characters allowed in the text input field.</div>
+</td><td class="summaryTableOwnerCol">Text</td>
 </tr>
 <tr class="hideInheritedProperty">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../core/CoreComponent.html#maxHeight">maxHeight</a> : Number<div class="summaryTableDescription">
@@ -358,6 +368,14 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </td><td class="summaryTableOwnerCol">Text</td>
 </tr>
 <tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#text">text</a> : String<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">Text</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#textFormat">textFormat</a> : TextFormat<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">Text</td>
+</tr>
+<tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#textHeight">textHeight</a> : Number<div class="summaryTableDescription">[read-only]
    The text field's internal height.</div>
 </td><td class="summaryTableOwnerCol">Text</td>
@@ -427,6 +445,11 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
    The width of the component.</div>
 </td><td class="summaryTableOwnerCol"><a href="../core/CoreComponent.html">CoreComponent</a></td>
 </tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#wordWrap">wordWrap</a> : Boolean<div class="summaryTableDescription">
+   A value of <code>true</code> if the text field's content should wrap.</div>
+</td><td class="summaryTableOwnerCol">Text</td>
+</tr>
 </table>
 </div>
 <a name="protectedPropertySummary"></a>
@@ -446,6 +469,10 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#_antiAliasType">_antiAliasType</a> : String<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">Text</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#_autoSize">_autoSize</a> : String = "left"<div class="summaryTableDescription"></div>
 </td><td class="summaryTableOwnerCol">Text</td>
 </tr>
 <tr class="">
@@ -480,6 +507,10 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#_marginTop">_marginTop</a> : Number = 0<div class="summaryTableDescription"></div>
 </td><td class="summaryTableOwnerCol">Text</td>
 </tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#_maxChars">_maxChars</a> : uint = 0<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">Text</td>
+</tr>
 <tr class="hideInheritedProtectedProperty">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../Container.html#renderAgain">renderAgain</a> : Boolean = false<div class="summaryTableDescription"></div>
 </td><td class="summaryTableOwnerCol"><a href="../Container.html">Container</a></td>
@@ -501,7 +532,15 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </td><td class="summaryTableOwnerCol">Text</td>
 </tr>
 <tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#_text">_text</a> : String = ""<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">Text</td>
+</tr>
+<tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#textField">textField</a> : TextField<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">Text</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#_textFormat">_textFormat</a> : TextFormat<div class="summaryTableDescription"></div>
 </td><td class="summaryTableOwnerCol">Text</td>
 </tr>
 <tr class="">
@@ -542,6 +581,10 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#trimTopHeight">trimTopHeight</a> : Number = 0<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">Text</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#_wordWrap">_wordWrap</a> : Boolean = false<div class="summaryTableDescription"></div>
 </td><td class="summaryTableOwnerCol">Text</td>
 </tr>
 </table>
@@ -902,6 +945,31 @@ showHideInherited();
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function set antiAliasType(value:String):void</code>
 <br>
 </div>
+<a name="_autoSize"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">_autoSize</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected var _autoSize:String = "left"</code>
+</div>
+<a name="autoSize"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">autoSize</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>autoSize:String</code>&nbsp;&nbsp;[read-write]<p>
+   The text field alignment.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get autoSize():String</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set autoSize(value:String):void</code>
+<br>
+</div>
 <a name="beforeRenderFlag"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -1074,6 +1142,31 @@ showHideInherited();
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function set marginTop(value:Number):void</code>
 <br>
 </div>
+<a name="_maxChars"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">_maxChars</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected var _maxChars:uint = 0</code>
+</div>
+<a name="maxChars"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">maxChars</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>maxChars:uint</code>&nbsp;&nbsp;[read-write]<p>
+   The maximum number of characters allowed in the text input field.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get maxChars():uint</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set maxChars(value:uint):void</code>
+<br>
+</div>
 <a name="measuredHeight"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -1173,6 +1266,29 @@ showHideInherited();
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function set style(value:String):void</code>
 <br>
 </div>
+<a name="_text"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">_text</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected var _text:String = ""</code>
+</div>
+<a name="text"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">text</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>text:String</code>&nbsp;&nbsp;[read-write]<span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get text():String</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set text(value:String):void</code>
+<br>
+</div>
 <a name="textField"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -1181,6 +1297,29 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>protected var textField:TextField</code>
+</div>
+<a name="_textFormat"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">_textFormat</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected var _textFormat:TextFormat</code>
+</div>
+<a name="textFormat"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">textFormat</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>textFormat:TextFormat</code>&nbsp;&nbsp;[read-write]<span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get textFormat():TextFormat</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set textFormat(value:TextFormat):void</code>
+<br>
 </div>
 <a name="textHeight"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
@@ -1410,6 +1549,31 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>protected var trimTopHeight:Number = 0</code>
+</div>
+<a name="_wordWrap"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">_wordWrap</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>protected var _wordWrap:Boolean = false</code>
+</div>
+<a name="wordWrap"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">wordWrap</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>wordWrap:Boolean</code>&nbsp;&nbsp;[read-write]<p>
+   A value of <code>true</code> if the text field's content should wrap.
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get wordWrap():Boolean</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set wordWrap(value:Boolean):void</code>
+<br>
 </div>
 <a name="constructorDetail"></a>
 <div class="detailSectionHeader">Constructor detail</div>
