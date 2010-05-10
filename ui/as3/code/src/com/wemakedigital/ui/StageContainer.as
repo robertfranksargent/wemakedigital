@@ -11,6 +11,8 @@ package com.wemakedigital.ui
 	 */
 	public class StageContainer extends Container 
 	{
+		public static var instance : StageContainer ;
+
 		//----------------------------------------------------------------------
 		//
 		//  Constructor
@@ -20,14 +22,16 @@ package com.wemakedigital.ui
 		/**
 		 * Constructor.
 		 */
-		public function StageContainer () 
+		public function StageContainer ( ) 
 		{
-			super( );
+			super( ) ;
 			
 			this.autoWidth = false ;
 			this.autoHeight = false ;
+			
+			StageContainer.instance = this ;
 		}
-		
+
 		//----------------------------------------------------------------------
 		//
 		//  Methods
@@ -37,19 +41,19 @@ package com.wemakedigital.ui
 		/**
 		 * @inheritDoc
 		 */
-		override protected function update () : void
+		override protected function update ( ) : void
 		{
 			if ( this.created )
 			{
 				if ( this.explicitWidth != this.stage.stageWidth || this.explicitHeight != this.stage.stageHeight ) 
 				{
-					this.explicitWidth = Math.min ( Math.max ( this.stage.stageWidth, this.minWidth ), isNaN ( this.maxWidth ) ? Number.MAX_VALUE : this.maxWidth ) ;
-					this.explicitHeight = Math.min ( Math.max ( this.stage.stageHeight, this.minHeight ), isNaN ( this.maxHeight ) ? Number.MAX_VALUE : this.maxHeight ) ;
-					this.invalidate() ;
+					this.explicitWidth = Math.min( Math.max( this.stage.stageWidth , this.minWidth ) , isNaN( this.maxWidth ) ? Number.MAX_VALUE : this.maxWidth ) ;
+					this.explicitHeight = Math.min( Math.max( this.stage.stageHeight , this.minHeight ) , isNaN( this.maxHeight ) ? Number.MAX_VALUE : this.maxHeight ) ;
+					this.invalidate( ) ;
 				}
 			}
 		}
-		
+
 		//----------------------------------------------------------------------
 		//
 		//  Event Handlers
