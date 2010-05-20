@@ -776,15 +776,18 @@ package com.wemakedigital.ui
 			if ( this.created ) 
 			{
 				this.invalidated = true ;
-				if ( this.container ) // TODO in future also consider if it is at all possible that the container or siblings will be affected.
+				if ( this.stage )
 				{
-					this.stage.removeEventListener( Event.RENDER, this.onRender ) ;
-					this.container.invalidatedChild() ;
-				}
-				else 
-				{
-					this.stage.addEventListener( Event.RENDER, this.onRender ) ;
-					this.stage.invalidate() ;	
+					if ( this.container ) // TODO in future also consider if it is at all possible that the container or siblings will be affected.
+					{
+						this.stage.removeEventListener( Event.RENDER, this.onRender ) ;
+						this.container.invalidatedChild() ;
+					}
+					else 
+					{
+						this.stage.addEventListener( Event.RENDER, this.onRender ) ;
+						this.stage.invalidate() ;	
+					}
 				}
 			}
 		}
